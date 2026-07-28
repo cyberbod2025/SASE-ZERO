@@ -3,9 +3,9 @@
   "project": "SASE Zero",
   "product_definition": "Sistema Operativo de una Secundaria",
   "phase": "functional_architecture",
-  "status": "first_mission_committed_in_review",
+  "status": "closed_and_merged",
   "implementation_started": false,
-  "current_objective": "Atender la revisión del PR #1 y resolver con el Product Owner las 10 preguntas abiertas restantes antes de continuar con arquitectura técnica o decisiones de stack.",
+  "current_objective": "Cierre de arquitectura funcional completado. Siguiente fase: arquitectura técnica.",
   "canonical_sources": [
     "README.md",
     "docs/foundation/PRODUCT_FOUNDATION.md",
@@ -18,23 +18,19 @@
     "docs/product/CORE_WORKFLOWS.md"
   ],
   "current_deliverables_status": {
-    "docs/product/PRODUCT_MAP.md": "committed (94ab9ef), in review on PR #1",
-    "docs/domains/DOMAIN_MAP.md": "committed (94ab9ef), in review on PR #1",
-    "docs/product/MODULE_CATALOG.md": "committed (94ab9ef), in review on PR #1",
-    "docs/product/ROLE_MATRIX.md": "committed (94ab9ef), in review on PR #1",
-    "docs/product/CORE_WORKFLOWS.md": "committed (94ab9ef), in review on PR #1",
-    "docs/decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md": "accepted by Product Owner during PR #1 review",
-    "docs/decisions/ADR-0002-USUARIOS-CON-MULTIPLES-ROLES.md": "accepted by Product Owner during PR #1 review"
+    "docs/product/PRODUCT_MAP.md": "closed (cierre consolidado con tabla de resoluciones y decisión de privacidad)",
+    "docs/domains/DOMAIN_MAP.md": "closed (5 preguntas resueltas con defaults, configuración o diferimiento)",
+    "docs/product/MODULE_CATALOG.md": "closed (3 preguntas resueltas con defaults o configuración)",
+    "docs/product/ROLE_MATRIX.md": "closed (4 preguntas + decisión final de privacidad del PO)",
+    "docs/product/CORE_WORKFLOWS.md": "closed (2 preguntas resueltas: taxonomía configurable, umbral diferido a prototipado)",
+    "docs/decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md": "accepted by Product Owner",
+    "docs/decisions/ADR-0002-USUARIOS-CON-MULTIPLES-ROLES.md": "accepted by Product Owner"
   },
-  "branch": "docs/functional-architecture-v1",
-  "commits": {
-    "94ab9ef": "docs: define SASE Zero functional architecture",
-    "6e5c8e1": "chore(agent): record functional architecture handoff"
-  },
+  "branch": "main",
   "pull_request": {
     "number": 1,
     "title": "docs: define SASE Zero functional architecture v1",
-    "state": "open draft, do not merge without Product Owner approval",
+    "state": "merged",
     "url": "https://github.com/cyberbod2025/SASE-ZERO/pull/1"
   },
   "allowed_work": [
@@ -57,9 +53,8 @@
     "irreversible technology decisions",
     "invented legal requirements"
   ],
-  "next_safe_microtask": "Product Owner confirms or adjusts the attendance model (own domain with two connected levels: jornada + clase) so it can be recorded as ADR-0003; then reviews the remaining open questions in docs/product/PRODUCT_MAP.md section 10. PR #1 stays a draft until the Product Owner authorizes the merge.",
-  "open_questions_count": 10,
+  "next_safe_microtask": "Preparar la misión de arquitectura técnica: delimitar objetivos, opciones reversibles y modelo conceptual, sin iniciar implementación de producto.",
   "product_owner": "Hugo Sánchez Reséndiz",
   "foundation_commit": "b7252a07bfa639d17886339bebd523854e2fcb56",
-  "updated_at": "2026-07-27"
+  "updated_at": "2026-07-28"
 }

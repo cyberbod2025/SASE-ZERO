@@ -1,6 +1,6 @@
 # Mapa de Producto — SASE Zero
 
-**Estado:** Propuesta de arquitectura funcional, pendiente de revisión del Product Owner.
+**Estado:** Línea base de arquitectura funcional cerrada y aprobada.
 **Fuente de precedencia:** [`docs/foundation/PRODUCT_FOUNDATION.md`](../foundation/PRODUCT_FOUNDATION.md). Este documento es el punto de entrada a la arquitectura funcional; no repite la fundación, la organiza y la conecta con los demás documentos.
 
 Se relaciona con: [`docs/domains/DOMAIN_MAP.md`](../domains/DOMAIN_MAP.md), [`docs/product/MODULE_CATALOG.md`](MODULE_CATALOG.md), [`docs/product/ROLE_MATRIX.md`](ROLE_MATRIX.md), [`docs/product/CORE_WORKFLOWS.md`](CORE_WORKFLOWS.md).
@@ -77,25 +77,29 @@ Este mapa funcional se construyó exclusivamente a partir de las fuentes canóni
 
 La antigua pregunta abierta n.º 1 fue resuelta por decisión del Product Owner, registrada en [`docs/decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md`](../decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md): **SASE Zero es una reconstrucción independiente y limpia**; SASE Light y otros trabajos previos pueden consultarse como evidencia o referencia funcional, pero no son fuentes canónicas, no se importan automáticamente y no determinan la arquitectura de SASE Zero. `F6` en `CORE_WORKFLOWS.md` continúa en nivel conceptual hasta que se audite el trabajo previo de admisión; el flujo previo de admisión no es un requisito de SASE Zero.
 
-## 10. Preguntas abiertas consolidadas de todo el mapa funcional
+## 10. Cierre de la fase funcional — resolución de las preguntas
 
-1. ❓ Autoridad para modificar catálogos/plantillas del plantel (`DOMAIN_MAP.md` D3).
-2. ❓ Taxonomía de tipos de caso/incidencia (`DOMAIN_MAP.md` D5, `CORE_WORKFLOWS.md` F1).
-3. ❓ Modelo de asistencia como dominio propio o parte de seguimiento académico (`DOMAIN_MAP.md` D7) — con recomendación del Product Owner en evaluación para ADR-0003.
-4. ❓ Nivel de aislamiento de permisos entre Salud y Trabajo Social (`DOMAIN_MAP.md` D8/D9).
-5. ❓ Terminología oficial vs. configurable para apoyos especializados/BAP (`DOMAIN_MAP.md` D10).
-6. ❓ Alcance de acceso de Dirección/Subdirección a expedientes sensibles individuales (`ROLE_MATRIX.md`).
-7. ❓ Diferenciación funcional entre Dirección y Subdirección (`ROLE_MATRIX.md`).
-8. ❓ Alcance funcional de Prefectura frente a Docentes tutores (`ROLE_MATRIX.md`).
-9. ❓ Definición concreta de "personal administrativo autorizado" (`ROLE_MATRIX.md`).
-10. ❓ Umbral de tiempo para "seguimiento vencido" (`CORE_WORKFLOWS.md` F1).
+Las preguntas abiertas de esta fase quedaron resueltas en el cierre consolidado aprobado por el Product Owner (2026-07-28), aplicando la regla operativa permanente: las decisiones reversibles adoptan defaults explícitos; las variaciones entre escuelas se modelan como configuración; los detalles no necesarios se difieren a su fase; lo normativo sin fuente queda `En preparación`; solo se escala al Product Owner una decisión irreversible, transversal y realmente bloqueante.
 
-Preguntas resueltas por ADR: relación con trabajo previo mediante [`ADR-0001`](../decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md); multi-rol por usuario y roles multiescuela mediante [`ADR-0002`](../decisions/ADR-0002-USUARIOS-CON-MULTIPLES-ROLES.md).
+| Tema | Resolución | Detalle pendiente y su fase |
+|---|---|---|
+| Catálogos y plantillas | Configuración institucional: Dirección administra por defecto y puede delegar permisos específicos mediante M1 | Configuración del MVP |
+| Taxonomía de casos/incidencias | Catálogo configurable por plantel; SASE ofrecerá posteriormente un catálogo semilla (contenido no definido ahora) | Prototipado / piloto |
+| Modelo de asistencia | Default reversible: jornada + clase. La jornada no prueba cada clase; las clases no reconstruyen la jornada; captura no realizada no equivale a ausencia; discrepancias observables pueden alimentar M17. El seguimiento académico y de convivencia permanece en D7 | Arquitectura técnica (modelo de datos conceptual) |
+| Salud ↔ Trabajo Social | Aislamiento por defecto; visibilidad cruzada solo mediante canalización explícita y limitada al caso, conforme a `ADR-0002` | Política de privacidad detallada, antes del piloto |
+| Apoyos especializados | Nombre visible configurable; por ahora "apoyos especializados". Correspondencia con terminología oficial vigente: `En preparación` | Validación institucional |
+| Dirección/Subdirección y datos sensibles | **Decisión final del Product Owner:** indicadores agregados por defecto; el acceso a información individual de Salud, Trabajo Social u Orientación solo se permite sobre un caso concreto, por necesidad institucional justificada, con motivo registrado, alcance mínimo y auditoría. No existe navegación general por expedientes sensibles | — (decidido) |
+| Subdirección | Default: funciones operativas de Dirección sin administración de configuración crítica | Diferenciación fina en prototipado |
+| Prefectura vs. Docentes tutores | Ambos pueden originar casos; la responsabilidad depende de la asignación del caso, no de quién lo abrió; distribución configurable por plantel | Piloto con la primera escuela |
+| Personal administrativo autorizado | Conjunto configurable de permisos, no perfil rígido | Configuración del MVP |
+| Seguimiento vencido | Umbral configurable por tipo de caso, dentro de límites seguros | Valor semilla en prototipado |
 
-Ninguna de estas preguntas se respondió por inferencia; todas requieren decisión del Product Owner antes de convertirse en diseño técnico o implementación.
+**Estado de la fase:** la arquitectura funcional se declara suficiente para iniciar la siguiente fase. No queda ninguna pregunta bloqueante para el Product Owner. La implementación de producto continúa **no iniciada**.
+
+Decisiones estructurales de la fase: [`ADR-0001`](../decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md) (relación con trabajo previo) y [`ADR-0002`](../decisions/ADR-0002-USUARIOS-CON-MULTIPLES-ROLES.md) (multi-rol con contexto de acción).
 
 ## Validación de este documento
 
 - Enlaza, en vez de duplicar, el contenido de `DOMAIN_MAP.md`, `MODULE_CATALOG.md`, `ROLE_MATRIX.md` y `CORE_WORKFLOWS.md`.
 - Toda cita a la fundación referencia una sección concreta.
-- Consolida todas las preguntas abiertas de los cuatro documentos sin intentar resolverlas.
+- Registra la resolución de cierre de todas las preguntas de la fase, con su default, configuración o fase de diferimiento.

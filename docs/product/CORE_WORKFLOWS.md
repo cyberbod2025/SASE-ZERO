@@ -1,6 +1,6 @@
 # Flujos Institucionales Centrales — SASE Zero
 
-**Estado:** Propuesta de arquitectura funcional, pendiente de revisión del Product Owner.
+**Estado:** Línea base de arquitectura funcional cerrada y aprobada.
 **Fuente de precedencia:** [`docs/foundation/PRODUCT_FOUNDATION.md`](../foundation/PRODUCT_FOUNDATION.md) §3, §8, §15.
 
 Se relaciona con: [`docs/domains/DOMAIN_MAP.md`](../domains/DOMAIN_MAP.md), [`docs/product/MODULE_CATALOG.md`](MODULE_CATALOG.md), [`docs/product/ROLE_MATRIX.md`](ROLE_MATRIX.md), [`docs/product/PRODUCT_MAP.md`](PRODUCT_MAP.md).
@@ -13,7 +13,7 @@ Misma leyenda que los documentos anteriores: 🟢 hecho aprobado, 🔵 inferenci
 
 Cada flujo describe, para una situación institucional recurrente, su **inicio**, los **roles responsables**, los **estados** por los que pasa, la **evidencia** que debe acompañarlo, el **seguimiento** y el **cierre**. Ningún flujo aquí es una pantalla ni un algoritmo: es la secuencia institucional que los módulos de `MODULE_CATALOG.md` deben soportar.
 
-Estos flujos son conceptuales y no representan una decisión de interfaz, base de datos ni orden de implementación. No se importa ni se asume el flujo específico de ningún otro proyecto del Product Owner; donde exista una posible relación con trabajo previo, se deja como pregunta abierta en lugar de asumirla.
+Estos flujos son conceptuales y no representan una decisión de interfaz, base de datos ni orden de implementación. La relación con trabajo previo se rige por [`ADR-0001`](../decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md): puede consultarse como referencia, pero no importarse ni asumirse como requisito.
 
 ---
 
@@ -42,9 +42,9 @@ Estos flujos son conceptuales y no representan una decisión de interfaz, base d
 
 **Estado del flujo:** 🟢 Hecho aprobado en su estructura general (§3: "contexto, responsable, estado, evidencia, historial, siguiente acción, fecha de seguimiento, áreas involucradas, trazabilidad y cierre documentado"). 🔵 Inferencia de diseño en los nombres específicos de los cinco estados propuestos.
 
-**Preguntas abiertas:**
-- ❓ ¿Existe ya una taxonomía de tipos de caso/incidencia a reutilizar, o se define desde cero como catálogo configurable (§9.1)?
-- ❓ ¿Cuánto tiempo sin actividad convierte un caso "en seguimiento" en una alerta de seguimiento vencido?
+**Resolución de cierre (2026-07-28):**
+- Taxonomía de tipos de caso/incidencia: catálogo configurable por plantel (§9.1); SASE ofrecerá posteriormente un catálogo semilla cuyo contenido se define en prototipado/piloto, no ahora.
+- Umbral de seguimiento vencido: configurable por tipo de caso dentro de límites seguros; valor semilla diferido a prototipado.
 
 ---
 
@@ -132,7 +132,7 @@ Estos flujos son conceptuales y no representan una decisión de interfaz, base d
 
 **Capas del flujo (decisión del Product Owner, revisión del PR #1):** la detección básica es determinística y explicable — reglas observables como casos sin responsable, seguimientos vencidos, citatorios sin respuesta, acuerdos vencidos y acumulación observable de incidencias — y es capacidad núcleo de SASE, con umbrales y destinatarios configurables dentro de límites seguros. La ampliación mediante IA (análisis avanzado, resúmenes generativos, detección probabilística de patrones, sugerencias asistidas, cruces avanzados entre dominios sensibles) es opcional, y su desactivación no desactiva la detección básica. Ver `M17` en `MODULE_CATALOG.md` y `D11` en `DOMAIN_MAP.md`.
 
-**Inicio:** automático, a partir de evidencia observable en F1–F4 (seguimientos vencidos, incidencias recurrentes, ausencias frecuentes, citatorios sin respuesta, casos sin responsable, acumulación de pendientes).
+**Inicio:** automático, a partir de evidencia observable en F1–F4 (seguimientos vencidos, incidencias recurrentes, ausencias frecuentes, discrepancias observables entre asistencia de jornada y por clase, citatorios sin respuesta, casos sin responsable, acumulación de pendientes). Una captura de asistencia no realizada no equivale a ausencia ni genera por sí sola esa señal.
 
 **Roles responsables:** el rol con permiso sobre el dominio de origen de la alerta revisa y decide; la alerta nunca actúa por sí sola (§14).
 
@@ -188,15 +188,13 @@ Estos flujos son conceptuales y no representan una decisión de interfaz, base d
 | F5 Alertas | D11 | M17, M16 | Rol con permiso sobre el dominio de origen |
 | F6 Alta e Incorporación | D4 | M4, M5, M9 | Secretaría, Dirección |
 
-## Preguntas abiertas consolidadas
+## Cierre de la fase
 
-1. ❓ Taxonomía de tipos de caso/incidencia (F1).
-2. ❓ Umbral de tiempo para considerar un caso "seguimiento vencido" (F1).
-
-La antigua pregunta sobre la relación de F6 con flujos de admisión previos fue resuelta mediante [`ADR-0001`](../decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md).
+Todas las preguntas abiertas de este documento quedaron resueltas: la relación de F6 con trabajo previo mediante [`ADR-0001`](../decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md); la taxonomía de casos/incidencias y el umbral de seguimiento vencido mediante las resoluciones de cierre registradas en F1 y consolidadas en `PRODUCT_MAP.md` §10.
 
 ## Validación de este documento
 
 - Cada flujo identifica inicio, responsables, estados, evidencia, seguimiento y cierre, según lo exigido por el criterio de aceptación de la misión.
 - F6 se mantiene deliberadamente conceptual conforme a `ADR-0001`, hasta que se audite el trabajo previo de admisión.
 - Ninguna automatización descrita actúa sin confirmación humana (F5); la detección básica de F5 es núcleo y la ampliación por IA es opcional.
+- Las preguntas de la fase se resolvieron mediante ADR aprobados o resoluciones de cierre del Product Owner, nunca por inferencia silenciosa.

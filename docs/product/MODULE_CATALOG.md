@@ -1,6 +1,6 @@
 # Catálogo de Módulos — SASE Zero
 
-**Estado:** Propuesta de arquitectura funcional, pendiente de revisión del Product Owner.
+**Estado:** Línea base de arquitectura funcional cerrada y aprobada.
 **Fuente de precedencia:** [`docs/foundation/PRODUCT_FOUNDATION.md`](../foundation/PRODUCT_FOUNDATION.md).
 
 Se relaciona con: [`docs/domains/DOMAIN_MAP.md`](../domains/DOMAIN_MAP.md) (cada módulo implementa uno o más dominios), [`docs/product/ROLE_MATRIX.md`](ROLE_MATRIX.md), [`docs/product/CORE_WORKFLOWS.md`](CORE_WORKFLOWS.md), [`docs/product/PRODUCT_MAP.md`](PRODUCT_MAP.md).
@@ -33,7 +33,7 @@ Por el principio de profundidad funcional (§10 de la fundación), cada módulo 
 | M12 | Tutoría y Convivencia | D7, D5 | Producto | Núcleo |
 | M13 | Salud Escolar | D8 | Producto | Opcional por rol/plantel |
 | M14 | Trabajo Social | D9 | Producto | Opcional por rol/plantel |
-| M15 | Orientación y UDEEI | D10 | Producto | Opcional por rol/plantel |
+| M15 | Orientación y Apoyos Especializados | D10 | Producto | Opcional por rol/plantel |
 | M16 | Panel de Pendientes | D5, D7, D11 | Experiencia | Núcleo |
 | M17 | Alertas Institucionales | D11 | Producto | Núcleo (alertas básicas) + ampliación IA opcional |
 | M18 | Administración Multiescuela | D12 | Plataforma | Etapa futura |
@@ -55,7 +55,7 @@ Por el principio de profundidad funcional (§10 de la fundación), cada módulo 
 **Dominio:** D3. **Responsabilidad:** nombre, logotipo, áreas visibles, turnos, catálogos, plantillas, módulos activos por institución.
 **Depende de:** M1. **Del que dependen:** M4–M17 (leen su configuración vigente).
 **Estado:** 🟢 §9.1.
-**Pregunta abierta:** ❓ quién puede modificar catálogos dentro del plantel.
+**Resolución de cierre (2026-07-28):** Dirección administra por defecto y puede delegar permisos específicos mediante M1; se trata como configuración institucional del MVP.
 
 ## M4. Expediente del Alumno
 **Dominio:** D4. **Responsabilidad:** vista única del alumno: datos personales, historial, grupo, y enlaces a los módulos que tienen información asociada a él (según permisos del rol que consulta).
@@ -95,10 +95,10 @@ Por el principio de profundidad funcional (§10 de la fundación), cada módulo 
 **Estado:** 🟢 §8 (reportes estadísticos y exportaciones administrativas); §13 (portabilidad y exportación de datos de la institución).
 
 ## M11. Asistencia y Desempeño
-**Dominio:** D7. **Responsabilidad:** registro de asistencia, retardos y desempeño observado por docentes.
+**Dominio:** D7. **Responsabilidad:** registro de asistencia en dos niveles conectados — jornada (¿asistió al plantel?; Prefectura/Secretaría) y clase (¿estuvo en esta materia?; docentes) — más retardos y desempeño observado. El registro de desempeño académico se conserva en este módulo; la separación de asistencia no lo elimina.
 **Depende de:** M1, M3, M4. **Del que dependen:** M12, M16, M17.
 **Estado:** 🔵 Inferencia de diseño a partir de "asistencia... desempeño" citados en el contexto de seguimiento (§6 estructura de roles; §15 "aumento de inasistencias" como señal de prevención).
-**Pregunta abierta:** ❓ si este módulo se divide por materia/periodo o se maneja a nivel de jornada.
+**Resolución de cierre (2026-07-28):** el modelo de dos niveles (jornada + clase) es el default reversible adoptado. La jornada no demuestra presencia en cada clase; las clases no reconstruyen automáticamente la jornada; una captura no realizada no equivale a ausencia; las discrepancias observables pueden alimentar M17. El modelado detallado (justificaciones, salidas anticipadas, ausencias parciales) corresponde a la arquitectura técnica.
 
 ## M12. Tutoría y Convivencia
 **Dominio:** D7, D5. **Responsabilidad:** seguimiento de convivencia y evolución del alumno desde la función de tutoría; puede originar casos en M6.
@@ -116,10 +116,11 @@ Por el principio de profundidad funcional (§10 de la fundación), cada módulo 
 **Depende de:** M1, M4, M7. **Del que dependen:** M9, M17 (bajo restricción especial).
 **Estado:** 🟢 rol "Trabajo Social" (§6); protección especial de información privada/familiar (§18).
 
-## M15. Orientación y UDEEI
-**Dominio:** D10. **Responsabilidad:** valoraciones de apoyo especializado, ajustes acordados y seguimiento BAP o equivalente.
+## M15. Orientación y Apoyos Especializados
+**Dominio:** D10. **Responsabilidad:** valoraciones de apoyo especializado, ajustes acordados y su seguimiento.
 **Depende de:** M1, M4, M7. **Del que dependen:** M9, M12 (ajustes que impactan seguimiento académico), M17.
-**Estado:** 🟢 roles "Orientación" y "UDEEI o apoyo equivalente" (§6). 🔵 terminología BAP es inferencia, no está en la fundación.
+**Estado:** 🟢 roles "Orientación" y "UDEEI o apoyo equivalente" (§6).
+**Resolución de cierre (2026-07-28):** el nombre visible del módulo/área es configurable por plantel; el término de trabajo es "apoyos especializados". La correspondencia con terminología oficial vigente (UDEEI/BAP) queda `En preparación` hasta la validación institucional.
 
 ## M16. Panel de Pendientes
 **Dominio:** transversal sobre D5, D7, D11. **Responsabilidad:** responder, para cada rol, "qué tengo pendiente" y "qué requiere atención hoy" con la información que su rol puede ver.
@@ -129,7 +130,7 @@ Por el principio de profundidad funcional (§10 de la fundación), cada módulo 
 ## M17. Alertas Institucionales
 **Dominio:** D11. **Responsabilidad:** generar señales explicables a partir de evidencia en otros módulos; nunca etiqueta al alumno. Tiene dos capas, por decisión del Product Owner registrada en la revisión del PR #1 (2026-07-27):
 
-- **Capa básica (núcleo, configurable y supervisada):** alertas determinísticas basadas en reglas observables — casos sin responsable, seguimientos vencidos, citatorios sin respuesta, acuerdos vencidos, acumulación observable de incidencias. La institución puede configurar umbrales y destinatarios dentro de límites seguros, pero la capacidad básica de seguimiento preventivo no puede desaparecer.
+- **Capa básica (núcleo, configurable y supervisada):** alertas determinísticas basadas en reglas observables — casos sin responsable, seguimientos vencidos, citatorios sin respuesta, acuerdos vencidos, acumulación observable de incidencias y discrepancias observables de asistencia. La institución puede configurar umbrales (por tipo de caso) y destinatarios dentro de límites seguros, pero la capacidad básica de seguimiento preventivo no puede desaparecer. Los valores semilla de los umbrales se definen en prototipado.
 - **Capa de ampliación por IA (opcional):** análisis avanzado mediante IA, resúmenes generativos, detección probabilística de patrones, sugerencias asistidas y cruces avanzados entre dominios sensibles. Desactivar esta capa no desactiva la capa básica.
 
 **Depende de:** M6, M8, M11, M12 (capa básica); M13\*, M14\*, M15\* (\*solo la capa de ampliación, si el plantel activa cruce con dominios sensibles, sujeto a permisos). **Del que dependen:** M16.
@@ -149,13 +150,9 @@ Por el principio de profundidad funcional (§10 de la fundación), cada módulo 
 - 🟢 Ningún módulo puede activar automatización irreversible sin confirmación humana (§25, límites iniciales).
 - Decisión del Product Owner (revisión del PR #1): la capa básica de M17 es núcleo y no puede desactivarse; solo su ampliación por IA es opcional por institución. La desactivación de la IA no afecta el funcionamiento de M6–M16 ni de las alertas básicas.
 
-## Preguntas abiertas consolidadas
+## Cierre de la fase
 
-1. ❓ Granularidad de M11 (Asistencia): por materia/periodo o por jornada.
-2. ❓ Terminología oficial vs. configurable de M15 (UDEEI/BAP).
-3. ❓ Quién administra catálogos/plantillas de M3 dentro del plantel (heredada de `DOMAIN_MAP.md`).
-
-La antigua pregunta sobre el origen del flujo de M5 frente a trabajo previo del Product Owner fue resuelta mediante [`ADR-0001`](../decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md).
+Todas las preguntas abiertas de este catálogo quedaron resueltas: el origen del flujo de M5 mediante [`ADR-0001`](../decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md); la granularidad de M11 (dos niveles: jornada + clase, default reversible), la terminología de M15 ("apoyos especializados", correspondencia oficial `En preparación`) y la administración de catálogos de M3 (Dirección por defecto, delegable vía M1) mediante las resoluciones de cierre registradas en cada módulo y consolidadas en `PRODUCT_MAP.md` §10.
 
 ## Validación de este documento
 

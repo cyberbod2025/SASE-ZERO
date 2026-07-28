@@ -1,6 +1,6 @@
 # Mapa de Dominios — SASE Zero
 
-**Estado:** Propuesta de arquitectura funcional, pendiente de revisión del Product Owner.
+**Estado:** Línea base de arquitectura funcional cerrada y aprobada.
 **Fuente de precedencia:** [`docs/foundation/PRODUCT_FOUNDATION.md`](../foundation/PRODUCT_FOUNDATION.md). Este documento no repite la fundación; la traduce en dominios institucionales verificables.
 
 Se relaciona con: [`docs/product/PRODUCT_MAP.md`](../product/PRODUCT_MAP.md), [`docs/product/MODULE_CATALOG.md`](../product/MODULE_CATALOG.md), [`docs/product/ROLE_MATRIX.md`](../product/ROLE_MATRIX.md), [`docs/product/CORE_WORKFLOWS.md`](../product/CORE_WORKFLOWS.md).
@@ -33,7 +33,7 @@ Cada dominio se describe con: propósito, datos que posee, nivel de sensibilidad
 | D7 | Seguimiento Académico y Convivencia | Media-Alta | Operativo |
 | D8 | Salud Escolar | Muy alta | Operativo, protección especial |
 | D9 | Trabajo Social y Contexto Familiar | Muy alta | Operativo, protección especial |
-| D10 | Orientación y Apoyos Especializados (UDEEI/BAP) | Muy alta | Operativo, protección especial |
+| D10 | Orientación y Apoyos Especializados | Muy alta | Operativo, protección especial |
 | D11 | Inteligencia y Alertas Institucionales | Alta (deriva de otros dominios) | Transversal, sin autoridad de decisión |
 | D12 | Administración Multiescuela | Media | Preparación estructural, etapa futura |
 
@@ -89,8 +89,7 @@ Cada dominio se describe con: propósito, datos que posee, nivel de sensibilidad
 
 **Estado:** 🟢 Hecho aprobado — lista de "elementos configurables" y "elementos no alterables libremente" (§9.1, §9.2); "cada registro deberá pertenecer claramente a una institución y, cuando corresponda, a ciclo escolar, turno, grupo, área..." (§5).
 
-**Preguntas abiertas:**
-- ❓ ¿Quién dentro del plantel tiene permiso para modificar catálogos y plantillas: solo Dirección, o también Secretaría?
+**Resolución de cierre (2026-07-28):** Dirección administra catálogos y plantillas por defecto y puede delegar permisos específicos mediante M1; la distribución concreta es configuración institucional del MVP.
 
 ---
 
@@ -126,8 +125,7 @@ Cada dominio se describe con: propósito, datos que posee, nivel de sensibilidad
 
 **Estado:** 🟢 Hecho aprobado — "cada situación institucional relevante deberá contar con contexto, responsable, estado, evidencia, historial, siguiente acción, fecha de seguimiento, áreas involucradas, trazabilidad y cierre documentado" (§3); "casos que cambian de área sin continuidad" listado como problema a resolver (§1).
 
-**Preguntas abiertas:**
-- ❓ ¿Existe una taxonomía institucional ya definida de tipos de caso/incidencia, o debe proponerse como catálogo configurable inicial (§9.1)?
+**Resolución de cierre (2026-07-28):** los tipos de caso/incidencia son un catálogo configurable por plantel (§9.1); SASE ofrecerá posteriormente un catálogo semilla cuyo contenido se define en prototipado/piloto, no ahora.
 
 ---
 
@@ -153,16 +151,15 @@ Cada dominio se describe con: propósito, datos que posee, nivel de sensibilidad
 
 **Datos que posee:** registros de asistencia, retardos, desempeño observado, evolución de convivencia, intervenciones de tutoría.
 
+**Resolución de cierre (2026-07-28) — modelo de asistencia (default reversible):** la asistencia se modela con **dos niveles conectados**: asistencia de jornada (¿el alumno asistió al plantel?) y asistencia por clase (¿estuvo presente en esta materia o módulo?). Prefectura y Secretaría pueden operar la jornada institucional según permisos; docentes registran sus clases. La jornada no demuestra presencia en cada clase y las clases no reconstruyen automáticamente toda la jornada. Una captura no realizada no equivale a ausencia. Las discrepancias observables pueden alimentar D11/M17. El seguimiento de desempeño académico y convivencia se conserva íntegro en este dominio; el modelado detallado (entidades, justificaciones, salidas anticipadas) corresponde a la arquitectura técnica, no a esta fase.
+
 **Sensibilidad:** Media-alta — datos de comportamiento y desempeño de menores.
 
-**Roles principales:** Docentes, Docentes tutores; consulta de Dirección y Orientación.
+**Roles principales:** Docentes y Docentes tutores para clase y desempeño; Prefectura y Secretaría para jornada según permisos; consulta de Dirección y Orientación.
 
 **Dependencias:** referencia a D4 (alumno); puede originar casos en D5; puede alimentar D11 (patrones observables para alertas).
 
-**Estado:** 🟢 Hecho aprobado — "asistencia, desempeño, convivencia y evolución del alumno" listado explícitamente entre las funciones de docentes/tutoría (§6, redactado como parte de la estructura escolar); "ausencias frecuentes... cambios relevantes en patrones observables" como insumo de prevención (§15).
-
-**Preguntas abiertas:**
-- ❓ ¿La asistencia se maneja como parte de este dominio o como un dominio propio con reglas de captura distintas (pase de lista por periodo/materia)?
+**Estado:** 🟢 Hecho aprobado — "asistencia, desempeño, convivencia y evolución del alumno" listado explícitamente entre las funciones de docentes/tutoría (§6, redactado como parte de la estructura escolar); "ausencias frecuentes... cambios relevantes en patrones observables" como insumo de prevención (§15). El modelo de dos niveles es default reversible del cierre de fase, no una decisión irreversible.
 
 ---
 
@@ -196,14 +193,13 @@ Cada dominio se describe con: propósito, datos que posee, nivel de sensibilidad
 
 **Estado:** 🟢 Hecho aprobado — rol "Trabajo Social" (§6); "contexto familiar, intervenciones y acuerdos" descrito para esta área en el ámbito de trabajo coordinado (implícito en §6, desarrollado en la visión de largo plazo referenciada por `README.md`).
 
-**Preguntas abiertas:**
-- ❓ ¿Qué tan separado debe estar este dominio de D8 (Salud) en términos de permisos — visibilidad cruzada nunca, parcial bajo justificación, o solo bajo autorización de Dirección?
+**Resolución de cierre (2026-07-28):** aislamiento por defecto entre D8 (Salud) y D9 (Trabajo Social); la visibilidad cruzada solo existe mediante canalización explícita y limitada al caso, conforme a [`ADR-0002`](../decisions/ADR-0002-USUARIOS-CON-MULTIPLES-ROLES.md). La política de privacidad detallada se define antes del piloto con datos reales.
 
 ---
 
-## D10. Orientación y Apoyos Especializados (UDEEI/BAP)
+## D10. Orientación y Apoyos Especializados
 
-**Propósito:** Registrar necesidades de apoyo especializado, ajustes razonables y seguimiento de Barreras para el Aprendizaje y la Participación (BAP) u equivalente.
+**Propósito:** Registrar necesidades, ajustes acordados y seguimiento de apoyos especializados.
 
 **Datos que posee:** valoraciones de apoyo, ajustes acordados, seguimiento de UDEEI/Orientación.
 
@@ -213,10 +209,9 @@ Cada dominio se describe con: propósito, datos que posee, nivel de sensibilidad
 
 **Dependencias:** referencia a D4; se relaciona con D5 y D7 (ajustes que impactan seguimiento académico).
 
-**Estado:** 🟢 Hecho aprobado — rol "UDEEI o apoyo equivalente" y "Orientación" (§6). 🔵 Inferencia de diseño — el nombre "BAP" y su alcance específico no aparecen en la fundación; se usa como término de referencia habitual en apoyos especializados en secundarias, sujeto a confirmación.
+**Estado:** 🟢 Hecho aprobado — rol "UDEEI o apoyo equivalente" y "Orientación" (§6).
 
-**Preguntas abiertas:**
-- ❓ ¿SASE Zero debe modelar BAP con la terminología oficial vigente en México, o dejar el catálogo abierto a configuración por institución (§9.1)?
+**Resolución de cierre (2026-07-28):** el nombre visible del área y sus categorías son configurables por institución (§9.1); el término de trabajo por ahora es **"apoyos especializados"**. La correspondencia con la terminología oficial vigente queda `En preparación` y se resolverá en la validación institucional, sin inventar requisitos normativos.
 
 ---
 
@@ -226,7 +221,7 @@ Cada dominio se describe con: propósito, datos que posee, nivel de sensibilidad
 
 Este dominio tiene dos capas distintas, por decisión del Product Owner registrada en la revisión del PR #1:
 
-- **Prevención básica (núcleo):** alertas determinísticas y explicables derivadas de reglas observables (casos sin responsable, seguimientos vencidos, citatorios sin respuesta, acuerdos vencidos, acumulación observable de incidencias). Es capacidad central de SASE (🟢 §15, "SASE no será solamente reactivo"); configurable en umbrales y destinatarios dentro de límites seguros, pero no desactivable como capacidad.
+- **Prevención básica (núcleo):** alertas determinísticas y explicables derivadas de reglas observables (casos sin responsable, seguimientos vencidos, citatorios sin respuesta, acuerdos vencidos, acumulación observable de incidencias y discrepancias observables de asistencia). Es capacidad central de SASE (🟢 §15, "SASE no será solamente reactivo"); configurable en umbrales y destinatarios dentro de límites seguros, pero no desactivable como capacidad.
 - **Ampliación por inteligencia artificial (opcional):** análisis avanzado, resúmenes generativos, detección probabilística de patrones, sugerencias asistidas y cruces avanzados entre dominios sensibles (🟢 §14, "opcional, discreta, explicable, supervisada"). Desactivar esta capa no desactiva la prevención básica.
 
 **Datos que posee:** no es dueño de datos primarios; deriva señales y alertas a partir de D5, D6, D7, D8, D9, D10, siempre trazables a su origen.
@@ -270,22 +265,16 @@ Este dominio tiene dos capas distintas, por decisión del Product Owner registra
 | D7 Seguimiento Académico y Convivencia | D1, D3, D4 | D5, D11 |
 | D8 Salud Escolar | D1, D3, D4 | D5 (canalización), D11 |
 | D9 Trabajo Social y Contexto Familiar | D1, D3, D4 | D5 (canalización), D11 |
-| D10 Orientación y Apoyos (UDEEI/BAP) | D1, D3, D4 | D5 (canalización), D7, D11 |
+| D10 Orientación y Apoyos Especializados | D1, D3, D4 | D5 (canalización), D7, D11 |
 | D11 Inteligencia y Alertas | D5–D10 (lectura) | Todos los roles autorizados |
 | D12 Administración Multiescuela | D1, D3 | Etapa futura |
 
-## Preguntas abiertas consolidadas
+## Cierre de la fase
 
-1. ❓ Autoridad para modificar catálogos/plantillas dentro del plantel (D3).
-2. ❓ Existencia previa de una taxonomía institucional de incidencias/casos (D5).
-3. ❓ Modelo de asistencia como dominio propio o como parte de D7.
-4. ❓ Nivel de aislamiento de permisos entre D8 (Salud) y D9 (Trabajo Social).
-5. ❓ Terminología oficial vs. configurable para apoyos especializados (D10).
-
-Preguntas resueltas por ADR: relación con expedientes previos del Product Owner (D4) mediante [`ADR-0001`](../decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md); multi-rol por usuario y roles multiescuela (D1) mediante [`ADR-0002`](../decisions/ADR-0002-USUARIOS-CON-MULTIPLES-ROLES.md).
+Todas las preguntas abiertas de este documento quedaron resueltas: D4 y D1 mediante [`ADR-0001`](../decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md) y [`ADR-0002`](../decisions/ADR-0002-USUARIOS-CON-MULTIPLES-ROLES.md) respectivamente, y D3, D5, D7, D9 y D10 mediante las resoluciones de cierre (defaults reversibles, configuración institucional o diferimiento con fase indicada) registradas en cada dominio y consolidadas en `docs/product/PRODUCT_MAP.md` §10.
 
 ## Validación de este documento
 
 - Todas las afirmaciones marcadas 🟢 citan una sección concreta de `PRODUCT_FOUNDATION.md`.
-- Ninguna sección inventa requisitos legales o escolares no presentes en la fundación.
-- Las preguntas abiertas no se respondieron por inferencia.
+- Ninguna sección inventa requisitos legales o escolares no presentes en la fundación; lo normativo sin fuente queda `En preparación`.
+- Las preguntas de la fase se resolvieron mediante ADR aprobados o resoluciones de cierre del Product Owner, nunca por inferencia silenciosa.
