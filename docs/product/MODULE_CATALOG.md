@@ -35,7 +35,7 @@ Por el principio de profundidad funcional (§10 de la fundación), cada módulo 
 | M14 | Trabajo Social | D9 | Producto | Opcional por rol/plantel |
 | M15 | Orientación y UDEEI | D10 | Producto | Opcional por rol/plantel |
 | M16 | Panel de Pendientes | D5, D7, D11 | Experiencia | Núcleo |
-| M17 | Alertas Institucionales | D11 | Producto | Opcional, supervisado |
+| M17 | Alertas Institucionales | D11 | Producto | Núcleo (alertas básicas) + ampliación IA opcional |
 | M18 | Administración Multiescuela | D12 | Plataforma | Etapa futura |
 
 ---
@@ -61,13 +61,13 @@ Por el principio de profundidad funcional (§10 de la fundación), cada módulo 
 **Dominio:** D4. **Responsabilidad:** vista única del alumno: datos personales, historial, grupo, y enlaces a los módulos que tienen información asociada a él (según permisos del rol que consulta).
 **Depende de:** M1, M3. **Del que dependen:** M6, M8, M9, M11, M12, M13, M14, M15.
 **Estado:** 🟢 §2, §5.
-**Pregunta abierta:** ❓ relación con expedientes previos de otros proyectos del mismo Product Owner (ver `PRODUCT_MAP.md`).
+**Nota de decisión:** la relación con expedientes previos de otros proyectos del Product Owner quedó resuelta en [`ADR-0001`](../decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md) — reconstrucción independiente; trabajo previo consultable como referencia, no fuente canónica.
 
 ## M5. Matrícula y Movimientos
 **Dominio:** D4. **Responsabilidad:** alta oficial, inscripción, cambios de grupo, bajas y movimientos administrativos del alumno dentro del plantel.
 **Depende de:** M1, M3, M4. **Del que dependen:** M9 (documentos derivados de movimientos), M10.
 **Estado:** 🔵 Inferencia de diseño — la fundación menciona "control escolar" y "expediente digital" como componentes integrados (§2) pero no detalla el proceso de alta; se infiere como módulo necesario para que D4 tenga ciclo de vida completo.
-**Pregunta abierta:** ❓ ¿SASE Zero reconstruye este flujo desde cero o hereda decisiones de proyectos previos del Product Owner (portal familiar, validación de documentos, etc.)?
+**Nota de decisión:** por [`ADR-0001`](../decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md), este módulo se diseña de forma independiente; los flujos de admisión de proyectos previos son consultables como referencia tras auditoría, sin importarse automáticamente. El detalle del flujo permanece conceptual en `F6` de `CORE_WORKFLOWS.md` hasta esa auditoría.
 
 ## M6. Casos e Incidencias
 **Dominio:** D5. **Responsabilidad:** abrir, dar seguimiento y cerrar casos institucionales con contexto, responsable, estado, evidencia e historial.
@@ -127,10 +127,14 @@ Por el principio de profundidad funcional (§10 de la fundación), cada módulo 
 **Estado:** 🟢 preguntas operativas de la experiencia de usuario listadas explícitamente (§17).
 
 ## M17. Alertas Institucionales
-**Dominio:** D11. **Responsabilidad:** generar señales explicables (seguimientos vencidos, incidencias recurrentes, ausencias frecuentes, citatorios sin respuesta, casos sin responsable) a partir de evidencia en otros módulos; nunca etiqueta al alumno.
-**Depende de:** M6, M8, M11, M12, M13\*, M14\*, M15\* (\*solo si el plantel activa cruce con dominios sensibles, sujeto a permisos). **Del que dependen:** M16.
-**Estado:** 🟢 §14, §15 — incluye la prohibición explícita de "alumno problemático", "alumno peligroso", "alumno de alto riesgo" o diagnósticos no autorizados.
-**Regla explícita:** es de solo lectura; no puede cerrar casos, sancionar, ni modificar registros de forma autónoma (§14).
+**Dominio:** D11. **Responsabilidad:** generar señales explicables a partir de evidencia en otros módulos; nunca etiqueta al alumno. Tiene dos capas, por decisión del Product Owner registrada en la revisión del PR #1 (2026-07-27):
+
+- **Capa básica (núcleo, configurable y supervisada):** alertas determinísticas basadas en reglas observables — casos sin responsable, seguimientos vencidos, citatorios sin respuesta, acuerdos vencidos, acumulación observable de incidencias. La institución puede configurar umbrales y destinatarios dentro de límites seguros, pero la capacidad básica de seguimiento preventivo no puede desaparecer.
+- **Capa de ampliación por IA (opcional):** análisis avanzado mediante IA, resúmenes generativos, detección probabilística de patrones, sugerencias asistidas y cruces avanzados entre dominios sensibles. Desactivar esta capa no desactiva la capa básica.
+
+**Depende de:** M6, M8, M11, M12 (capa básica); M13\*, M14\*, M15\* (\*solo la capa de ampliación, si el plantel activa cruce con dominios sensibles, sujeto a permisos). **Del que dependen:** M16.
+**Estado:** 🟢 §15 (prevención basada en evidencia, capacidad central) y §14 (IA opcional y supervisada) — incluye la prohibición explícita de "alumno problemático", "alumno peligroso", "alumno de alto riesgo" o diagnósticos no autorizados.
+**Regla explícita:** ambas capas son de solo lectura; no pueden cerrar casos, sancionar, ni modificar registros de forma autónoma (§14).
 
 ## M18. Administración Multiescuela
 **Dominio:** D12. **Responsabilidad:** gestión de más de una institución bajo una misma cuenta y, eventualmente, supervisión regional.
@@ -143,14 +147,15 @@ Por el principio de profundidad funcional (§10 de la fundación), cada módulo 
 
 - 🟢 Todo módulo que toque D8, D9 o D10 hereda la restricción de protección especial del §18 y debe excluirse explícitamente de vistas de credencial o consulta pública del alumno.
 - 🟢 Ningún módulo puede activar automatización irreversible sin confirmación humana (§25, límites iniciales).
-- 🟡 Propuesta — M17 (Alertas) debe poder desactivarse por institución sin afectar el funcionamiento de M6–M15, ya que es una capa de valor añadido, no una dependencia estructural.
+- Decisión del Product Owner (revisión del PR #1): la capa básica de M17 es núcleo y no puede desactivarse; solo su ampliación por IA es opcional por institución. La desactivación de la IA no afecta el funcionamiento de M6–M16 ni de las alertas básicas.
 
 ## Preguntas abiertas consolidadas
 
-1. ❓ Alcance exacto y origen del flujo de M5 (Matrícula y Movimientos) frente a trabajo previo del Product Owner.
-2. ❓ Granularidad de M11 (Asistencia): por materia/periodo o por jornada.
-3. ❓ Terminología oficial vs. configurable de M15 (UDEEI/BAP).
-4. ❓ Quién administra catálogos/plantillas de M3 dentro del plantel (heredada de `DOMAIN_MAP.md`).
+1. ❓ Granularidad de M11 (Asistencia): por materia/periodo o por jornada.
+2. ❓ Terminología oficial vs. configurable de M15 (UDEEI/BAP).
+3. ❓ Quién administra catálogos/plantillas de M3 dentro del plantel (heredada de `DOMAIN_MAP.md`).
+
+La antigua pregunta sobre el origen del flujo de M5 frente a trabajo previo del Product Owner fue resuelta mediante [`ADR-0001`](../decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md).
 
 ## Validación de este documento
 

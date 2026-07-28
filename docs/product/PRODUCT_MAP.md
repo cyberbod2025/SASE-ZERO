@@ -40,9 +40,14 @@ Los cuatro documentos son coherentes entre sí: cada módulo del catálogo refer
 
 SASE mantiene un núcleo funcional estandarizado (auditoría, integridad del expediente, permisos críticos, trazabilidad, identidad de registros, controles de privacidad — §9.2, 🟢) y permite configuración segura por institución (nombre, logotipo, nombres de áreas, turnos, catálogos, plantillas, módulos activos — §9.1, 🟢). Este límite se refleja en `MODULE_CATALOG.md` distinguiendo módulos **núcleo** de módulos **opcionales**, y en `DOMAIN_MAP.md` mediante `D3 Configuración Institucional`.
 
-## 5. Inteligencia artificial y prevención
+## 5. Prevención básica e inteligencia artificial opcional
 
-La inteligencia artificial es opcional, explicable, supervisada y sin autoridad de decisión — 🟢 §14. La prevención se basa en evidencia observable, nunca en etiquetas permanentes — 🟢 §15. Ambos principios se modelan como `D11 Inteligencia y Alertas Institucionales` (dominio de solo lectura sobre los demás) y como el flujo `F5` en `CORE_WORKFLOWS.md`.
+Son dos capacidades distintas, y la fundación las trata por separado:
+
+- **Prevención básica y explicable — capacidad central de SASE.** "SASE no será solamente reactivo" (🟢 §15): alertas determinísticas basadas en evidencia observable (casos sin responsable, seguimientos vencidos, citatorios sin respuesta, acuerdos vencidos, acumulación observable de incidencias), siempre revisables y nunca con etiquetas permanentes. Es parte del núcleo; la institución puede configurar umbrales y destinatarios dentro de límites seguros, pero la capacidad no desaparece.
+- **Inteligencia artificial — ampliación opcional.** "Opcional, discreta, explicable, supervisada" (🟢 §14): análisis avanzado, resúmenes generativos, detección probabilística de patrones, sugerencias asistidas y cruces avanzados entre dominios sensibles. Desactivar la IA no desactiva las alertas básicas.
+
+Decisión del Product Owner registrada en la revisión del PR #1 (2026-07-27). Ambas capacidades se modelan en `D11 Inteligencia y Alertas Institucionales` (dominio de solo lectura sobre los demás), en `M17` de `MODULE_CATALOG.md` y en el flujo `F5` de `CORE_WORKFLOWS.md`.
 
 ## 6. Seguridad, privacidad y propiedad de los datos
 
@@ -66,26 +71,27 @@ Este mapa funcional se detiene deliberadamente antes de esa línea.
 
 Este mapa funcional debe permitir, en una fase posterior, que una secundaria pueda afirmar lo listado en la fundación §24: que sabe qué casos están abiertos, quién es responsable, dónde está la evidencia, que no repite registros, que genera sus documentos desde el sistema, que conserva continuidad entre áreas, que identifica pendientes a tiempo, que protege información sensible, que puede exportar sus datos, que puede operar desde dispositivos móviles, que entiende por qué se genera cada alerta, y que no depende de una sola persona para saber qué ocurrió — 🟢 §24. Cada uno de estos criterios tiene un dominio, módulo o flujo correspondiente en este mapa (trazabilidad detallada en `CORE_WORKFLOWS.md`, sección de matriz).
 
-## 9. Relación con trabajo previo del Product Owner — pregunta abierta central
+## 9. Relación con trabajo previo del Product Owner — decidido
 
-Este mapa funcional se construyó exclusivamente a partir de las fuentes canónicas de este repositorio (`README.md`, `docs/foundation/PRODUCT_FOUNDATION.md`, `AGENTS.md`, `CLAUDE.md`, `.agent/`), sin asumir ni importar decisiones de ningún otro proyecto del Product Owner, incluyendo posibles sistemas escolares previos con nombres o alcances similares.
+Este mapa funcional se construyó exclusivamente a partir de las fuentes canónicas de este repositorio, sin asumir ni importar decisiones de ningún otro proyecto del Product Owner.
 
-❓ **Pregunta abierta de mayor impacto:** ¿SASE Zero es un proyecto independiente que debe diseñarse desde cero, o debe considerar como entrada de diseño (sin copiar código ni arquitectura técnica) flujos, dominios o decisiones ya validados en otro proyecto del mismo Product Owner — por ejemplo, un flujo de admisión familia → secretaría → alta oficial → expediente → credencial? Esta pregunta afecta directamente a `F6` en `CORE_WORKFLOWS.md` y a `M5` en `MODULE_CATALOG.md`, y se deja explícitamente sin responder por inferencia.
+La antigua pregunta abierta n.º 1 fue resuelta por decisión del Product Owner, registrada en [`docs/decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md`](../decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md): **SASE Zero es una reconstrucción independiente y limpia**; SASE Light y otros trabajos previos pueden consultarse como evidencia o referencia funcional, pero no son fuentes canónicas, no se importan automáticamente y no determinan la arquitectura de SASE Zero. `F6` en `CORE_WORKFLOWS.md` continúa en nivel conceptual hasta que se audite el trabajo previo de admisión; el flujo previo de admisión no es un requisito de SASE Zero.
 
 ## 10. Preguntas abiertas consolidadas de todo el mapa funcional
 
-1. ❓ Relación de SASE Zero con trabajo previo del Product Owner (§9 de este documento).
-2. ❓ Multi-rol por usuario (`DOMAIN_MAP.md` D1, `ROLE_MATRIX.md`).
-3. ❓ Autoridad para modificar catálogos/plantillas del plantel (`DOMAIN_MAP.md` D3).
-4. ❓ Taxonomía de tipos de caso/incidencia (`DOMAIN_MAP.md` D5, `CORE_WORKFLOWS.md` F1).
-5. ❓ Modelo de asistencia como dominio propio o parte de seguimiento académico (`DOMAIN_MAP.md` D7).
-6. ❓ Nivel de aislamiento de permisos entre Salud y Trabajo Social (`DOMAIN_MAP.md` D8/D9).
-7. ❓ Terminología oficial vs. configurable para apoyos especializados/BAP (`DOMAIN_MAP.md` D10).
-8. ❓ Alcance de acceso de Dirección/Subdirección a expedientes sensibles individuales (`ROLE_MATRIX.md`).
-9. ❓ Diferenciación funcional entre Dirección y Subdirección (`ROLE_MATRIX.md`).
-10. ❓ Alcance funcional de Prefectura frente a Docentes tutores (`ROLE_MATRIX.md`).
-11. ❓ Definición concreta de "personal administrativo autorizado" (`ROLE_MATRIX.md`).
-12. ❓ Umbral de tiempo para "seguimiento vencido" (`CORE_WORKFLOWS.md` F1).
+1. ❓ Multi-rol por usuario (`DOMAIN_MAP.md` D1, `ROLE_MATRIX.md`).
+2. ❓ Autoridad para modificar catálogos/plantillas del plantel (`DOMAIN_MAP.md` D3).
+3. ❓ Taxonomía de tipos de caso/incidencia (`DOMAIN_MAP.md` D5, `CORE_WORKFLOWS.md` F1).
+4. ❓ Modelo de asistencia como dominio propio o parte de seguimiento académico (`DOMAIN_MAP.md` D7).
+5. ❓ Nivel de aislamiento de permisos entre Salud y Trabajo Social (`DOMAIN_MAP.md` D8/D9).
+6. ❓ Terminología oficial vs. configurable para apoyos especializados/BAP (`DOMAIN_MAP.md` D10).
+7. ❓ Alcance de acceso de Dirección/Subdirección a expedientes sensibles individuales (`ROLE_MATRIX.md`).
+8. ❓ Diferenciación funcional entre Dirección y Subdirección (`ROLE_MATRIX.md`).
+9. ❓ Alcance funcional de Prefectura frente a Docentes tutores (`ROLE_MATRIX.md`).
+10. ❓ Definición concreta de "personal administrativo autorizado" (`ROLE_MATRIX.md`).
+11. ❓ Umbral de tiempo para "seguimiento vencido" (`CORE_WORKFLOWS.md` F1).
+
+La antigua pregunta n.º 1 (relación con trabajo previo) fue resuelta mediante [`ADR-0001`](../decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md) y ya no forma parte de esta lista.
 
 Ninguna de estas preguntas se respondió por inferencia; todas requieren decisión del Product Owner antes de convertirse en diseño técnico o implementación.
 

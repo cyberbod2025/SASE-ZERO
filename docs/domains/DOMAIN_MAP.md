@@ -108,8 +108,7 @@ Cada dominio se describe con: propósito, datos que posee, nivel de sensibilidad
 
 **Estado:** 🟢 Hecho aprobado — "expediente digital" y "control escolar" como componentes integrados de SASE (§2); "cada registro deberá pertenecer claramente a... alumno, caso o expediente" (§5).
 
-**Preguntas abiertas:**
-- ❓ ¿El expediente institucional único de SASE Zero reutiliza o sustituye trabajo previo de expediente ya construido en otros proyectos del mismo Product Owner (ver pregunta en `PRODUCT_MAP.md`)?
+**Nota de decisión:** la relación de este dominio con expedientes construidos en proyectos previos del Product Owner quedó resuelta en [`ADR-0001`](../decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md): SASE Zero es una reconstrucción independiente; el trabajo previo es consultable como referencia, no fuente canónica.
 
 ---
 
@@ -225,6 +224,11 @@ Cada dominio se describe con: propósito, datos que posee, nivel de sensibilidad
 
 **Propósito:** Ayudar a detectar situaciones que requieren atención (seguimientos vencidos, incidencias recurrentes, ausencias frecuentes, casos sin responsable) a partir de evidencia observable en otros dominios, sin decidir ni etiquetar.
 
+Este dominio tiene dos capas distintas, por decisión del Product Owner registrada en la revisión del PR #1:
+
+- **Prevención básica (núcleo):** alertas determinísticas y explicables derivadas de reglas observables (casos sin responsable, seguimientos vencidos, citatorios sin respuesta, acuerdos vencidos, acumulación observable de incidencias). Es capacidad central de SASE (🟢 §15, "SASE no será solamente reactivo"); configurable en umbrales y destinatarios dentro de límites seguros, pero no desactivable como capacidad.
+- **Ampliación por inteligencia artificial (opcional):** análisis avanzado, resúmenes generativos, detección probabilística de patrones, sugerencias asistidas y cruces avanzados entre dominios sensibles (🟢 §14, "opcional, discreta, explicable, supervisada"). Desactivar esta capa no desactiva la prevención básica.
+
 **Datos que posee:** no es dueño de datos primarios; deriva señales y alertas a partir de D5, D6, D7, D8, D9, D10, siempre trazables a su origen.
 
 **Sensibilidad:** Alta por herencia — una alerta puede exponer, por composición, información tan sensible como su dominio de origen.
@@ -233,7 +237,7 @@ Cada dominio se describe con: propósito, datos que posee, nivel de sensibilidad
 
 **Dependencias:** de lectura sobre D5–D10; no puede escribir en ellos de forma autónoma ni irreversible (§14).
 
-**Estado:** 🟢 Hecho aprobado — "opcional, discreta, explicable, supervisada, configurable por módulo, limitada por permisos y auditada" (§14); "no podrá actuar por sí sola para sancionar, diagnosticar, etiquetar alumnos, cerrar casos sensibles..." (§14); prohibición explícita de etiquetas como "alumno problemático" o "alumno de alto riesgo" (§15).
+**Estado:** 🟢 Hecho aprobado — prevención basada en evidencia observable (§15) e inteligencia artificial "opcional, discreta, explicable, supervisada, configurable por módulo, limitada por permisos y auditada" (§14); "no podrá actuar por sí sola para sancionar, diagnosticar, etiquetar alumnos, cerrar casos sensibles..." (§14); prohibición explícita de etiquetas como "alumno problemático" o "alumno de alto riesgo" (§15). La separación núcleo/opcional entre ambas capas es decisión del Product Owner registrada en la revisión del PR #1 (2026-07-27).
 
 ---
 
@@ -274,11 +278,12 @@ Cada dominio se describe con: propósito, datos que posee, nivel de sensibilidad
 
 1. ❓ Convivencia entre múltiples roles simultáneos por usuario (D1).
 2. ❓ Autoridad para modificar catálogos/plantillas dentro del plantel (D3).
-3. ❓ Relación del expediente de SASE Zero con expedientes previos ya construidos por el mismo Product Owner en otros repositorios (D4; ver también `PRODUCT_MAP.md`).
-4. ❓ Existencia previa de una taxonomía institucional de incidencias/casos (D5).
-5. ❓ Modelo de asistencia como dominio propio o como parte de D7.
-6. ❓ Nivel de aislamiento de permisos entre D8 (Salud) y D9 (Trabajo Social).
-7. ❓ Terminología oficial vs. configurable para apoyos especializados (D10).
+3. ❓ Existencia previa de una taxonomía institucional de incidencias/casos (D5).
+4. ❓ Modelo de asistencia como dominio propio o como parte de D7.
+5. ❓ Nivel de aislamiento de permisos entre D8 (Salud) y D9 (Trabajo Social).
+6. ❓ Terminología oficial vs. configurable para apoyos especializados (D10).
+
+La antigua pregunta sobre la relación con expedientes previos del Product Owner (D4) fue resuelta mediante [`ADR-0001`](../decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md).
 
 ## Validación de este documento
 

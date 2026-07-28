@@ -130,6 +130,8 @@ Estos flujos son conceptuales y no representan una decisión de interfaz, base d
 
 **Propósito institucional:** anticipar situaciones sin etiquetar personas (§15).
 
+**Capas del flujo (decisión del Product Owner, revisión del PR #1):** la detección básica es determinística y explicable — reglas observables como casos sin responsable, seguimientos vencidos, citatorios sin respuesta, acuerdos vencidos y acumulación observable de incidencias — y es capacidad núcleo de SASE, con umbrales y destinatarios configurables dentro de límites seguros. La ampliación mediante IA (análisis avanzado, resúmenes generativos, detección probabilística de patrones, sugerencias asistidas, cruces avanzados entre dominios sensibles) es opcional, y su desactivación no desactiva la detección básica. Ver `M17` en `MODULE_CATALOG.md` y `D11` en `DOMAIN_MAP.md`.
+
 **Inicio:** automático, a partir de evidencia observable en F1–F4 (seguimientos vencidos, incidencias recurrentes, ausencias frecuentes, citatorios sin respuesta, casos sin responsable, acumulación de pendientes).
 
 **Roles responsables:** el rol con permiso sobre el dominio de origen de la alerta revisa y decide; la alerta nunca actúa por sí sola (§14).
@@ -171,9 +173,7 @@ Estos flujos son conceptuales y no representan una decisión de interfaz, base d
 
 **Estado del flujo:** 🔵 Inferencia de diseño — la fundación confirma que "control escolar" y "expediente digital" son parte de SASE (§2) y que "cada registro deberá pertenecer claramente a una institución... ciclo escolar, turno, grupo" (§5), pero no describe el proceso de admisión paso a paso. Este flujo se deja deliberadamente conceptual.
 
-**Preguntas abiertas:**
-- ❓ ¿SASE Zero debe definir su propio flujo de admisión desde cero, o el Product Owner ya cuenta con un flujo validado en otro proyecto (portal familiar, pre-solicitud, validación de documentos, alta oficial) que deba tomarse como entrada de diseño en lugar de reinventarse?
-- ❓ Si existe un flujo previo reutilizable, ¿debe documentarse aquí como fuente de referencia o mantenerse fuera de este repositorio hasta que el Product Owner autorice explícitamente su incorporación?
+**Nota de decisión:** la relación de este flujo con trabajo previo de admisión del Product Owner quedó resuelta en [`ADR-0001`](../decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md): SASE Zero es una reconstrucción independiente; el flujo previo de admisión no es un requisito y F6 puede continuar conceptual hasta que se audite ese trabajo previo. Cualquier aprendizaje incorporado seguirá el criterio del ADR (documentado, evaluado contra la fundación, aprobado por ADR si afecta arquitectura).
 
 ---
 
@@ -192,10 +192,11 @@ Estos flujos son conceptuales y no representan una decisión de interfaz, base d
 
 1. ❓ Taxonomía de tipos de caso/incidencia (F1).
 2. ❓ Umbral de tiempo para considerar un caso "seguimiento vencido" (F1).
-3. ❓ Relación de F6 con flujos de admisión ya trabajados en otros proyectos del Product Owner — es la pregunta abierta de mayor impacto potencial en todo este mapa funcional (ver también `PRODUCT_MAP.md` y `DOMAIN_MAP.md`).
+
+La antigua pregunta sobre la relación de F6 con flujos de admisión previos fue resuelta mediante [`ADR-0001`](../decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md).
 
 ## Validación de este documento
 
 - Cada flujo identifica inicio, responsables, estados, evidencia, seguimiento y cierre, según lo exigido por el criterio de aceptación de la misión.
-- F6 se mantuvo deliberadamente conceptual para no inventar un proceso de admisión no aprobado por el Product Owner.
-- Ninguna automatización descrita actúa sin confirmación humana (F5).
+- F6 se mantiene deliberadamente conceptual conforme a `ADR-0001`, hasta que se audite el trabajo previo de admisión.
+- Ninguna automatización descrita actúa sin confirmación humana (F5); la detección básica de F5 es núcleo y la ampliación por IA es opcional.

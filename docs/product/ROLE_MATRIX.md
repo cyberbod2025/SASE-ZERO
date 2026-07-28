@@ -126,6 +126,8 @@ Los roles listados provienen literalmente de la fundación (§6): Dirección, Su
 
 Esta tabla operacionaliza el principio del §18 ("protección especial para información de salud, violencia, orientación y datos privados") como reglas de permisos verificables. 🟡 Propuesta — sujeta a validación del Product Owner, especialmente en las celdas marcadas ❓.
 
+**Nota sobre "(opcional)" en esta tabla:** las alertas básicas determinísticas de M17 son capacidad núcleo de SASE (decisión del Product Owner, revisión del PR #1; ver `M17` en `MODULE_CATALOG.md`). Lo opcional en las celdas "Alertas generales (opcional)" es específicamente el cruce con dominios sensibles (D8/D9/D10), que pertenece a la capa de ampliación opcional de M17 y requiere activación explícita del plantel dentro de los límites de permisos.
+
 ## Preguntas abiertas consolidadas
 
 1. ❓ Alcance de acceso de Dirección/Subdirección a expedientes individuales de D8/D9/D10 vs. solo indicadores agregados.

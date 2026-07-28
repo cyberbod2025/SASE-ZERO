@@ -3,9 +3,9 @@
   "project": "SASE Zero",
   "product_definition": "Sistema Operativo de una Secundaria",
   "phase": "functional_architecture",
-  "status": "first_mission_drafted_pending_review",
+  "status": "first_mission_committed_in_review",
   "implementation_started": false,
-  "current_objective": "Revisar con el Product Owner el primer mapa funcional (dominios, módulos, roles y flujos) antes de continuar con arquitectura técnica o decisiones de stack.",
+  "current_objective": "Atender la revisión del PR #1 y resolver con el Product Owner las 11 preguntas abiertas restantes antes de continuar con arquitectura técnica o decisiones de stack.",
   "canonical_sources": [
     "README.md",
     "docs/foundation/PRODUCT_FOUNDATION.md",
@@ -18,11 +18,23 @@
     "docs/product/CORE_WORKFLOWS.md"
   ],
   "current_deliverables_status": {
-    "docs/product/PRODUCT_MAP.md": "drafted, not committed",
-    "docs/domains/DOMAIN_MAP.md": "drafted, not committed",
-    "docs/product/MODULE_CATALOG.md": "drafted, not committed",
-    "docs/product/ROLE_MATRIX.md": "drafted, not committed",
-    "docs/product/CORE_WORKFLOWS.md": "drafted, not committed"
+    "docs/product/PRODUCT_MAP.md": "committed (94ab9ef), in review on PR #1",
+    "docs/domains/DOMAIN_MAP.md": "committed (94ab9ef), in review on PR #1",
+    "docs/product/MODULE_CATALOG.md": "committed (94ab9ef), in review on PR #1",
+    "docs/product/ROLE_MATRIX.md": "committed (94ab9ef), in review on PR #1",
+    "docs/product/CORE_WORKFLOWS.md": "committed (94ab9ef), in review on PR #1",
+    "docs/decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md": "accepted by Product Owner during PR #1 review"
+  },
+  "branch": "docs/functional-architecture-v1",
+  "commits": {
+    "94ab9ef": "docs: define SASE Zero functional architecture",
+    "6e5c8e1": "chore(agent): record functional architecture handoff"
+  },
+  "pull_request": {
+    "number": 1,
+    "title": "docs: define SASE Zero functional architecture v1",
+    "state": "open draft, do not merge without Product Owner approval",
+    "url": "https://github.com/cyberbod2025/SASE-ZERO/pull/1"
   },
   "allowed_work": [
     "functional analysis",
@@ -44,8 +56,8 @@
     "irreversible technology decisions",
     "invented legal requirements"
   ],
-  "next_safe_microtask": "Product Owner reviews the 12 consolidated open questions in docs/product/PRODUCT_MAP.md section 10, starting with the relationship between SASE Zero and any prior admission/enrollment work by the same Product Owner (section 9). No commit has been made yet — an agent must present the diff for explicit approval before committing.",
-  "open_questions_count": 12,
+  "next_safe_microtask": "Product Owner reviews the 11 remaining open questions in docs/product/PRODUCT_MAP.md section 10; the prior-work question was resolved via docs/decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md. PR #1 stays a draft until the Product Owner authorizes the merge.",
+  "open_questions_count": 11,
   "product_owner": "Hugo Sánchez Reséndiz",
   "foundation_commit": "b7252a07bfa639d17886339bebd523854e2fcb56",
   "updated_at": "2026-07-27"
