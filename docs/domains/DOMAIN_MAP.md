@@ -53,9 +53,7 @@ Cada dominio se describe con: propósito, datos que posee, nivel de sensibilidad
 
 **Estado:** 🟢 Hecho aprobado — "Cada rol deberá tener permisos específicos... y límites claros de acceso" y "No todos los usuarios deben ver toda la información" (Fundación §6); "mínimo privilegio, separación por institución, separación por rol... controles de sesión" (§18).
 
-**Preguntas abiertas:**
-- ❓ ¿Un usuario puede tener más de un rol simultáneo (p. ej. docente y tutor) o un rol combinado por institución?
-- ❓ ¿Habrá roles a nivel de red multiescuela (D12) distintos de los roles de plantel?
+**Nota de decisión:** por [`ADR-0002`](../decisions/ADR-0002-USUARIOS-CON-MULTIPLES-ROLES.md), un usuario puede tener varios roles dentro de una misma institución, pero cada acción registra su contexto (institución, rol activo, grupo, área, caso asignado y motivo de acceso cuando corresponda); los permisos no se suman de manera indiscriminada, y los roles multiescuela (D12) serán distintos de los roles internos del plantel. Este dominio debe modelar la asignación multi-rol y el contexto de acción.
 
 ---
 
@@ -72,6 +70,8 @@ Cada dominio se describe con: propósito, datos que posee, nivel de sensibilidad
 **Dependencias:** observa a todos los demás dominios (D1, D3–D12) sin poseer sus datos operativos; no depende de ellos para existir, pero no tiene sentido sin ellos.
 
 **Estado:** 🟢 Hecho aprobado — "registro de accesos, auditoría de acciones... trazabilidad de cambios" (§18); "auditoría; integridad del expediente... trazabilidad" listados como no alterables libremente por la escuela (§9.2).
+
+**Nota de decisión:** por [`ADR-0002`](../decisions/ADR-0002-USUARIOS-CON-MULTIPLES-ROLES.md), la auditoría registra con qué rol activo se consultó o modificó cada información, no solo la identidad del usuario.
 
 ---
 
@@ -276,14 +276,13 @@ Este dominio tiene dos capas distintas, por decisión del Product Owner registra
 
 ## Preguntas abiertas consolidadas
 
-1. ❓ Convivencia entre múltiples roles simultáneos por usuario (D1).
-2. ❓ Autoridad para modificar catálogos/plantillas dentro del plantel (D3).
-3. ❓ Existencia previa de una taxonomía institucional de incidencias/casos (D5).
-4. ❓ Modelo de asistencia como dominio propio o como parte de D7.
-5. ❓ Nivel de aislamiento de permisos entre D8 (Salud) y D9 (Trabajo Social).
-6. ❓ Terminología oficial vs. configurable para apoyos especializados (D10).
+1. ❓ Autoridad para modificar catálogos/plantillas dentro del plantel (D3).
+2. ❓ Existencia previa de una taxonomía institucional de incidencias/casos (D5).
+3. ❓ Modelo de asistencia como dominio propio o como parte de D7.
+4. ❓ Nivel de aislamiento de permisos entre D8 (Salud) y D9 (Trabajo Social).
+5. ❓ Terminología oficial vs. configurable para apoyos especializados (D10).
 
-La antigua pregunta sobre la relación con expedientes previos del Product Owner (D4) fue resuelta mediante [`ADR-0001`](../decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md).
+Preguntas resueltas por ADR: relación con expedientes previos del Product Owner (D4) mediante [`ADR-0001`](../decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md); multi-rol por usuario y roles multiescuela (D1) mediante [`ADR-0002`](../decisions/ADR-0002-USUARIOS-CON-MULTIPLES-ROLES.md).
 
 ## Validación de este documento
 

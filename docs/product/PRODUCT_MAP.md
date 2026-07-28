@@ -79,19 +79,18 @@ La antigua pregunta abierta n.º 1 fue resuelta por decisión del Product Owner,
 
 ## 10. Preguntas abiertas consolidadas de todo el mapa funcional
 
-1. ❓ Multi-rol por usuario (`DOMAIN_MAP.md` D1, `ROLE_MATRIX.md`).
-2. ❓ Autoridad para modificar catálogos/plantillas del plantel (`DOMAIN_MAP.md` D3).
-3. ❓ Taxonomía de tipos de caso/incidencia (`DOMAIN_MAP.md` D5, `CORE_WORKFLOWS.md` F1).
-4. ❓ Modelo de asistencia como dominio propio o parte de seguimiento académico (`DOMAIN_MAP.md` D7).
-5. ❓ Nivel de aislamiento de permisos entre Salud y Trabajo Social (`DOMAIN_MAP.md` D8/D9).
-6. ❓ Terminología oficial vs. configurable para apoyos especializados/BAP (`DOMAIN_MAP.md` D10).
-7. ❓ Alcance de acceso de Dirección/Subdirección a expedientes sensibles individuales (`ROLE_MATRIX.md`).
-8. ❓ Diferenciación funcional entre Dirección y Subdirección (`ROLE_MATRIX.md`).
-9. ❓ Alcance funcional de Prefectura frente a Docentes tutores (`ROLE_MATRIX.md`).
-10. ❓ Definición concreta de "personal administrativo autorizado" (`ROLE_MATRIX.md`).
-11. ❓ Umbral de tiempo para "seguimiento vencido" (`CORE_WORKFLOWS.md` F1).
+1. ❓ Autoridad para modificar catálogos/plantillas del plantel (`DOMAIN_MAP.md` D3).
+2. ❓ Taxonomía de tipos de caso/incidencia (`DOMAIN_MAP.md` D5, `CORE_WORKFLOWS.md` F1).
+3. ❓ Modelo de asistencia como dominio propio o parte de seguimiento académico (`DOMAIN_MAP.md` D7) — con recomendación del Product Owner en evaluación para ADR-0003.
+4. ❓ Nivel de aislamiento de permisos entre Salud y Trabajo Social (`DOMAIN_MAP.md` D8/D9).
+5. ❓ Terminología oficial vs. configurable para apoyos especializados/BAP (`DOMAIN_MAP.md` D10).
+6. ❓ Alcance de acceso de Dirección/Subdirección a expedientes sensibles individuales (`ROLE_MATRIX.md`).
+7. ❓ Diferenciación funcional entre Dirección y Subdirección (`ROLE_MATRIX.md`).
+8. ❓ Alcance funcional de Prefectura frente a Docentes tutores (`ROLE_MATRIX.md`).
+9. ❓ Definición concreta de "personal administrativo autorizado" (`ROLE_MATRIX.md`).
+10. ❓ Umbral de tiempo para "seguimiento vencido" (`CORE_WORKFLOWS.md` F1).
 
-La antigua pregunta n.º 1 (relación con trabajo previo) fue resuelta mediante [`ADR-0001`](../decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md) y ya no forma parte de esta lista.
+Preguntas resueltas por ADR: relación con trabajo previo mediante [`ADR-0001`](../decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md); multi-rol por usuario y roles multiescuela mediante [`ADR-0002`](../decisions/ADR-0002-USUARIOS-CON-MULTIPLES-ROLES.md).
 
 Ninguna de estas preguntas se respondió por inferencia; todas requieren decisión del Product Owner antes de convertirse en diseño técnico o implementación.
 

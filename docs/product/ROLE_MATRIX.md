@@ -26,6 +26,8 @@ Los roles listados provienen literalmente de la fundación (§6): Dirección, Su
 > "No todos los usuarios deben ver toda la información." — Fundación §6.
 > "Mínimo privilegio, separación por institución, separación por rol... protección especial para información de salud, violencia, orientación y datos privados." — Fundación §18.
 
+**Multi-rol (decisión [`ADR-0002`](../decisions/ADR-0002-USUARIOS-CON-MULTIPLES-ROLES.md)):** un usuario puede tener varios de los roles de esta matriz dentro de una misma institución. Esta matriz se lee por **rol activo en contexto**, no como suma de los roles de la persona: cada acción registra institución, rol activo, grupo, área, caso asignado y motivo de acceso cuando corresponda, y la auditoría conserva con qué rol se consultó o modificó cada información. Una canalización concede acceso limitado al caso, no al expediente completo. Los roles multiescuela serán un conjunto distinto de los roles de plantel aquí listados.
+
 ---
 
 ## R1. Dirección
@@ -134,7 +136,8 @@ Esta tabla operacionaliza el principio del §18 ("protección especial para info
 2. ❓ Diferenciación funcional real entre Dirección y Subdirección.
 3. ❓ Alcance funcional de Prefectura frente a Docentes tutores.
 4. ❓ Definición concreta de "personal administrativo autorizado".
-5. ❓ ¿Puede un usuario tener más de un rol? (heredada de `DOMAIN_MAP.md`, con impacto directo en esta matriz).
+
+La antigua pregunta sobre multi-rol por usuario fue resuelta mediante [`ADR-0002`](../decisions/ADR-0002-USUARIOS-CON-MULTIPLES-ROLES.md) (ver el principio rector arriba).
 
 ## Validación de este documento
 

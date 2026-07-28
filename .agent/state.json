@@ -5,7 +5,7 @@
   "phase": "functional_architecture",
   "status": "first_mission_committed_in_review",
   "implementation_started": false,
-  "current_objective": "Atender la revisión del PR #1 y resolver con el Product Owner las 11 preguntas abiertas restantes antes de continuar con arquitectura técnica o decisiones de stack.",
+  "current_objective": "Atender la revisión del PR #1 y resolver con el Product Owner las 10 preguntas abiertas restantes antes de continuar con arquitectura técnica o decisiones de stack.",
   "canonical_sources": [
     "README.md",
     "docs/foundation/PRODUCT_FOUNDATION.md",
@@ -23,7 +23,8 @@
     "docs/product/MODULE_CATALOG.md": "committed (94ab9ef), in review on PR #1",
     "docs/product/ROLE_MATRIX.md": "committed (94ab9ef), in review on PR #1",
     "docs/product/CORE_WORKFLOWS.md": "committed (94ab9ef), in review on PR #1",
-    "docs/decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md": "accepted by Product Owner during PR #1 review"
+    "docs/decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md": "accepted by Product Owner during PR #1 review",
+    "docs/decisions/ADR-0002-USUARIOS-CON-MULTIPLES-ROLES.md": "accepted by Product Owner during PR #1 review"
   },
   "branch": "docs/functional-architecture-v1",
   "commits": {
@@ -56,8 +57,8 @@
     "irreversible technology decisions",
     "invented legal requirements"
   ],
-  "next_safe_microtask": "Product Owner reviews the 11 remaining open questions in docs/product/PRODUCT_MAP.md section 10; the prior-work question was resolved via docs/decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md. PR #1 stays a draft until the Product Owner authorizes the merge.",
-  "open_questions_count": 11,
+  "next_safe_microtask": "Product Owner confirms or adjusts the attendance model (own domain with two connected levels: jornada + clase) so it can be recorded as ADR-0003; then reviews the remaining open questions in docs/product/PRODUCT_MAP.md section 10. PR #1 stays a draft until the Product Owner authorizes the merge.",
+  "open_questions_count": 10,
   "product_owner": "Hugo Sánchez Reséndiz",
   "foundation_commit": "b7252a07bfa639d17886339bebd523854e2fcb56",
   "updated_at": "2026-07-27"

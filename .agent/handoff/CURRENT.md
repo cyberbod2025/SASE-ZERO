@@ -30,7 +30,7 @@ Traducir el Documento Fundacional de SASE Zero en un mapa funcional verificable 
   - `6e5c8e1` — `chore(agent): record functional architecture handoff` (estado y handoff).
 - La rama fue publicada en `origin` y existe el PR borrador [#1 — docs: define SASE Zero functional architecture v1](https://github.com/cyberbod2025/SASE-ZERO/pull/1) hacia `main`. La primera revisión fue favorable; la fusión aún no está autorizada.
 - Durante la revisión del PR #1, el Product Owner registró dos decisiones:
-  1. **ADR-0001** (`docs/decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md`): SASE Zero es una reconstrucción independiente y limpia; SASE Light y otros trabajos previos son consultables como referencia, no fuentes canónicas. La antigua pregunta abierta n.º 1 queda resuelta (quedan 11).
+  1. **ADR-0001** (`docs/decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md`): SASE Zero es una reconstrucción independiente y limpia; SASE Light y otros trabajos previos son consultables como referencia, no fuentes canónicas. La antigua pregunta abierta n.º 1 queda resuelta.
   2. **Prevención vs. IA:** la prevención básica determinística de M17 es capacidad núcleo configurable; solo su ampliación por IA es opcional, y desactivar la IA no desactiva las alertas básicas.
 
 ## 3. Fuentes canónicas actuales
@@ -57,12 +57,14 @@ Traducir el Documento Fundacional de SASE Zero en un mapa funcional verificable 
 - El Product Owner humano conserva las decisiones irreversibles y de aceptación final.
 - **ADR-0001:** SASE Zero es una reconstrucción independiente y limpia; SASE Light y otros trabajos previos son referencia consultable, no fuentes canónicas (`docs/decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md`).
 - **Prevención vs. IA (revisión del PR #1):** la prevención básica determinística es capacidad núcleo configurable de SASE; la ampliación por IA es opcional y su desactivación no desactiva las alertas básicas.
+- **ADR-0002:** un usuario puede tener varios roles en una misma institución, con contexto de acción registrado (institución, rol activo, grupo, área, caso, motivo); los permisos no se suman indiscriminadamente, la canalización concede acceso limitado al caso, los roles multiescuela son distintos de los de plantel y la auditoría registra el rol activo (`docs/decisions/ADR-0002-USUARIOS-CON-MULTIPLES-ROLES.md`).
 
 ## 5. Próximos entregables
 
 Los cinco documentos y el ADR-0001 ya están commiteados en la rama del PR #1. Pendiente:
 
-- Revisión y decisión del Product Owner sobre las 11 preguntas abiertas restantes consolidadas en `docs/product/PRODUCT_MAP.md` §10.
+- Registro de ADR-0003 (modelo de asistencia) cuando el Product Owner confirme el modelo propuesto.
+- Revisión y decisión del Product Owner sobre las 10 preguntas abiertas restantes consolidadas en `docs/product/PRODUCT_MAP.md` §10.
 - Autorización del Product Owner para fusionar el PR #1 (permanece como borrador hasta entonces).
 
 ## 6. Criterios de aceptación de la primera misión
@@ -73,7 +75,7 @@ Los cinco documentos y el ADR-0001 ya están commiteados en la rama del PR #1. P
 - [x] Los flujos (F1–F6) identifican inicio, responsables, estados, evidencias, seguimiento y cierre.
 - [x] La información sensible y sus límites quedan identificados (§18 de la fundación propagado a D8/D9/D10, M13/M14/M15, y a la matriz de roles).
 - [x] No se introduce código ni una decisión irreversible de stack.
-- [x] Las preguntas no resueltas quedan visibles (11 preguntas consolidadas en `PRODUCT_MAP.md` §10, tras resolver una mediante ADR-0001) y no se contestaron mediante invención.
+- [x] Las preguntas no resueltas quedan visibles (10 preguntas consolidadas en `PRODUCT_MAP.md` §10, tras resolver dos mediante ADR-0001 y ADR-0002) y no se contestaron mediante invención.
 - [x] `.agent/state.json` y este handoff quedan actualizados.
 - [x] Aprobación del Product Owner como línea base documental, commits `94ab9ef` y `6e5c8e1`, rama publicada y PR #1 en borrador.
 - [ ] **Pendiente:** autorización del Product Owner para fusionar el PR #1.
@@ -101,7 +103,7 @@ Ninguno técnico. Bloqueo de proceso: el PR #1 permanece como borrador; la fusi�
 
 ## 10. Siguiente microtarea segura
 
-El Product Owner revisa las 11 preguntas abiertas restantes consolidadas en `docs/product/PRODUCT_MAP.md` §10 y decide cuáles resolver antes de autorizar la fusión del PR #1 y de iniciar la arquitectura técnica. El siguiente agente debe verificar el estado real de la rama y el PR (no solo este handoff) antes de continuar.
+El Product Owner confirma o ajusta el modelo de asistencia propuesto (dominio propio con dos niveles conectados: asistencia de jornada y asistencia por clase) para registrarlo como ADR-0003, y después revisa las 10 preguntas abiertas restantes consolidadas en `docs/product/PRODUCT_MAP.md` §10 antes de autorizar la fusión del PR #1. El siguiente agente debe verificar el estado real de la rama y el PR (no solo este handoff) antes de continuar.
 
 ## 11. Referencias de commits
 

@@ -41,10 +41,10 @@ Por el principio de profundidad funcional (§10 de la fundación), cada módulo 
 ---
 
 ## M1. Gestión de Identidad y Permisos
-**Dominio:** D1. **Responsabilidad:** alta de usuarios institucionales, asignación de roles, permisos por rol, control de sesión.
+**Dominio:** D1. **Responsabilidad:** alta de usuarios institucionales, asignación de roles (incluyendo múltiples roles por usuario), permisos por rol, contexto de acción y control de sesión.
 **Depende de:** ninguno. **Del que dependen:** todos los demás módulos.
 **Estado:** 🟢 §6, §18.
-**Pregunta abierta:** ❓ multi-rol por usuario (heredada de `DOMAIN_MAP.md`).
+**Nota de decisión:** por [`ADR-0002`](../decisions/ADR-0002-USUARIOS-CON-MULTIPLES-ROLES.md), este módulo modela multi-rol con contexto de acción (institución, rol activo, grupo, área, caso asignado, motivo de acceso cuando corresponda); los permisos no se suman de manera indiscriminada y los roles multiescuela son un conjunto distinto de los roles de plantel.
 
 ## M2. Auditoría y Bitácora
 **Dominio:** D2. **Responsabilidad:** mostrar y conservar el historial de acciones sobre cualquier registro; no editable por la escuela.

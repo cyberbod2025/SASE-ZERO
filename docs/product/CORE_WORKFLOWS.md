@@ -70,7 +70,7 @@ Estos flujos son conceptuales y no representan una decisión de interfaz, base d
 
 **Módulos involucrados:** M7 (Canalización entre Áreas), M6, M13/M14/M15 según el área receptora, M2 (Auditoría).
 
-**Regla de datos sensibles:** al canalizar hacia D8/D9/D10, solo se comparte lo explícitamente autorizado por el flujo; no se otorga acceso general al expediente del alumno en esos dominios (heredado de §18 y de la matriz de `ROLE_MATRIX.md`).
+**Regla de datos sensibles:** al canalizar hacia D8/D9/D10, solo se comparte lo explícitamente autorizado por el flujo; no se otorga acceso general al expediente del alumno en esos dominios (heredado de §18 y de la matriz de `ROLE_MATRIX.md`). Por [`ADR-0002`](../decisions/ADR-0002-USUARIOS-CON-MULTIPLES-ROLES.md), una canalización concede acceso limitado al caso canalizado, nunca al expediente completo, y la auditoría registra con qué rol activo se accedió.
 
 **Estado del flujo:** 🟢 Hecho aprobado en su necesidad (§1, §3). 🔵 Inferencia de diseño en los cuatro estados propuestos.
 
