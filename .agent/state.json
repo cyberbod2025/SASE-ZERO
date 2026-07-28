@@ -2,10 +2,11 @@
   "schema_version": 1,
   "project": "SASE Zero",
   "product_definition": "Sistema Operativo de una Secundaria",
-  "phase": "functional_architecture",
-  "status": "closed_and_merged",
+  "phase": "technical_architecture_preparation",
+  "status": "contract_drafted_pending_pr",
   "implementation_started": false,
-  "current_objective": "Cierre de arquitectura funcional completado. Siguiente fase: arquitectura técnica.",
+  "functional_architecture": "closed",
+  "current_objective": "Contrato de arquitectura técnica redactado. Siguiente microtarea: comparar alternativas de arquitectura técnica. Ningún stack aprobado todavía.",
   "canonical_sources": [
     "README.md",
     "docs/foundation/PRODUCT_FOUNDATION.md",
@@ -15,7 +16,8 @@
     "docs/domains/DOMAIN_MAP.md",
     "docs/product/MODULE_CATALOG.md",
     "docs/product/ROLE_MATRIX.md",
-    "docs/product/CORE_WORKFLOWS.md"
+    "docs/product/CORE_WORKFLOWS.md",
+    "docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md"
   ],
   "current_deliverables_status": {
     "docs/product/PRODUCT_MAP.md": "closed (cierre consolidado con tabla de resoluciones y decisión de privacidad)",
@@ -24,7 +26,8 @@
     "docs/product/ROLE_MATRIX.md": "closed (4 preguntas + decisión final de privacidad del PO)",
     "docs/product/CORE_WORKFLOWS.md": "closed (2 preguntas resueltas: taxonomía configurable, umbral diferido a prototipado)",
     "docs/decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md": "accepted by Product Owner",
-    "docs/decisions/ADR-0002-USUARIOS-CON-MULTIPLES-ROLES.md": "accepted by Product Owner"
+    "docs/decisions/ADR-0002-USUARIOS-CON-MULTIPLES-ROLES.md": "accepted by Product Owner",
+    "docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md": "drafted, PR open as draft, not yet merged"
   },
   "branch": "main",
   "pull_request": {
@@ -33,12 +36,18 @@
     "state": "merged",
     "url": "https://github.com/cyberbod2025/SASE-ZERO/pull/1"
   },
+  "pending_pull_request": {
+    "branch": "docs/technical-architecture-contract",
+    "title": "docs: define technical architecture contract",
+    "state": "draft, not merged in this mission"
+  },
   "allowed_work": [
     "functional analysis",
     "domain modeling",
     "module definition",
     "role and permission analysis",
     "workflow definition",
+    "technical architecture framing (objectives, scope, evaluation criteria)",
     "documentation",
     "architecture decision proposals",
     "handoff maintenance"
@@ -51,9 +60,10 @@
     "authentication implementation",
     "use of real student data",
     "irreversible technology decisions",
-    "invented legal requirements"
+    "invented legal requirements",
+    "selecting a definitive technical stack"
   ],
-  "next_safe_microtask": "Preparar la misión de arquitectura técnica: delimitar objetivos, opciones reversibles y modelo conceptual, sin iniciar implementación de producto.",
+  "next_safe_microtask": "Comparar alternativas de arquitectura técnica según docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md §6, con criterios de §8, sin decidir stack todavía.",
   "product_owner": "Hugo Sánchez Reséndiz",
   "foundation_commit": "b7252a07bfa639d17886339bebd523854e2fcb56",
   "updated_at": "2026-07-28"
