@@ -1,72 +1,74 @@
 # CURRENT HANDOFF — SASE Zero
 
 **Fecha:** 2026-07-28
-**Fase:** Comparación de alternativas de arquitectura técnica — aprobada; fusión de PR #3 autorizada, pendiente de ejecutar
-**Estado:** El Product Owner realizó una segunda revisión y aprobó `docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md` en su contenido y en su dirección arquitectónica provisional. Esta aprobación **no** aprueba stack, proveedor ni implementación. PR #3 (`docs/technical-alternatives-comparison` → `main`) queda autorizado para fusión: https://github.com/cyberbod2025/SASE-ZERO/pull/3.
+**Fase:** Diseño de arquitectura lógica — pendiente, no iniciado
+**Estado:** Comparación de alternativas de arquitectura técnica aprobada por el Product Owner y fusionada en `main` mediante PR #3 (squash merge `cd7e3349e7710650acdfb741d00785765600e69d`).
 **Arquitectura funcional:** Cerrada
 **Implementación de producto:** No iniciada
 **Stack técnico:** Ninguno aprobado
 
 ## 1. Objetivo de esta sesión
 
-Registrar la aprobación final del Product Owner sobre la comparación de alternativas técnicas (PR #3), corregir únicamente la descripción del PR para reflejar el documento vigente, y dejar autorizada la fusión hacia `main`. No se modifica el documento de comparación en esta sesión, ni se inicia arquitectura lógica, selección de proveedores, ADR o implementación.
+Registrar el estado posterior a la fusión de PR #3: comparación de alternativas de arquitectura técnica aprobada y fusionada en `main`, con el SHA exacto del squash merge, y fijar la siguiente microtarea (preparar, sin iniciar, una misión de diseño de arquitectura lógica).
 
 ## 2. Resultado
 
-- Se corrigió el cuerpo de PR #3 en GitHub para reflejar con precisión el documento actual: 12 comparaciones A–L; web responsiva como superficie base con capacidades PWA incorporadas progresivamente; candidato multitenant inicial = filas compartidas con identificador institucional; autorización funcional reforzada obligatoriamente por políticas cercanas al dato; esquemas separados, bases separadas y modelo híbrido como rutas futuras condicionadas a evidencia; caché offline inicial limitada a interfaz, catálogos y referencias no sensibles; ningún stack ni proveedor aprobado. No se modificó `docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md`.
-- Se registró en `.agent/state.json` y en este handoff que el Product Owner aprobó la comparación en su segunda revisión y que PR #3 queda autorizado para fusión mediante squash.
-- No se seleccionó ningún proveedor ganador ni stack técnico.
-- No se creó ningún ADR nuevo.
-- No se modificaron documentos funcionales, el contrato técnico, ni `sase-light`.
+- PR #3 (`docs/technical-alternatives-comparison` → `main`) fue marcado listo para revisión, verificado como fusionable (`mergeable=MERGEABLE`, `mergeStateStatus=CLEAN`) y fusionado mediante squash merge. Commit de fusión: `cd7e3349e7710650acdfb741d00785765600e69d`.
+- `main` local está sincronizado con `origin/main` en ese mismo commit (más este commit de cierre de estado).
+- `docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md` queda como documento aprobado y fusionado; no fue modificado en esta sesión.
+- Se corrigió `.agent/state.json` y este handoff para reflejar el estado definitivo: comparación aprobada y fusionada, fase de diseño de arquitectura lógica pendiente, sin iniciar.
+- Ningún stack, proveedor, framework, base de datos, hosting ni mecanismo de autenticación fue seleccionado.
+- No se inició la arquitectura lógica ni ninguna otra misión posterior.
+- `sase-light` no fue tocado.
 
-## 3. Archivos modificados en esta sesión (commit de aprobación)
+## 3. Archivos modificados en este commit
 
 - `.agent/state.json`
 - `.agent/handoff/CURRENT.md`
 
-El documento `docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md` **no** fue modificado en esta sesión; solo se corrigió la descripción de PR #3 en GitHub (fuera del árbol versionado del repositorio).
+Ningún otro archivo fue modificado. En particular, `docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md` y `docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md` no fueron tocados en este commit.
 
-## 4. Decisión del Product Owner registrada en esta sesión
+## 4. Decisiones registradas
 
-- El Product Owner **aprobó** `docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md` en contenido y en dirección arquitectónica provisional (segunda revisión).
-- Esta aprobación **no** selecciona stack, proveedor ni autoriza implementación.
-- PR #3 queda **autorizado para fusión** hacia `main` mediante squash merge.
-- La siguiente fase (diseño de arquitectura lógica, contrato §9) **no se inicia todavía**; requiere una misión acotada aparte.
+- **Aprobación del Product Owner (2026-07-28, segunda revisión):** comparación de alternativas de arquitectura técnica aprobada en contenido y en dirección arquitectónica provisional. No aprueba stack, proveedor ni implementación.
+- **Fusión (2026-07-28):** PR #3 fusionado en `main` mediante squash merge, commit `cd7e3349e7710650acdfb741d00785765600e69d`.
+- Ningún stack, proveedor, framework, base de datos, hosting ni mecanismo de autenticación fue seleccionado.
 
-## 5. Decisiones vigentes (heredadas, no reabiertas)
+## 5. Decisiones vigentes (heredadas)
 
 - ADR-0001: SASE Zero es reconstrucción independiente; sase-light es referencia, no fuente.
 - ADR-0002: usuarios multi-rol con contexto de acción; permisos no se suman.
 - Arquitectura funcional cerrada y fusionada en `main` (PR #1).
 - Contrato de arquitectura técnica cerrado y fusionado en `main` (PR #2, commit `6482dfdeb71bf21721ddfa430fe5aff03f716e13`).
-- Comparación de alternativas técnicas aprobada por el Product Owner (PR #3, pendiente de fusión al momento de este commit).
+- Comparación de alternativas de arquitectura técnica aprobada y fusionada en `main` (PR #3, commit `cd7e3349e7710650acdfb741d00785765600e69d`).
 
-## 6. Validaciones ejecutadas en esta sesión
+## 6. Validaciones ejecutadas
 
-- Confirmado que `docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md` no fue modificado en esta sesión.
-- Revisado el diff completo antes del commit: solo `.agent/state.json` y este handoff.
+- Confirmado en GitHub que PR #3 está en estado `MERGED`, con `mergeCommit.oid` = `cd7e3349e7710650acdfb741d00785765600e69d`.
+- `git fetch origin` y `git merge --ff-only origin/main` ejecutados en el worktree principal (`C:/HUGO_SYSTEM/Projects/SASE-ZERO`); `HEAD` local coincide con `origin/main` tras el fast-forward.
+- Confirmado que `docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md` no fue modificado en este commit de cierre de estado.
 - Validado que `.agent/state.json` es JSON bien formado tras la edición.
-- Confirmado que el contrato técnico, los documentos funcionales, los ADR y `sase-light` no fueron modificados.
-- Confirmado que ningún worktree fue alterado.
-- Descripción de PR #3 verificada en GitHub tras la edición (`gh pr edit`).
+- Confirmado que `sase-light` no recibió cambios.
+- Confirmado que ningún worktree fue movido, agregado ni eliminado; el directorio no rastreado `SASE-ZERO/` sigue siendo la infraestructura de worktree ya documentada, sin tocar.
+- No se ejecutaron pruebas de software porque el repositorio aún no contiene implementación.
 
 ## 7. Siguiente microtarea segura
 
-Fusionar PR #3 hacia `main` mediante squash merge, y registrar el estado posterior a la fusión (SHA exacto del squash, `main` sincronizado con `origin/main`). Después de eso, la siguiente misión — todavía no iniciada — es preparar una misión acotada de diseño de arquitectura lógica conforme al contrato técnico §9.
+Preparar una misión acotada de diseño de arquitectura lógica conforme al contrato técnico §9 (límites de módulos, modelo conceptual de datos, flujo de identidad y autorización, estrategia multitenant validada con pruebas negativas explícitas, tratamiento de información sensible, estrategia de auditoría, exportación y respaldo). **No iniciar esa misión todavía**; requiere alcance explícito y confirmación del Product Owner antes de comenzar.
 
 ## 8. Riesgos y advertencias
 
-- No iniciar la selección de stack, arquitectura lógica ni implementación sin autorización explícita adicional.
+- No iniciar la arquitectura lógica, selección de stack ni implementación sin autorización explícita adicional.
 - No convertir la dirección arquitectónica provisional en stack aprobado sin decisión registrada del Product Owner.
 - No mezclar `sase-light` con SASE Zero.
 - No usar datos reales de alumnos.
 - No inventar requisitos legales o normativos.
+- No eliminar ni mover el directorio `SASE-ZERO/` con comandos manuales; si en el futuro deja de necesitarse, retirarlo con `git worktree remove` desde la raíz del repositorio, nunca con borrado manual.
 
 ## 9. Referencias
 
-- Contrato técnico aprobado y fusionado: `docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md`.
-- Comparación de alternativas (aprobada, pendiente de fusión): `docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md`.
-- PR #3 (autorizado para fusión): https://github.com/cyberbod2025/SASE-ZERO/pull/3.
-- Rama de esta misión: `docs/technical-alternatives-comparison`.
+- Contrato técnico aprobado y fusionado: `docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md` (PR #2, commit `6482dfdeb71bf21721ddfa430fe5aff03f716e13`).
+- Comparación de alternativas aprobada y fusionada: `docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md` (PR #3, commit `cd7e3349e7710650acdfb741d00785765600e69d`).
+- PR #3 (fusionado): https://github.com/cyberbod2025/SASE-ZERO/pull/3.
 
 > Un agente informa; el siguiente verifica.
