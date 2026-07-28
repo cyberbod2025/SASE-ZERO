@@ -1,159 +1,90 @@
-# AGENTS.md — Gobierno multiagente de SASE Zero
+# AGENTS.md — SASE Zero
 
-Este archivo aplica a todos los agentes que trabajen en el repositorio.
+Gobierno multiagente. Aplica a Claude Code, OpenCode, Codex u otros.
 
-## 1. Principio central
-
-> El repositorio es la memoria del proyecto. Ningún agente debe depender de su memoria conversacional para conocer el estado de SASE Zero.
-
-Antes de modificar algo, verifica el estado real del repositorio.
-
-## 2. Lectura obligatoria
-
-Lee en este orden y detente cuando tengas contexto suficiente para la tarea:
+## Lectura obligatoria (orden)
 
 1. `README.md`
 2. `docs/foundation/PRODUCT_FOUNDATION.md`
 3. `AGENTS.md`
-4. Archivo específico del agente, si existe
+4. Instrucciones específicas del agente (ej. `CLAUDE.md`)
 5. `.agent/state.json`
 6. `.agent/handoff/CURRENT.md`
-7. Solo los documentos y archivos relacionados con la tarea activa
+7. Documentos relacionados con la tarea activa
 
-No cargues todo el repositorio sin necesidad. Prefiere índices, búsquedas dirigidas y lecturas parciales.
+Verifica el estado real (`git status`, `git log`, rama, remoto) antes de editar. Un agente informa; el siguiente verifica.
 
-## 3. Estado actual autorizado
+## Fase actual
 
-La fase vigente es **arquitectura funcional previa a implementación**.
+**Arquitectura funcional cerrada.** Siguiente fase: arquitectura técnica, pero aún no iniciada.
 
-Está permitido:
+**Prohibido permanentemente hasta nueva orden:**
+- interfaces de producto, código de módulos, tablas físicas, migraciones
+- Supabase, hosting, producción, autenticación
+- datos reales de alumnos
+- inventar requisitos legales o escolares sin fuente
 
-- analizar la fundación;
-- definir dominios, módulos, roles y flujos;
-- detectar contradicciones y vacíos;
-- redactar documentación canónica;
-- proponer ADR;
-- actualizar estado y handoff.
+## sase-light
 
-No está permitido todavía:
+Repositorio separado (`cyberbod2025/sase-light`). No modificarlo, no mezclarlo, no tomarlo como fuente canónica. SASE Zero es reconstrucción independiente (ADR-0001).
 
-- crear interfaces de producto;
-- elegir o instalar un stack irreversible;
-- diseñar tablas físicas o migraciones;
-- configurar Supabase, hosting o producción;
-- implementar autenticación;
-- programar módulos;
-- usar datos reales de alumnos;
-- inventar requisitos legales o escolares.
+## ADR clave
 
-## 4. Precedencia
+- **ADR-0001:** SASE Zero es reconstrucción independiente; trabajo previo es referencia, no fuente.
+- **ADR-0002:** Usuarios con múltiples roles; cada acción registra contexto (institución, rol, grupo, área, caso, motivo). Permisos no se suman indiscriminadamente.
 
-Ante contradicciones, respeta el orden definido en `README.md`.
+## Decisiones aprobadas (no requieren nuevo ADR)
 
-Nunca cambies la fundación para acomodar una implementación. Si hay conflicto:
+- **Prevención vs. IA:** Prevención básica determinística es núcleo configurable; IA es ampliación opcional.
+- **Información sensible:** Dirección/Subdirección consultan solo indicadores agregados por defecto. Acceso individual a Salud/Trabajo Social/Orientación solo por caso con necesidad justificada, con motivo registrado, alcance mínimo y auditoría. No existe navegación general por expedientes sensibles.
 
-1. detén la parte afectada;
-2. describe el conflicto;
-3. presenta alternativas y consecuencias;
-4. registra la pregunta abierta;
-5. espera decisión del Product Owner;
-6. registra la decisión mediante ADR cuando corresponda.
+## Criterio de decisión
 
-## 5. Contrato de tarea
+Decisión reversible: default explícito. Variación entre escuelas: configuración. Tema normativo sin fuente: `En preparación`. Solo una decisión irreversible, transversal y bloqueante se escala o justifica un ADR; no reabras preguntas una por una.
 
-Antes de trabajar, identifica:
+## GitHub
 
-- objetivo;
-- alcance;
-- archivos permitidos;
-- fuentes canónicas;
-- criterios de aceptación;
-- validaciones necesarias;
-- acciones prohibidas.
+El remoto `origin` debe apuntar a `github.com/cyberbod2025/SASE-ZERO`. Consulta rama y PR vigentes en GitHub y en `.agent/state.json`; no confíes en un handoff sin verificarlos.
 
-Si el contrato no está escrito, constrúyelo a partir del handoff y la documentación. No amplíes el alcance silenciosamente.
+## Handoff obligatorio
 
-## 6. Reglas de ejecución
+Antes de terminar, actualizar:
+- `.agent/handoff/CURRENT.md` (objetivo, resultado, archivos tocados, decisiones, validaciones, riesgos, siguiente microtarea)
+- `.agent/state.json` si cambió fase, objetivo o estado
 
-- Trabaja en incrementos pequeños y verificables.
-- Distingue hechos aprobados, inferencias y propuestas.
-- No presentes una hipótesis como decisión.
-- Reutiliza conceptos canónicos; evita sinónimos que creen dominios duplicados.
-- Conserva trazabilidad entre requisitos, módulos, flujos y decisiones.
-- No dupliques contenido canónico en varios archivos; enlázalo.
-- No elimines documentación ni historial sin autorización explícita.
-- No uses datos personales reales durante diseño, desarrollo o pruebas.
-- No ejecutes cambios destructivos ni irreversibles sin autorización.
+Registra solo validaciones realmente ejecutadas.
 
-## 7. Uso eficiente del contexto
+## Precedencia
 
-Orden recomendado:
+1. Decisiones del Product Owner registradas en el repo
+2. `PRODUCT_FOUNDATION.md`
+3. ADR en `docs/decisions/`
+4. Documentación canónica vigente
+5. Estado y handoff
+6. Código y pruebas
+7. Suposiciones del agente
 
-1. índices y tablas de contenido;
-2. búsqueda textual;
-3. búsqueda semántica local;
-4. lectura de secciones concretas;
-5. MCP solo cuando aporte una fuente necesaria;
-6. lectura completa únicamente cuando sea indispensable.
+Nunca cambiar la fundación para acomodar implementación.
 
-Los MCP son herramientas de acceso, no fuentes de verdad ni sustitutos de la documentación canónica.
+## Contrato de tarea
 
-## 8. Validación
+Antes de trabajar, identifica: objetivo, alcance, archivos permitidos, criterios de aceptación, validaciones y acciones prohibidas. No amplíes el alcance silenciosamente.
 
-Antes de declarar una tarea terminada:
+## Git
 
-- comprueba que los archivos existen;
-- revisa enlaces y referencias;
-- busca contradicciones internas;
-- verifica consistencia terminológica;
-- confirma que no se excedió el alcance;
-- registra preguntas abiertas;
-- actualiza `.agent/handoff/CURRENT.md`;
-- actualiza `.agent/state.json` si cambió la fase, el objetivo o el estado.
+Inspecciona estado antes de modificar. No descartes cambios ajenos, reescribas historia, fuerces push, elimines ramas sin autorización, ni mezcles trabajo no relacionado.
 
-Cuando exista código, también deberán ejecutarse las pruebas y verificaciones pertinentes. No declares una validación que no ejecutaste.
+## Product Owner
 
-## 9. Git y cambios
+Humano: Hugo Sánchez Reséndiz. Solo él aprueba: visión, alcance, prioridades, privacidad, modelo comercial, producción, aceptación final.
 
-- Inspecciona el estado antes de modificar.
-- No mezcles trabajo no relacionado.
-- Usa mensajes de commit claros y acotados.
-- No reescribas historia compartida.
-- No fuerces push.
-- No elimines ramas, etiquetas o archivos sin autorización.
-- Si encuentras cambios ajenos, consérvalos y reporta el riesgo.
+Los agentes proponen, comparan y advierten; no sustituyen estas decisiones.
 
-## 10. Handoff obligatorio
+## Recordatorios
 
-Cada entrega debe registrar como mínimo:
-
-- objetivo trabajado;
-- resultado;
-- archivos creados o modificados;
-- decisiones tomadas;
-- validaciones ejecutadas;
-- riesgos y bloqueos;
-- preguntas abiertas;
-- siguiente microtarea segura;
-- estado del repositorio o referencia de commit.
-
-Principio:
-
-> Un agente informa; el siguiente verifica.
-
-El agente entrante no debe confiar ciegamente en el handoff. Debe comprobar los archivos, el estado y las validaciones relevantes.
-
-## 11. Responsabilidades humanas
-
-Solo el Product Owner puede aprobar de forma definitiva:
-
-- visión y alcance;
-- prioridades y roadmap;
-- modelo comercial;
-- uso y conservación de datos;
-- privacidad y decisiones sensibles;
-- proveedores, credenciales y pagos;
-- producción y despliegues;
-- aceptación final del producto.
-
-Los agentes pueden proponer, comparar y advertir, pero no sustituir estas decisiones.
+- El repositorio, no el agente, es la memoria del proyecto.
+- No duplicar contenido canónico entre archivos; enlazar.
+- No usar datos personales reales.
+- No ejecutar cambios destructivos sin autorización.
+- Distinguir hechos aprobados, inferencias, propuestas y preguntas abiertas.
+- Si hay conflicto entre fundación e implementación: detener, describir, escalar.

@@ -1,101 +1,76 @@
 # CURRENT HANDOFF — SASE Zero
 
-**Fecha:** 2026-07-27  
-**Fase:** Arquitectura funcional  
-**Estado:** Listo para iniciar  
+**Fecha:** 2026-07-28
+**Fase:** Arquitectura funcional (cerrada)
+**Estado:** Arquitectura funcional completada y fusionada en `main`
 **Implementación de producto:** No iniciada
 
-## 1. Objetivo vigente
+## 1. Objetivo
 
-Traducir el Documento Fundacional de SASE Zero en un mapa funcional verificable antes de tomar decisiones técnicas irreversibles o programar el producto.
+Cerrar la arquitectura funcional aprobada, resolver sus preguntas mediante defaults, configuración o diferimiento, registrar la decisión de privacidad y fusionar el PR #1 sin iniciar arquitectura técnica ni implementación.
 
-## 2. Trabajo completado
+## 2. Resultado
 
-- Repositorio `cyberbod2025/SASE-ZERO` creado con rama principal `main`.
-- Documento fundacional incorporado como fuente canónica.
-- `README.md` creado como entrada y mapa de precedencia.
-- `AGENTS.md` creado como gobierno compartido para Claude Code, Codex, OpenCode y otros agentes.
-- `CLAUDE.md` creado con instrucciones específicas y no duplicadas para Claude Code.
-- `.agent/state.json` inicializado con fase, permisos, prohibiciones y siguiente microtarea.
-- Este handoff fue creado para establecer continuidad verificable.
+- Se consolidaron resoluciones de cierre para todas las preguntas abiertas de la fase en los cinco documentos funcionales: `PRODUCT_MAP.md`, `DOMAIN_MAP.md`, `MODULE_CATALOG.md`, `ROLE_MATRIX.md`, `CORE_WORKFLOWS.md`.
+- Se registró la decisión final del Product Owner sobre información sensible: Dirección/Subdirección consultan solo indicadores agregados por defecto; acceso individual solo por caso justificado con motivo, alcance mínimo y auditoría. No existe navegación general por expedientes sensibles.
+- Se adoptaron defaults reversibles o configuración institucional para: administración de catálogos (D3 por defecto, delegable vía M1), tipos de caso (catálogo configurable), asistencia (dos niveles: jornada + clase, default reversible), aislamiento Salud/Trabajo Social (por defecto, visibilidad solo por canalización), apoyos especializados (nombre configurable, "apoyos especializados" como término de trabajo, correspondencia oficial `En preparación`), Subdirección (default: funciones operativas sin configuración crítica), Prefectura/tutores (ambos originan casos, distribución configurable), personal administrativo (conjunto configurable de permisos), y seguimiento vencido (umbral configurable por tipo de caso, valor semilla en prototipado).
+- Se compactó `AGENTS.md` conservando todas las salvaguardas: precedencia, contrato de tarea, verificación de estado real, prohibiciones de fase, reglas Git, handoff, responsabilidades del PO y principio "Un agente informa; el siguiente verifica".
+- `CORE_WORKFLOWS.md` actualizado con resoluciones en F1 y sección de cierre.
+- `.agent/state.json` actualizado a estado `closed_and_merged`.
+- PR #1 actualizado con descripción de cierre, marcado listo para revisión y fusionado mediante squash en `main`.
+- Rama local cambiada a `main` y sincronizada con `origin/main`.
 
-## 3. Fuentes canónicas actuales
+## 3. Archivos modificados
 
-1. `README.md`
-2. `docs/foundation/PRODUCT_FOUNDATION.md`
-3. `AGENTS.md`
-4. `CLAUDE.md`, únicamente para Claude Code
-5. `.agent/state.json`
-6. `.agent/handoff/CURRENT.md`
-
-## 4. Decisiones vigentes
-
-- SASE Zero es el Sistema Operativo de una Secundaria.
-- El repositorio es la memoria del proyecto.
-- El producto inicia enfocado en escuelas secundarias.
-- La fase vigente es documentación y arquitectura funcional.
-- Todavía no se autoriza código de producto, interfaz, base de datos, Supabase, autenticación ni infraestructura.
-- La inteligencia artificial será opcional, explicable y supervisada.
-- La prevención describirá situaciones observables sin etiquetar alumnos.
-- La escuela conservará la propiedad y portabilidad de sus datos.
-- El Product Owner humano conserva las decisiones irreversibles y de aceptación final.
-
-## 5. Próximos entregables
-
-Crear:
-
+- `AGENTS.md`
 - `docs/product/PRODUCT_MAP.md`
 - `docs/domains/DOMAIN_MAP.md`
 - `docs/product/MODULE_CATALOG.md`
 - `docs/product/ROLE_MATRIX.md`
 - `docs/product/CORE_WORKFLOWS.md`
+- `.agent/state.json`
+- `.agent/handoff/CURRENT.md`
 
-Cada documento deberá distinguir:
+## 4. Decisiones registradas durante el cierre
 
-- hechos aprobados;
-- inferencias de diseño;
-- propuestas;
-- preguntas abiertas para el Product Owner.
+- **Decisión final sobre información sensible (2026-07-28):** indicadores agregados por defecto para Dirección/Subdirección; acceso individual solo por caso con necesidad justificada, motivo registrado, alcance mínimo y auditoría. No existe navegación general por expedientes sensibles.
+- **Defaults reversibles adoptados:** asistencia de jornada + clase (dos niveles); Dirección administra catálogos (delegable vía M1); Subdirección = Dirección sin configuración crítica; Prefectura y tutores originan casos (distribución configurable); personal administrativo = conjunto configurable de permisos; umbral de seguimiento vencido configurable por tipo de caso.
 
-## 6. Criterios de aceptación de la siguiente misión
+## 5. Decisiones vigentes (heredadas)
 
-- Los cinco archivos existen.
-- Los dominios y módulos no se contradicen.
-- Cada rol tiene responsabilidades y límites claros.
-- Los flujos identifican inicio, responsables, estados, evidencias, seguimiento y cierre.
-- La información sensible y sus límites quedan identificados.
-- No se introduce código ni una decisión irreversible de stack.
-- Las preguntas no resueltas quedan visibles y no se contestan mediante invención.
-- `.agent/state.json` y este handoff quedan actualizados al finalizar.
+- ADR-0001: SASE Zero es reconstrucción independiente; sase-light es referencia, no fuente.
+- ADR-0002: usuarios multi-rol con contexto de acción; permisos no se suman.
+- Prevención básica determinística es núcleo configurable; IA es ampliación opcional.
 
-## 7. Validación realizada en este checkpoint
+## 6. Validaciones ejecutadas
 
-- Se verificó que `docs/foundation/PRODUCT_FOUNDATION.md` existe en `main`.
-- Se confirmó que el repositorio permite escritura y que `main` es la rama predeterminada.
-- Se crearon los archivos de gobierno iniciales mediante commits separados.
-- No se ejecutaron pruebas de software porque aún no existe implementación.
+- Preflight: directorio, raíz Git, remoto, rama, estado, últimos commits, diferencias entre `HEAD`/rama remota/`origin/main` y estado real del PR #1.
+- Diff completo revisado, incluido el trabajo parcial heredado posterior a `27d2271`.
+- Enlaces relativos verificados; `.agent/state.json` validado como JSON.
+- Consistencia D1–D12, M1–M18, R1–R11 y F1–F6 verificada; no hay identificadores fuera de rango.
+- Confirmado que desempeño académico permanece en D7/M11 y que captura de asistencia no realizada no equivale a ausencia.
+- Búsqueda negativa de preguntas/conteos obsoletos, secretos, credenciales, rutas locales y datos personales reales.
+- ADR-0001 y ADR-0002 sin cambios; no se introdujeron código, stack, esquemas, migraciones ni configuración de infraestructura.
+- `sase-light` no fue tocado: todos los cambios y comandos de escritura se limitaron a `SASE-ZERO`.
+- No se ejecutaron pruebas de software porque el repositorio aún no contiene implementación.
+
+## 7. Siguiente microtarea segura
+
+Preparar el contrato de la misión de arquitectura técnica: objetivos, alcance, opciones reversibles y modelo conceptual. No iniciar implementación de producto.
 
 ## 8. Riesgos y advertencias
 
-- Programar antes de cerrar el mapa funcional puede reproducir los problemas y acoplamientos del sistema anterior.
-- Duplicar reglas entre `AGENTS.md`, `CLAUDE.md` y futuros documentos puede generar contradicciones.
-- Los agentes deben evitar convertir supuestos sobre escuelas mexicanas en requisitos oficiales sin fuente o aprobación.
-- No deben utilizarse datos reales de estudiantes en esta etapa.
+- No iniciar implementación de producto sin autorización explícita.
+- No crear ADR-0003 ni otros ADR sin una necesidad real.
+- No mezclar sase-light con SASE Zero.
+- No usar datos reales de alumnos.
+- No inventar requisitos legales o escolares sin fuente.
 
-## 9. Bloqueos
+## 9. Referencias
 
-Ninguno.
-
-## 10. Siguiente microtarea segura
-
-Leer las fuentes canónicas y crear los cinco documentos de arquitectura funcional, sin implementar código de producto.
-
-## 11. Referencias de commits
-
-- Fundación: `b7252a07bfa639d17886339bebd523854e2fcb56`
-- Entrada del repositorio: `4f20ed960033f3cc720c2b765a0acac91b6846bd`
-- Gobierno multiagente: `4ed6ab4d081a293aa86015c432482f736d36ce12`
-- Guía de Claude Code: `4754acd6dedc74bf9563f8784399a3648bb670ae`
-- Estado del proyecto: `f7ceb01320595381ee9896ffee93b2ca589b5d27`
+- Commit de cierre: `docs: close functional architecture baseline` (verificar SHA con `git log`).
+- Fusión PR #1: squash merge hacia `main`
+- Documentos funcionales consolidados: `PRODUCT_MAP.md`, `DOMAIN_MAP.md`, `MODULE_CATALOG.md`, `ROLE_MATRIX.md`, `CORE_WORKFLOWS.md`
+- ADR vigentes: `ADR-0001`, `ADR-0002`
 
 > Un agente informa; el siguiente verifica.

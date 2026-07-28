@@ -3,22 +3,36 @@
   "project": "SASE Zero",
   "product_definition": "Sistema Operativo de una Secundaria",
   "phase": "functional_architecture",
-  "status": "ready",
+  "status": "closed_and_merged",
   "implementation_started": false,
-  "current_objective": "Traducir la fundación estratégica en un mapa funcional coherente de dominios, módulos, roles y flujos, sin programar todavía.",
+  "current_objective": "Cierre de arquitectura funcional completado. Siguiente fase: arquitectura técnica.",
   "canonical_sources": [
     "README.md",
     "docs/foundation/PRODUCT_FOUNDATION.md",
     "AGENTS.md",
-    "docs/decisions/"
-  ],
-  "current_deliverables": [
+    "docs/decisions/",
     "docs/product/PRODUCT_MAP.md",
     "docs/domains/DOMAIN_MAP.md",
     "docs/product/MODULE_CATALOG.md",
     "docs/product/ROLE_MATRIX.md",
     "docs/product/CORE_WORKFLOWS.md"
   ],
+  "current_deliverables_status": {
+    "docs/product/PRODUCT_MAP.md": "closed (cierre consolidado con tabla de resoluciones y decisión de privacidad)",
+    "docs/domains/DOMAIN_MAP.md": "closed (5 preguntas resueltas con defaults, configuración o diferimiento)",
+    "docs/product/MODULE_CATALOG.md": "closed (3 preguntas resueltas con defaults o configuración)",
+    "docs/product/ROLE_MATRIX.md": "closed (4 preguntas + decisión final de privacidad del PO)",
+    "docs/product/CORE_WORKFLOWS.md": "closed (2 preguntas resueltas: taxonomía configurable, umbral diferido a prototipado)",
+    "docs/decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md": "accepted by Product Owner",
+    "docs/decisions/ADR-0002-USUARIOS-CON-MULTIPLES-ROLES.md": "accepted by Product Owner"
+  },
+  "branch": "main",
+  "pull_request": {
+    "number": 1,
+    "title": "docs: define SASE Zero functional architecture v1",
+    "state": "merged",
+    "url": "https://github.com/cyberbod2025/SASE-ZERO/pull/1"
+  },
   "allowed_work": [
     "functional analysis",
     "domain modeling",
@@ -39,8 +53,8 @@
     "irreversible technology decisions",
     "invented legal requirements"
   ],
-  "next_safe_microtask": "Read the canonical sources and create the five functional architecture documents listed in current_deliverables, separating approved facts, inferences and open questions.",
+  "next_safe_microtask": "Preparar la misión de arquitectura técnica: delimitar objetivos, opciones reversibles y modelo conceptual, sin iniciar implementación de producto.",
   "product_owner": "Hugo Sánchez Reséndiz",
   "foundation_commit": "b7252a07bfa639d17886339bebd523854e2fcb56",
-  "updated_at": "2026-07-27"
+  "updated_at": "2026-07-28"
 }
