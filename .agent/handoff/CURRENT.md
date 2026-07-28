@@ -1,84 +1,77 @@
 # CURRENT HANDOFF — SASE Zero
 
 **Fecha:** 2026-07-28
-**Fase:** Arquitectura técnica (contrato aprobado y fusionado; comparación de alternativas pendiente)
-**Estado:** Contrato de arquitectura técnica aprobado por el Product Owner y fusionado en `main` mediante PR #2
+**Fase:** Comparación de alternativas de arquitectura técnica (redactada; pendiente de revisión del Product Owner)
+**Estado:** Contrato de arquitectura técnica fusionado en `main` (PR #2). Comparación de alternativas redactada en rama nueva, PR aún no abierto en esta sesión.
 **Arquitectura funcional:** Cerrada
 **Implementación de producto:** No iniciada
 **Stack técnico:** Ninguno aprobado
 
-## 1. Objetivo
+## 1. Objetivo de esta sesión
 
-Corregir el estado canónico posterior a la fusión del PR #2: dejar registrado que el contrato de arquitectura técnica ya está fusionado en `main` (no solo "autorizado"), con el SHA exacto del squash merge, y fijar la siguiente microtarea sin iniciarla.
+Ejecutar la Misión 3: comparar las alternativas de arquitectura técnica definidas en `docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md` §6, con los criterios de §8, sin seleccionar stack, sin crear ADR, sin implementar código.
 
 ## 2. Resultado
 
-- El Product Owner revisó `docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md` y lo aprobó sin correcciones de contenido.
-- PR #2 (`docs/technical-architecture-contract` → `main`) fue fusionado mediante squash merge. Commit de fusión: `6482dfdeb71bf21721ddfa430fe5aff03f716e13`.
-- `main` local está sincronizado con `origin/main` en ese mismo commit (mas la corrección de este handoff).
-- Se corrigió `.agent/state.json` y este handoff para eliminar el lenguaje residual de "autorizado para fusión" y reflejar que la fusión ya ocurrió, con el SHA exacto.
-- No se inició la comparación de alternativas técnicas (Misión 3): queda como siguiente microtarea, sin ejecutar.
+- Se creó `docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md`: compara 12 decisiones (A–L) del contrato §6 con los 16 criterios cualitativos de §8, incluye mapa de dependencias entre decisiones, listas cortas provisionales por comparación, diez riesgos con mitigación conceptual, decisiones reservadas al Product Owner y una conclusión con dirección arquitectónica provisional (patrón, no stack).
+- No se seleccionó ningún proveedor ganador ni stack técnico.
+- No se creó ningún ADR nuevo.
+- No se modificaron documentos funcionales ni el contrato técnico.
 - `sase-light` no fue tocado.
 
-## 3. Archivos modificados en esta corrección
+## 3. Hallazgo relevante de esta sesión: rama de partida desactualizada
 
+Al iniciar, este worktree estaba en la rama `claude/close-pr-technical-architecture-49bea3` (HEAD en `092023c`, commit de la misión anterior de cierre de arquitectura funcional). Esa rama **no** incluía los dos commits que fusionaron el contrato de arquitectura técnica en `origin/main` (`6482dfd` y `df58a7f`). Antes de leer el contrato, se hizo `git fetch origin` y se creó la rama de esta misión, `docs/technical-alternatives-comparison`, directamente desde `origin/main` (`df58a7f`, coincide con el commit de referencia esperado de la misión). La rama anterior no fue borrada ni modificada.
+
+## 4. Archivos modificados en esta sesión
+
+- `docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md` (nuevo)
 - `.agent/state.json`
 - `.agent/handoff/CURRENT.md`
 
-Ningún otro archivo fue modificado. En particular, `docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md` no fue tocado.
+Ningún otro archivo fue modificado. En particular, `docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md`, los ADR y los documentos de `docs/product/` y `docs/domains/` no fueron tocados.
 
-## 4. Decisiones registradas
+## 5. Decisiones registradas en esta sesión
 
-- **Aprobación del Product Owner (2026-07-28):** contrato de arquitectura técnica aprobado sin correcciones de contenido.
-- **Fusión (2026-07-28):** PR #2 fusionado en `main` mediante squash merge, commit `6482dfdeb71bf21721ddfa430fe5aff03f716e13`.
-- Ningún stack, proveedor, framework, base de datos, hosting ni mecanismo de autenticación fue seleccionado.
+- Ninguna decisión de stack, proveedor, framework, base de datos, hosting ni mecanismo de autenticación fue seleccionada.
+- La comparación deja una dirección arquitectónica **provisional** (no aprobada): monolito modular con límites internos explícitos; superficie inicial PWA; persistencia relacional administrada con capacidades integradas evaluada junto con aislamiento multitenant híbrido por sensibilidad/escala; identidad mediante modelo híbrido (autenticación externa + membresía/rol/autorización propios); hosting sobre plataforma administrada portable. Ninguna de estas preferencias equivale a stack aprobado.
 
-## 5. Decisiones vigentes (heredadas)
+## 6. Decisiones vigentes (heredadas, no reabiertas)
 
 - ADR-0001: SASE Zero es reconstrucción independiente; sase-light es referencia, no fuente.
 - ADR-0002: usuarios multi-rol con contexto de acción; permisos no se suman.
 - Arquitectura funcional cerrada y fusionada en `main` (PR #1).
 - Contrato de arquitectura técnica cerrado y fusionado en `main` (PR #2, commit `6482dfdeb71bf21721ddfa430fe5aff03f716e13`).
 
-## 6. Validaciones ejecutadas
+## 7. Validaciones ejecutadas
 
-- Confirmado que `docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md` no fue modificado en esta corrección.
-- Confirmado en GitHub que el PR #2 está en estado `MERGED`, con `mergeCommit.oid` = `6482dfdeb71bf21721ddfa430fe5aff03f716e13`.
-- Verificado que el estado previo de `.agent/state.json`/`CURRENT.md` (heredado del squash merge) todavía decía "autorizado para fusión" en vez de "fusionado"; corregido en esta pasada.
-- Inspeccionado el directorio no rastreado `SASE-ZERO/` (ver hallazgo abajo); no se modificó, no se agregó, no se borró.
-- Confirmado que `sase-light` no recibió cambios.
+- `git fetch origin` y verificación de que `origin/main` (`df58a7f188ae88b8b0a88e72b1a7eaa6d01a7c9e`) coincide con el commit de referencia esperado de la misión.
+- Confirmado que el remoto `origin` apunta a `cyberbod2025/SASE-ZERO`.
+- Confirmado, mediante `git worktree list`, que este directorio es un worktree vinculado registrado del mismo repositorio; no se tocó ni se eliminó ningún worktree.
+- Verificado que las seis rutas enlazadas desde el nuevo documento (`TECHNICAL_ARCHITECTURE_CONTRACT.md`, ambos ADR, `ROLE_MATRIX.md`, `PRODUCT_MAP.md`, `DOMAIN_MAP.md`) existen en el árbol.
+- Validado que `.agent/state.json` es JSON bien formado tras la edición.
+- Revisado el diff completo antes de preparar el commit: solo se creó el documento de comparación y se actualizaron estado/handoff.
+- Confirmado que `docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md` y los documentos funcionales no fueron modificados.
+- Confirmado que `sase-light` no fue tocado en ningún momento.
 - No se ejecutaron pruebas de software porque el repositorio aún no contiene implementación.
-
-## 7. Hallazgo: directorio no rastreado `SASE-ZERO/`
-
-- Ruta absoluta: `C:/HUGO_SYSTEM/Projects/SASE-ZERO/SASE-ZERO/`.
-- Está dentro del directorio de trabajo de esta raíz de repositorio (`C:/HUGO_SYSTEM/Projects/SASE-ZERO`), pero no es parte del árbol versionado de `main`.
-- Contenido de primer nivel: un único subdirectorio, `close-pr-technical-architecture-49bea3/`.
-- No contiene un `.git` propio en `SASE-ZERO/`; un nivel más abajo, `SASE-ZERO/close-pr-technical-architecture-49bea3/.git` es un **archivo** (no directorio) de 96 bytes que apunta a `C:/HUGO_SYSTEM/Projects/SASE-ZERO/.git/worktrees/close-pr-technical-architecture-49bea3` — es decir, es un *worktree* vinculado del mismo repositorio, no una copia independiente.
-- `git worktree list` ejecutado desde la raíz del repositorio confirma esa ruta como worktree registrado, en la rama `claude/close-pr-technical-architecture-49bea3`.
-- Ese worktree tiene el mismo remoto `origin` (`https://github.com/cyberbod2025/SASE-ZERO.git`) y está limpio (`git status` → "nothing to commit, working tree clean"), sin archivos únicos ni cambios sin commit.
-- Tamaño aproximado: 106 KB, 15 archivos.
-- Fecha de creación/modificación: 2026-07-28, aproximadamente 05:13 (inicio de esta sesión de trabajo).
-- **Conclusión:** no es una copia anidada huérfana del repositorio; es infraestructura esperada de `git worktree` para la sesión en curso. No requiere limpieza urgente.
 
 ## 8. Siguiente microtarea segura
 
-Comparar alternativas de arquitectura técnica según `docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md` §6, aplicando los criterios de evaluación de §8, sin decidir todavía un stack.
+Revisión del Product Owner sobre `docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md` y definición de la dirección arquitectónica que podrá pasar a una misión de diseño lógico. Esta revisión no aprueba stack; solo puede acotar dirección o solicitar ajustes a la comparación.
 
 ## 9. Riesgos y advertencias
 
-- No iniciar la Misión 3 (comparación de alternativas) sin autorización explícita adicional; esta sesión se detiene tras la corrección de estado.
-- No elegir stack tecnológico definitivo.
+- No iniciar la selección de stack, arquitectura lógica ni implementación sin autorización explícita adicional.
+- No convertir la dirección arquitectónica provisional en stack aprobado sin decisión registrada del Product Owner.
 - No mezclar `sase-light` con SASE Zero.
 - No usar datos reales de alumnos.
 - No inventar requisitos legales o normativos.
-- No eliminar ni mover el directorio `SASE-ZERO/` con comandos manuales; si en el futuro deja de necesitarse, retirarlo con `git worktree remove` desde la raíz del repositorio, nunca con borrado manual.
+- El PR de esta misión se abre en modo borrador y no debe fusionarse ni marcarse listo en esta sesión.
 
 ## 10. Referencias
 
-- Commit de aprobación (previo a la fusión): `docs: approve technical architecture contract` (`07f0562`).
-- Fusión PR #2: squash merge hacia `main`, commit `6482dfdeb71bf21721ddfa430fe5aff03f716e13`.
-- Commit de esta corrección: `docs: finalize technical architecture contract state` (verificar SHA con `git log`).
 - Contrato técnico aprobado y fusionado: `docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md`.
+- Comparación de alternativas (esta misión): `docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md`.
+- Rama de esta misión: `docs/technical-alternatives-comparison`, creada desde `origin/main` en `df58a7f188ae88b8b0a88e72b1a7eaa6d01a7c9e`.
 
 > Un agente informa; el siguiente verifica.
