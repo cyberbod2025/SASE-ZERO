@@ -3,11 +3,11 @@
   "project": "SASE Zero",
   "product_definition": "Sistema Operativo de una Secundaria",
   "phase": "technical_architecture_alternatives_comparison",
-  "status": "comparison_drafted_pending_review",
+  "status": "comparison_adjusted_pending_second_review",
   "implementation_started": false,
   "functional_architecture": "closed",
   "approved_technical_stack": "none",
-  "current_objective": "Comparación de alternativas de arquitectura técnica redactada en docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md, según §6 y §8 del contrato técnico. Ningún stack aprobado. Pendiente de revisión del Product Owner para definir la dirección arquitectónica que podrá pasar a diseño lógico.",
+  "current_objective": "PR #3 (docs/technical-alternatives-comparison) abierto en borrador. El Product Owner revisó la comparación, aprobó la dirección general y solicitó ajustes (superficie inicial, aislamiento multitenant, autorización en profundidad, offline/caché, auditoría append-only, claridad persistencia/BaaS, correcciones editoriales); los ajustes ya se aplicaron en docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md. Ningún stack aprobado. Pendiente de una segunda revisión del Product Owner antes de aprobar el documento final o autorizar fusión.",
   "canonical_sources": [
     "README.md",
     "docs/foundation/PRODUCT_FOUNDATION.md",
@@ -30,7 +30,7 @@
     "docs/decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md": "accepted by Product Owner",
     "docs/decisions/ADR-0002-USUARIOS-CON-MULTIPLES-ROLES.md": "accepted by Product Owner",
     "docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md": "approved by Product Owner without content corrections; merged into main via PR #2 (squash commit 6482dfdeb71bf21721ddfa430fe5aff03f716e13)",
-    "docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md": "drafted; comparison only, no stack selected; pending Product Owner review; PR not yet opened/merged"
+    "docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md": "adjusted per Product Owner review comments on PR #3 (draft); comparison only, no stack selected; general direction already approved by Product Owner, adjustments applied, pending second review before final approval or merge"
   },
   "branch": "docs/technical-alternatives-comparison",
   "pull_request": {
@@ -71,13 +71,14 @@
     "selecting a definitive technical stack"
   ],
   "pull_request_3": {
-    "number": null,
+    "number": 3,
     "branch": "docs/technical-alternatives-comparison",
     "title": "docs: compare technical architecture alternatives",
-    "state": "draft_pr_pending_creation",
-    "url": null
+    "state": "open_draft",
+    "review_status": "Product Owner approved the general direction and requested adjustments; adjustments applied; second review pending; document not yet finally approved; merge not authorized",
+    "url": "https://github.com/cyberbod2025/SASE-ZERO/pull/3"
   },
-  "next_safe_microtask": "Revisión del Product Owner sobre docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md y definición de la dirección arquitectónica provisional que podrá pasar a diseño lógico. Ningún stack se aprueba en esa revisión; solo se acota dirección.",
+  "next_safe_microtask": "Segunda revisión del Product Owner sobre docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md ajustado (PR #3) para aprobar el documento final o solicitar nuevos ajustes. Ningún stack se aprueba en esa revisión; solo se acota o aprueba dirección.",
   "product_owner": "Hugo Sánchez Reséndiz",
   "foundation_commit": "b7252a07bfa639d17886339bebd523854e2fcb56",
   "updated_at": "2026-07-28"
