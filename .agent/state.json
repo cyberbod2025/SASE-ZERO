@@ -2,12 +2,12 @@
   "schema_version": 1,
   "project": "SASE Zero",
   "product_definition": "Sistema Operativo de una Secundaria",
-  "phase": "technical_architecture_comparison_pending",
-  "status": "contract_approved_and_merged",
+  "phase": "technical_architecture_alternatives_comparison",
+  "status": "comparison_approved_pending_merge",
   "implementation_started": false,
   "functional_architecture": "closed",
   "approved_technical_stack": "none",
-  "current_objective": "Contrato de arquitectura técnica aprobado por el Product Owner y fusionado en main mediante PR #2 (squash merge 6482dfdeb71bf21721ddfa430fe5aff03f716e13). Siguiente microtarea: comparar alternativas de arquitectura técnica según §6 y §8 del contrato. Ningún stack aprobado todavía.",
+  "current_objective": "El Product Owner aprobó, en su segunda revisión, docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md en contenido y en dirección arquitectónica provisional. Esta aprobación no aprueba stack, proveedor ni implementación. PR #3 queda autorizado para fusión hacia main. Siguiente fase: diseño de arquitectura lógica, todavía no iniciada.",
   "canonical_sources": [
     "README.md",
     "docs/foundation/PRODUCT_FOUNDATION.md",
@@ -18,7 +18,8 @@
     "docs/product/MODULE_CATALOG.md",
     "docs/product/ROLE_MATRIX.md",
     "docs/product/CORE_WORKFLOWS.md",
-    "docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md"
+    "docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md",
+    "docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md"
   ],
   "current_deliverables_status": {
     "docs/product/PRODUCT_MAP.md": "closed (cierre consolidado con tabla de resoluciones y decisión de privacidad)",
@@ -28,9 +29,10 @@
     "docs/product/CORE_WORKFLOWS.md": "closed (2 preguntas resueltas: taxonomía configurable, umbral diferido a prototipado)",
     "docs/decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md": "accepted by Product Owner",
     "docs/decisions/ADR-0002-USUARIOS-CON-MULTIPLES-ROLES.md": "accepted by Product Owner",
-    "docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md": "approved by Product Owner without content corrections; merged into main via PR #2 (squash commit 6482dfdeb71bf21721ddfa430fe5aff03f716e13)"
+    "docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md": "approved by Product Owner without content corrections; merged into main via PR #2 (squash commit 6482dfdeb71bf21721ddfa430fe5aff03f716e13)",
+    "docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md": "approved by Product Owner (second review) in content and provisional architectural direction; comparison only, no stack selected; PR #3 authorized for merge"
   },
-  "branch": "main",
+  "branch": "docs/technical-alternatives-comparison",
   "pull_request": {
     "number": 1,
     "title": "docs: define SASE Zero functional architecture v1",
@@ -68,7 +70,15 @@
     "invented legal requirements",
     "selecting a definitive technical stack"
   ],
-  "next_safe_microtask": "Comparar alternativas de arquitectura técnica según docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md §6, con criterios de §8, sin decidir stack todavía.",
+  "pull_request_3": {
+    "number": 3,
+    "branch": "docs/technical-alternatives-comparison",
+    "title": "docs: compare technical architecture alternatives",
+    "state": "approved_authorized_for_merge",
+    "review_status": "Second Product Owner review favorable; comparison approved in content and provisional architectural direction; approval does not select stack, provider, or authorize implementation; PR authorized for squash merge to main",
+    "url": "https://github.com/cyberbod2025/SASE-ZERO/pull/3"
+  },
+  "next_safe_microtask": "Fusionar PR #3 hacia main mediante squash y registrar el estado posterior a la fusión. La siguiente fase (diseño de arquitectura lógica conforme al contrato técnico §9) no debe iniciarse todavía; requiere una misión acotada aparte.",
   "product_owner": "Hugo Sánchez Reséndiz",
   "foundation_commit": "b7252a07bfa639d17886339bebd523854e2fcb56",
   "updated_at": "2026-07-28"
