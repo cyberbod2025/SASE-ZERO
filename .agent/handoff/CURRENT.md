@@ -60,12 +60,12 @@ Ningún otro archivo fue modificado. Ningún documento funcional o técnico prev
 - PR #4 abierto en borrador hacia `main`: https://github.com/cyberbod2025/SASE-ZERO/pull/4 — título "docs: define SASE Zero logical architecture".
 - El PR no fue marcado como listo (`ready for review`) ni fusionado.
 
-## 6.2 Ramas pendientes
+## 6.2 Ramas — historial de residuales por squash merge (resuelto el 2026-07-29)
 
-- `origin/docs/technical-alternatives-comparison` (`1ca377a`) **no es ancestro de `main`**, pero **no contiene trabajo pendiente**: el PR #3 se fusionó por *squash* el 2026-07-28 (commit de fusión `cd7e334`), lo que reescribe el SHA original. Verificado con `git diff 1ca377a main -- docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md` (vacío: contenido idéntico). El único delta contra `main` son `.agent/state.json` y `.agent/handoff/CURRENT.md`, donde `main` va por delante.
-- **Decisión pendiente:** borrar la rama remota `origin/docs/technical-alternatives-comparison` y su rama local homónima, o conservarlas a propósito como registro histórico. No es un merge pendiente.
-- Rama local `claude/close-pr-technical-architecture-49bea3` (`092023c`): totalmente fusionada en `main` (`main..claude/close-pr-…` vacío). **Conservada deliberadamente** hasta resolver la decisión anterior; no borrar sin instrucción del Product Owner.
-- Las mismas comprobaciones aplican a `docs/functional-architecture-v1` (PR #1) y `docs/technical-architecture-contract` (PR #2), que figuran como no fusionadas por el mismo efecto del squash merge. Verificar por contenido antes de asumir trabajo pendiente.
+- Las ramas `docs/functional-architecture-v1` (PR #1), `docs/technical-architecture-contract` (PR #2) y `docs/technical-alternatives-comparison` (PR #3) figuraban como "no ancestro de `main`" por el efecto normal del *squash merge* (reescribe el SHA original), no por trabajo pendiente. Verificado por contenido antes de decidir: `git diff <rama> main -- <archivo principal>` vacío y blob SHA idéntico (`git rev-parse`) en los tres casos.
+- **Decisión ya ejecutada (VoBo del Product Owner, 2026-07-29):** las tres ramas fueron borradas, local y remotamente (`git branch -d` seguido de `git push origin --delete`), previa confirmación de `git status` limpio, `git stash list` vacío y sincronización local = origin. Ya no existen; no quedó trabajo pendiente de fusionar.
+- Rama local `claude/close-pr-technical-architecture-49bea3` (`092023c`): totalmente fusionada en `main` (`main..claude/close-pr-…` vacío). **Se conserva deliberadamente**, sin relación con la decisión anterior ya resuelta; no borrar sin instrucción explícita del Product Owner.
+- Rama `chore/eol-normalization` (no reportada anteriormente en este documento): creada el 2026-07-29 desde `main`, contiene únicamente `.gitattributes` (fija LF como fin de línea; neutraliza `core.autocrlf=true` local). Commiteada, no publicada a `origin` todavía.
 
 ## 7. Siguiente microtarea segura
 
@@ -78,7 +78,7 @@ Revisión del Product Owner sobre el PR #4 (`docs/architecture/LOGICAL_ARCHITECT
 - No mezclar `sase-light` con SASE Zero.
 - No usar datos reales de alumnos.
 - No inventar requisitos legales o normativos (ninguno fue introducido en este documento).
-- El directorio `SASE-ZERO/` (worktree `close-pr-technical-architecture-49bea3`) fue retirado el 2026-07-29 con `git worktree remove` desde la raíz, previa verificación de que el worktree estaba limpio (sin cambios sin commitear ni stash) y de que su HEAD `1ca377a` estaba respaldado en `origin`. Ya no existe; ignorar las referencias al worktree en la sección 2 (estado de sesión anterior). La sección 6.2 sí está vigente.
+- El directorio `SASE-ZERO/` (worktree `close-pr-technical-architecture-49bea3`) fue retirado el 2026-07-29 con `git worktree remove` desde la raíz, previa verificación de que el worktree estaba limpio (sin cambios sin commitear ni stash) y de que su HEAD `1ca377a` estaba respaldado en `origin`. Ya no existe; ignorar las referencias al worktree como si siguiera presente en la **sección 2** ("no fue tocado, movido ni eliminado") y en la **sección 6, primer punto** ("no fue movido ni alterado") — ambas describen el estado de una sesión anterior al retiro y ya no son ciertas. La sección 6.2 sí está vigente.
 - Las pruebas negativas PN1–PN6 (sección 6.2 del nuevo documento) son un requisito de diseño técnico pendiente, no una garantía ya validada; no asumir que el aislamiento multitenant está probado solo porque el documento las enumera.
 
 ## 9. Referencias
