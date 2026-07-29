@@ -3,11 +3,11 @@
   "project": "SASE Zero",
   "product_definition": "Sistema Operativo de una Secundaria",
   "phase": "logical_architecture_design_drafted",
-  "status": "logical_architecture_pending_review",
+  "status": "logical_architecture_pr_draft_pending_review",
   "implementation_started": false,
   "functional_architecture": "closed",
   "approved_technical_stack": "none",
-  "current_objective": "Arquitectura lógica redactada conforme al contrato técnico §9 y a la dirección arquitectónica provisional de TECHNICAL_ALTERNATIVES_COMPARISON.md, en la rama local docs/logical-architecture (sin push, sin PR). Cubre límites de módulos, modelo conceptual de datos, flujo de identidad y autorización, estrategia multitenant con pruebas negativas previstas, tratamiento de información sensible, auditoría, y exportación/respaldo. Pendiente de revisión del Product Owner antes de fusionar a main.",
+  "current_objective": "Arquitectura lógica redactada conforme al contrato técnico §9 y a la dirección arquitectónica provisional de TECHNICAL_ALTERNATIVES_COMPARISON.md. Rama docs/logical-architecture subida a origin; PR #4 abierto en borrador hacia main (sin marcar listo, sin fusionar). Cubre límites de módulos, modelo conceptual de datos, flujo de identidad y autorización, estrategia multitenant con pruebas negativas previstas (PN1-PN6, no ejecutadas), tratamiento de información sensible, auditoría, y exportación/respaldo. El documento no está aprobado ni fusionado; pendiente de revisión del Product Owner.",
   "canonical_sources": [
     "README.md",
     "docs/foundation/PRODUCT_FOUNDATION.md",
@@ -32,9 +32,9 @@
     "docs/decisions/ADR-0002-USUARIOS-CON-MULTIPLES-ROLES.md": "accepted by Product Owner",
     "docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md": "approved by Product Owner without content corrections; merged into main via PR #2 (squash commit 6482dfdeb71bf21721ddfa430fe5aff03f716e13)",
     "docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md": "approved by Product Owner (second review) in content and provisional architectural direction; merged into main via PR #3 (squash commit cd7e3349e7710650acdfb741d00785765600e69d); comparison only, no stack selected",
-    "docs/architecture/LOGICAL_ARCHITECTURE.md": "drafted this session on local branch docs/logical-architecture; not pushed, no PR opened, not reviewed by Product Owner, not merged"
+    "docs/architecture/LOGICAL_ARCHITECTURE.md": "drafted on branch docs/logical-architecture, pushed to origin; PR #4 opened as draft toward main; not marked ready, not reviewed by Product Owner, not approved, not merged"
   },
-  "branch": "main",
+  "branch": "docs/logical-architecture",
   "pull_request": {
     "number": 1,
     "title": "docs: define SASE Zero functional architecture v1",
@@ -82,7 +82,15 @@
     "review_status": "Second Product Owner review favorable; comparison approved in content and provisional architectural direction; approval did not select stack, provider, or authorize implementation",
     "url": "https://github.com/cyberbod2025/SASE-ZERO/pull/3"
   },
-  "next_safe_microtask": "Revisión del Product Owner sobre docs/architecture/LOGICAL_ARCHITECTURE.md (rama local docs/logical-architecture, sin push). En particular: reglas de límite de módulos (sección 3.2), y si las pruebas negativas previstas para aislamiento multitenant (sección 6.2) son suficientes. No iniciar diseño físico, selección de stack ni implementación hasta esa revisión.",
+  "next_safe_microtask": "Revisión del Product Owner sobre PR #4 (docs/architecture/LOGICAL_ARCHITECTURE.md, rama docs/logical-architecture): límites de módulos, modelo conceptual de datos, estrategia de autorización, aislamiento multitenant y suficiencia de PN1-PN6. No marcar el PR como listo, no fusionar, no iniciar diseño físico, selección de stack ni implementación hasta esa revisión.",
+  "pull_request_4": {
+    "number": 4,
+    "branch": "docs/logical-architecture",
+    "title": "docs: define SASE Zero logical architecture",
+    "state": "open",
+    "draft": true,
+    "url": "https://github.com/cyberbod2025/SASE-ZERO/pull/4"
+  },
   "product_owner": "Hugo Sánchez Reséndiz",
   "foundation_commit": "b7252a07bfa639d17886339bebd523854e2fcb56",
   "updated_at": "2026-07-28"

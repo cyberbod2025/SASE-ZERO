@@ -1,8 +1,8 @@
 # CURRENT HANDOFF — SASE Zero
 
 **Fecha:** 2026-07-28
-**Fase:** Diseño de arquitectura lógica — redactado, pendiente de revisión del Product Owner
-**Estado:** `docs/architecture/LOGICAL_ARCHITECTURE.md` creado en la rama local `docs/logical-architecture`. Sin push, sin PR, sin fusionar.
+**Fase:** Diseño de arquitectura lógica — redactado, PR abierto en borrador, pendiente de revisión del Product Owner
+**Estado:** `docs/architecture/LOGICAL_ARCHITECTURE.md` en la rama `docs/logical-architecture`, subida a `origin`. PR #4 abierto en borrador hacia `main` (https://github.com/cyberbod2025/SASE-ZERO/pull/4). No marcado como listo, no fusionado, no aprobado por el Product Owner.
 **Arquitectura funcional:** Cerrada
 **Implementación de producto:** No iniciada
 **Stack técnico:** Ninguno aprobado
@@ -51,15 +51,22 @@ Ningún otro archivo fue modificado. Ningún documento funcional o técnico prev
 - Revisado el contenido íntegro de `LOGICAL_ARCHITECTURE.md` contra la lista de exclusiones del contrato §2/§9 (no stack, no esquema físico, no endpoints, no código) antes de darlo por cerrado.
 - Verificado que cada dominio, módulo, rol y flujo citado en el nuevo documento existe ya en `DOMAIN_MAP.md`, `MODULE_CATALOG.md`, `ROLE_MATRIX.md` o `CORE_WORKFLOWS.md`; no se introdujo ninguno nuevo.
 - No se ejecutaron pruebas de software porque el repositorio aún no contiene implementación; las "pruebas negativas" descritas en la sección 6.2 del nuevo documento son conceptuales y quedan explícitamente pendientes de diseño técnico ejecutable, no ejecutadas en esta sesión.
-- No se hizo `git push` ni se abrió Pull Request: el commit y la rama quedan solo en el repositorio local, pendientes de que el Product Owner decida si autoriza subirlos y abrir PR para revisión, siguiendo el mismo patrón usado en PR #1–#3.
+- Se confirmó, con `gh pr view 4 --json ...`, que el PR #4 quedó abierto (`state: OPEN`) y en borrador (`isDraft: true`) hacia `main`, sin marcarlo como listo y sin fusionarlo.
+- Se registró un commit adicional (`docs: record logical architecture draft PR`) que actualiza únicamente `.agent/state.json` y este handoff con el número y URL reales del PR; el documento `LOGICAL_ARCHITECTURE.md` no fue tocado en ese commit.
+
+## 6.1 Estado de la rama y el PR (autorizado explícitamente en esta sesión)
+
+- Rama `docs/logical-architecture` subida a `origin` (`git push -u origin docs/logical-architecture`).
+- PR #4 abierto en borrador hacia `main`: https://github.com/cyberbod2025/SASE-ZERO/pull/4 — título "docs: define SASE Zero logical architecture".
+- El PR no fue marcado como listo (`ready for review`) ni fusionado.
 
 ## 7. Siguiente microtarea segura
 
-Revisión del Product Owner sobre `docs/architecture/LOGICAL_ARCHITECTURE.md` (rama local `docs/logical-architecture`), en particular sobre las reglas de límite de módulos (sección 3.2) y si las seis pruebas negativas previstas para aislamiento multitenant (sección 6.2) son suficientes antes de avanzar. Si el Product Owner aprueba el contenido, la siguiente acción sería subir la rama y abrir un Pull Request (como en PR #1–#3) — no se hizo en esta sesión sin autorización explícita. **No iniciar** diseño físico, selección de stack ni implementación hasta esa revisión.
+Revisión del Product Owner sobre el PR #4 (`docs/architecture/LOGICAL_ARCHITECTURE.md`, rama `docs/logical-architecture`), en particular sobre las reglas de límite de módulos (sección 3.2), el modelo conceptual de datos, la estrategia de autorización, el aislamiento multitenant y si las seis pruebas negativas previstas (PN1–PN6, sección 6.2) son suficientes. **No marcar el PR como listo, no fusionarlo, y no iniciar** diseño físico, selección de stack ni implementación hasta esa revisión.
 
 ## 8. Riesgos y advertencias
 
-- No fusionar `LOGICAL_ARCHITECTURE.md` a `main` sin revisión y aprobación explícita del Product Owner.
+- No marcar el PR #4 como listo (`ready for review`) ni fusionarlo a `main` sin revisión y aprobación explícita del Product Owner.
 - No convertir ningún patrón descrito (monolito modular, filas compartidas con identificador institucional, modelo híbrido de identidad, etc.) en selección de stack o proveedor sin decisión registrada del Product Owner.
 - No mezclar `sase-light` con SASE Zero.
 - No usar datos reales de alumnos.
@@ -69,7 +76,7 @@ Revisión del Product Owner sobre `docs/architecture/LOGICAL_ARCHITECTURE.md` (r
 
 ## 9. Referencias
 
-- Nuevo documento: `docs/architecture/LOGICAL_ARCHITECTURE.md` (rama local `docs/logical-architecture`, sin PR).
+- Nuevo documento: `docs/architecture/LOGICAL_ARCHITECTURE.md` (rama `docs/logical-architecture`, PR #4 en borrador: https://github.com/cyberbod2025/SASE-ZERO/pull/4).
 - Contrato técnico aprobado y fusionado: `docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md` (PR #2).
 - Comparación de alternativas aprobada y fusionada: `docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md` (PR #3).
 
