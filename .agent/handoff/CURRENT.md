@@ -73,7 +73,7 @@ Ningún otro archivo fue modificado. Ningún documento funcional o técnico prev
 - Las ramas `docs/functional-architecture-v1` (PR #1), `docs/technical-architecture-contract` (PR #2) y `docs/technical-alternatives-comparison` (PR #3) figuraban como "no ancestro de `main`" por el efecto normal del *squash merge* (reescribe el SHA original), no por trabajo pendiente. Verificado por contenido antes de decidir: `git diff <rama> main -- <archivo principal>` vacío y blob SHA idéntico (`git rev-parse`) en los tres casos.
 - **Decisión ya ejecutada (VoBo del Product Owner, 2026-07-29):** las tres ramas fueron borradas, local y remotamente (`git branch -d` seguido de `git push origin --delete`), previa confirmación de `git status` limpio, `git stash list` vacío y sincronización local = origin. Ya no existen; no quedó trabajo pendiente de fusionar.
 - Rama local `claude/close-pr-technical-architecture-49bea3` (`092023c`): totalmente fusionada en `main` (`main..claude/close-pr-…` vacío). **Se conserva deliberadamente**, sin relación con la decisión anterior ya resuelta; no borrar sin instrucción explícita del Product Owner.
-- Rama `chore/eol-normalization` (no reportada anteriormente en este documento): creada el 2026-07-29 desde `main`, contiene únicamente `.gitattributes` (fija LF como fin de línea; neutraliza `core.autocrlf=true` local). Commiteada, no publicada a `origin` todavía.
+- Rama `chore/eol-normalization`: creada el 2026-07-29 desde `main`, contiene únicamente `.gitattributes` (fija LF como fin de línea; neutraliza `core.autocrlf=true` local). Commit `94c9f1c`. Subida a `origin` el 2026-07-29; PR #5 abierto en borrador hacia `main`: https://github.com/cyberbod2025/SASE-ZERO/pull/5 — título "chore: normalizar finales de línea con .gitattributes". No marcado como listo, no fusionado.
 
 ## 7. Siguiente microtarea segura
 
@@ -94,5 +94,6 @@ El PR #4 ya está fusionado en `main`, pero esa fusión cerró el ciclo de publi
 - Nuevo documento: `docs/architecture/LOGICAL_ARCHITECTURE.md`, fusionado en `main` (PR #4, MERGED: https://github.com/cyberbod2025/SASE-ZERO/pull/4).
 - Contrato técnico aprobado y fusionado: `docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md` (PR #2).
 - Comparación de alternativas aprobada y fusionada: `docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md` (PR #3).
+- `.gitattributes` (normalización de fin de línea): rama `chore/eol-normalization`, PR #5 en borrador: https://github.com/cyberbod2025/SASE-ZERO/pull/5.
 
 > Un agente informa; el siguiente verifica.
