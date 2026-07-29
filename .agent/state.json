@@ -2,12 +2,12 @@
   "schema_version": 1,
   "project": "SASE Zero",
   "product_definition": "Sistema Operativo de una Secundaria",
-  "phase": "logical_architecture_design_pending",
-  "status": "alternatives_comparison_merged",
+  "phase": "logical_architecture_design_drafted",
+  "status": "logical_architecture_pending_review",
   "implementation_started": false,
   "functional_architecture": "closed",
   "approved_technical_stack": "none",
-  "current_objective": "Comparación de alternativas de arquitectura técnica aprobada por el Product Owner y fusionada en main mediante PR #3 (squash merge cd7e3349e7710650acdfb741d00785765600e69d). Ningún stack aprobado. Siguiente fase: diseño de arquitectura lógica (contrato técnico §9), todavía no iniciada; requiere preparar una misión acotada.",
+  "current_objective": "Arquitectura lógica redactada conforme al contrato técnico §9 y a la dirección arquitectónica provisional de TECHNICAL_ALTERNATIVES_COMPARISON.md, en la rama local docs/logical-architecture (sin push, sin PR). Cubre límites de módulos, modelo conceptual de datos, flujo de identidad y autorización, estrategia multitenant con pruebas negativas previstas, tratamiento de información sensible, auditoría, y exportación/respaldo. Pendiente de revisión del Product Owner antes de fusionar a main.",
   "canonical_sources": [
     "README.md",
     "docs/foundation/PRODUCT_FOUNDATION.md",
@@ -19,7 +19,8 @@
     "docs/product/ROLE_MATRIX.md",
     "docs/product/CORE_WORKFLOWS.md",
     "docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md",
-    "docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md"
+    "docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md",
+    "docs/architecture/LOGICAL_ARCHITECTURE.md"
   ],
   "current_deliverables_status": {
     "docs/product/PRODUCT_MAP.md": "closed (cierre consolidado con tabla de resoluciones y decisión de privacidad)",
@@ -30,7 +31,8 @@
     "docs/decisions/ADR-0001-RELACION-CON-TRABAJO-PREVIO.md": "accepted by Product Owner",
     "docs/decisions/ADR-0002-USUARIOS-CON-MULTIPLES-ROLES.md": "accepted by Product Owner",
     "docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md": "approved by Product Owner without content corrections; merged into main via PR #2 (squash commit 6482dfdeb71bf21721ddfa430fe5aff03f716e13)",
-    "docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md": "approved by Product Owner (second review) in content and provisional architectural direction; merged into main via PR #3 (squash commit cd7e3349e7710650acdfb741d00785765600e69d); comparison only, no stack selected"
+    "docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md": "approved by Product Owner (second review) in content and provisional architectural direction; merged into main via PR #3 (squash commit cd7e3349e7710650acdfb741d00785765600e69d); comparison only, no stack selected",
+    "docs/architecture/LOGICAL_ARCHITECTURE.md": "drafted this session on local branch docs/logical-architecture; not pushed, no PR opened, not reviewed by Product Owner, not merged"
   },
   "branch": "main",
   "pull_request": {
@@ -80,7 +82,7 @@
     "review_status": "Second Product Owner review favorable; comparison approved in content and provisional architectural direction; approval did not select stack, provider, or authorize implementation",
     "url": "https://github.com/cyberbod2025/SASE-ZERO/pull/3"
   },
-  "next_safe_microtask": "Preparar una misión acotada de diseño de arquitectura lógica conforme al contrato técnico §9 (límites de módulos, modelo conceptual de datos, flujo de identidad y autorización, estrategia multitenant validada con pruebas negativas). No iniciar esa misión todavía; requiere alcance explícito y confirmación del Product Owner antes de comenzar.",
+  "next_safe_microtask": "Revisión del Product Owner sobre docs/architecture/LOGICAL_ARCHITECTURE.md (rama local docs/logical-architecture, sin push). En particular: reglas de límite de módulos (sección 3.2), y si las pruebas negativas previstas para aislamiento multitenant (sección 6.2) son suficientes. No iniciar diseño físico, selección de stack ni implementación hasta esa revisión.",
   "product_owner": "Hugo Sánchez Reséndiz",
   "foundation_commit": "b7252a07bfa639d17886339bebd523854e2fcb56",
   "updated_at": "2026-07-28"

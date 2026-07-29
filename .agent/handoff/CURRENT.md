@@ -1,74 +1,76 @@
 # CURRENT HANDOFF — SASE Zero
 
 **Fecha:** 2026-07-28
-**Fase:** Diseño de arquitectura lógica — pendiente, no iniciado
-**Estado:** Comparación de alternativas de arquitectura técnica aprobada por el Product Owner y fusionada en `main` mediante PR #3 (squash merge `cd7e3349e7710650acdfb741d00785765600e69d`).
+**Fase:** Diseño de arquitectura lógica — redactado, pendiente de revisión del Product Owner
+**Estado:** `docs/architecture/LOGICAL_ARCHITECTURE.md` creado en la rama local `docs/logical-architecture`. Sin push, sin PR, sin fusionar.
 **Arquitectura funcional:** Cerrada
 **Implementación de producto:** No iniciada
 **Stack técnico:** Ninguno aprobado
 
 ## 1. Objetivo de esta sesión
 
-Registrar el estado posterior a la fusión de PR #3: comparación de alternativas de arquitectura técnica aprobada y fusionada en `main`, con el SHA exacto del squash merge, y fijar la siguiente microtarea (preparar, sin iniciar, una misión de diseño de arquitectura lógica).
+Ejecutar la "Misión 4 — Diseño de Arquitectura Lógica" indicada explícitamente por el Product Owner: diseñar la arquitectura lógica de SASE Zero conforme al contrato técnico §9 y a la comparación de alternativas ya aprobada, sin elegir stack ni proveedor, sin esquema físico, tablas, migraciones, endpoints, infraestructura ni código.
 
 ## 2. Resultado
 
-- PR #3 (`docs/technical-alternatives-comparison` → `main`) fue marcado listo para revisión, verificado como fusionable (`mergeable=MERGEABLE`, `mergeStateStatus=CLEAN`) y fusionado mediante squash merge. Commit de fusión: `cd7e3349e7710650acdfb741d00785765600e69d`.
-- `main` local está sincronizado con `origin/main` en ese mismo commit (más este commit de cierre de estado).
-- `docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md` queda como documento aprobado y fusionado; no fue modificado en esta sesión.
-- Se corrigió `.agent/state.json` y este handoff para reflejar el estado definitivo: comparación aprobada y fusionada, fase de diseño de arquitectura lógica pendiente, sin iniciar.
-- Ningún stack, proveedor, framework, base de datos, hosting ni mecanismo de autenticación fue seleccionado.
-- No se inició la arquitectura lógica ni ninguna otra misión posterior.
-- `sase-light` no fue tocado.
+- Se leyeron, en orden, `README.md`, `docs/foundation/PRODUCT_FOUNDATION.md`, `AGENTS.md`, `.agent/state.json`, `.agent/handoff/CURRENT.md`, y se inspeccionó el estado real del repositorio (`git status`, árbol de archivos) antes de escribir.
+- Se confirmó que el directorio no rastreado `SASE-ZERO/` sigue siendo el worktree ya documentado (contiene una copia de trabajo con rama `close-pr-technical-architecture-49bea3`); no fue tocado, movido ni eliminado.
+- Se leyeron íntegros los cinco documentos funcionales, ambos ADR, el contrato técnico y la comparación de alternativas antes de redactar.
+- Se creó la rama local `docs/logical-architecture` desde `main` (sincronizado con `origin/main`).
+- Se redactó `docs/architecture/LOGICAL_ARCHITECTURE.md`, cubriendo: límites de módulos (agrupación de los 12 dominios en 6 límites internos del monolito modular, con reglas de dependencia y diagrama conceptual), modelo conceptual de datos (entidades por dominio, sin esquema físico), flujo de identidad y autorización (cuatro capas: autenticación, membresía/rol activo, autorización funcional, políticas cercanas al dato — con diagrama de secuencia conceptual), estrategia multitenant conceptual con seis pruebas negativas explícitas previstas (PN1–PN6), tratamiento de información sensible (D8/D9/D10), estrategia de auditoría (eventos append-only vs. registro simple, campos mínimos), estrategia de exportación y respaldo (distinción exportación/respaldo/paquete de cierre), riesgos, y preguntas abiertas (ninguna bloqueante identificada).
+- El documento no selecciona stack, proveedor, esquema físico, endpoints ni código; se validó explícitamente en su propia sección de cierre.
+- Se actualizaron `.agent/state.json` y este handoff para reflejar que la arquitectura lógica está redactada pero no revisada ni fusionada.
+- `sase-light` no fue tocado. Ningún dato real de alumnos fue usado.
 
-## 3. Archivos modificados en este commit
+## 3. Archivos modificados/creados en esta sesión
 
+- `docs/architecture/LOGICAL_ARCHITECTURE.md` (nuevo)
 - `.agent/state.json`
 - `.agent/handoff/CURRENT.md`
 
-Ningún otro archivo fue modificado. En particular, `docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md` y `docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md` no fueron tocados en este commit.
+Ningún otro archivo fue modificado. Ningún documento funcional o técnico previamente aprobado (`PRODUCT_MAP.md`, `DOMAIN_MAP.md`, `MODULE_CATALOG.md`, `ROLE_MATRIX.md`, `CORE_WORKFLOWS.md`, `TECHNICAL_ARCHITECTURE_CONTRACT.md`, `TECHNICAL_ALTERNATIVES_COMPARISON.md`, ambos ADR) fue tocado ni reabierto.
 
 ## 4. Decisiones registradas
 
-- **Aprobación del Product Owner (2026-07-28, segunda revisión):** comparación de alternativas de arquitectura técnica aprobada en contenido y en dirección arquitectónica provisional. No aprueba stack, proveedor ni implementación.
-- **Fusión (2026-07-28):** PR #3 fusionado en `main` mediante squash merge, commit `cd7e3349e7710650acdfb741d00785765600e69d`.
-- Ningún stack, proveedor, framework, base de datos, hosting ni mecanismo de autenticación fue seleccionado.
+- Ninguna decisión estructural nueva fue aprobada por el Product Owner en esta sesión; por lo tanto no se creó ningún ADR (conforme al contrato §9: "ADR únicamente para decisiones estructurales realmente aprobadas por el Product Owner").
+- Toda la traducción de la fundación/contrato/comparación a arquitectura lógica queda marcada 🔵 (inferencia de diseño) o 🟡 (propuesta de esta misión) dentro del propio documento, no como hecho aprobado.
+- No se identificó ninguna pregunta bloqueante para el Product Owner; las decisiones diferidas (mecanismo de cambio de contexto, diseño técnico de pruebas negativas, inmutabilidad de auditoría, política de eliminación de datos) ya estaban explícitamente diferidas por fuentes superiores (`ADR-0002`, contrato §7) y se mantienen así.
 
-## 5. Decisiones vigentes (heredadas)
+## 5. Decisiones vigentes (heredadas, no modificadas)
 
 - ADR-0001: SASE Zero es reconstrucción independiente; sase-light es referencia, no fuente.
 - ADR-0002: usuarios multi-rol con contexto de acción; permisos no se suman.
 - Arquitectura funcional cerrada y fusionada en `main` (PR #1).
-- Contrato de arquitectura técnica cerrado y fusionado en `main` (PR #2, commit `6482dfdeb71bf21721ddfa430fe5aff03f716e13`).
-- Comparación de alternativas de arquitectura técnica aprobada y fusionada en `main` (PR #3, commit `cd7e3349e7710650acdfb741d00785765600e69d`).
+- Contrato de arquitectura técnica cerrado y fusionado en `main` (PR #2).
+- Comparación de alternativas de arquitectura técnica aprobada y fusionada en `main` (PR #3); dirección arquitectónica provisional (no stack) aplicada íntegramente en `LOGICAL_ARCHITECTURE.md`.
 
 ## 6. Validaciones ejecutadas
 
-- Confirmado en GitHub que PR #3 está en estado `MERGED`, con `mergeCommit.oid` = `cd7e3349e7710650acdfb741d00785765600e69d`.
-- `git fetch origin` y `git merge --ff-only origin/main` ejecutados en el worktree principal (`C:/HUGO_SYSTEM/Projects/SASE-ZERO`); `HEAD` local coincide con `origin/main` tras el fast-forward.
-- Confirmado que `docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md` no fue modificado en este commit de cierre de estado.
-- Validado que `.agent/state.json` es JSON bien formado tras la edición.
-- Confirmado que `sase-light` no recibió cambios.
-- Confirmado que ningún worktree fue movido, agregado ni eliminado; el directorio no rastreado `SASE-ZERO/` sigue siendo la infraestructura de worktree ya documentada, sin tocar.
-- No se ejecutaron pruebas de software porque el repositorio aún no contiene implementación.
+- Confirmado, releyendo el árbol del repositorio, que el directorio `SASE-ZERO/` no fue movido ni alterado.
+- Verificado que `.agent/state.json` sigue siendo JSON bien formado tras la edición (`node -e "JSON.parse(...)"`).
+- Revisado el contenido íntegro de `LOGICAL_ARCHITECTURE.md` contra la lista de exclusiones del contrato §2/§9 (no stack, no esquema físico, no endpoints, no código) antes de darlo por cerrado.
+- Verificado que cada dominio, módulo, rol y flujo citado en el nuevo documento existe ya en `DOMAIN_MAP.md`, `MODULE_CATALOG.md`, `ROLE_MATRIX.md` o `CORE_WORKFLOWS.md`; no se introdujo ninguno nuevo.
+- No se ejecutaron pruebas de software porque el repositorio aún no contiene implementación; las "pruebas negativas" descritas en la sección 6.2 del nuevo documento son conceptuales y quedan explícitamente pendientes de diseño técnico ejecutable, no ejecutadas en esta sesión.
+- No se hizo `git push` ni se abrió Pull Request: el commit y la rama quedan solo en el repositorio local, pendientes de que el Product Owner decida si autoriza subirlos y abrir PR para revisión, siguiendo el mismo patrón usado en PR #1–#3.
 
 ## 7. Siguiente microtarea segura
 
-Preparar una misión acotada de diseño de arquitectura lógica conforme al contrato técnico §9 (límites de módulos, modelo conceptual de datos, flujo de identidad y autorización, estrategia multitenant validada con pruebas negativas explícitas, tratamiento de información sensible, estrategia de auditoría, exportación y respaldo). **No iniciar esa misión todavía**; requiere alcance explícito y confirmación del Product Owner antes de comenzar.
+Revisión del Product Owner sobre `docs/architecture/LOGICAL_ARCHITECTURE.md` (rama local `docs/logical-architecture`), en particular sobre las reglas de límite de módulos (sección 3.2) y si las seis pruebas negativas previstas para aislamiento multitenant (sección 6.2) son suficientes antes de avanzar. Si el Product Owner aprueba el contenido, la siguiente acción sería subir la rama y abrir un Pull Request (como en PR #1–#3) — no se hizo en esta sesión sin autorización explícita. **No iniciar** diseño físico, selección de stack ni implementación hasta esa revisión.
 
 ## 8. Riesgos y advertencias
 
-- No iniciar la arquitectura lógica, selección de stack ni implementación sin autorización explícita adicional.
-- No convertir la dirección arquitectónica provisional en stack aprobado sin decisión registrada del Product Owner.
+- No fusionar `LOGICAL_ARCHITECTURE.md` a `main` sin revisión y aprobación explícita del Product Owner.
+- No convertir ningún patrón descrito (monolito modular, filas compartidas con identificador institucional, modelo híbrido de identidad, etc.) en selección de stack o proveedor sin decisión registrada del Product Owner.
 - No mezclar `sase-light` con SASE Zero.
 - No usar datos reales de alumnos.
-- No inventar requisitos legales o normativos.
+- No inventar requisitos legales o normativos (ninguno fue introducido en este documento).
 - No eliminar ni mover el directorio `SASE-ZERO/` con comandos manuales; si en el futuro deja de necesitarse, retirarlo con `git worktree remove` desde la raíz del repositorio, nunca con borrado manual.
+- Las pruebas negativas PN1–PN6 (sección 6.2 del nuevo documento) son un requisito de diseño técnico pendiente, no una garantía ya validada; no asumir que el aislamiento multitenant está probado solo porque el documento las enumera.
 
 ## 9. Referencias
 
-- Contrato técnico aprobado y fusionado: `docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md` (PR #2, commit `6482dfdeb71bf21721ddfa430fe5aff03f716e13`).
-- Comparación de alternativas aprobada y fusionada: `docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md` (PR #3, commit `cd7e3349e7710650acdfb741d00785765600e69d`).
-- PR #3 (fusionado): https://github.com/cyberbod2025/SASE-ZERO/pull/3.
+- Nuevo documento: `docs/architecture/LOGICAL_ARCHITECTURE.md` (rama local `docs/logical-architecture`, sin PR).
+- Contrato técnico aprobado y fusionado: `docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md` (PR #2).
+- Comparación de alternativas aprobada y fusionada: `docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md` (PR #3).
 
 > Un agente informa; el siguiente verifica.
