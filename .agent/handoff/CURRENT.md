@@ -60,6 +60,13 @@ Ningún otro archivo fue modificado. Ningún documento funcional o técnico prev
 - PR #4 abierto en borrador hacia `main`: https://github.com/cyberbod2025/SASE-ZERO/pull/4 — título "docs: define SASE Zero logical architecture".
 - El PR no fue marcado como listo (`ready for review`) ni fusionado.
 
+## 6.2 Ramas pendientes
+
+- `origin/docs/technical-alternatives-comparison` (`1ca377a`) **no es ancestro de `main`**, pero **no contiene trabajo pendiente**: el PR #3 se fusionó por *squash* el 2026-07-28 (commit de fusión `cd7e334`), lo que reescribe el SHA original. Verificado con `git diff 1ca377a main -- docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md` (vacío: contenido idéntico). El único delta contra `main` son `.agent/state.json` y `.agent/handoff/CURRENT.md`, donde `main` va por delante.
+- **Decisión pendiente:** borrar la rama remota `origin/docs/technical-alternatives-comparison` y su rama local homónima, o conservarlas a propósito como registro histórico. No es un merge pendiente.
+- Rama local `claude/close-pr-technical-architecture-49bea3` (`092023c`): totalmente fusionada en `main` (`main..claude/close-pr-…` vacío). **Conservada deliberadamente** hasta resolver la decisión anterior; no borrar sin instrucción del Product Owner.
+- Las mismas comprobaciones aplican a `docs/functional-architecture-v1` (PR #1) y `docs/technical-architecture-contract` (PR #2), que figuran como no fusionadas por el mismo efecto del squash merge. Verificar por contenido antes de asumir trabajo pendiente.
+
 ## 7. Siguiente microtarea segura
 
 Revisión del Product Owner sobre el PR #4 (`docs/architecture/LOGICAL_ARCHITECTURE.md`, rama `docs/logical-architecture`), en particular sobre las reglas de límite de módulos (sección 3.2), el modelo conceptual de datos, la estrategia de autorización, el aislamiento multitenant y si las seis pruebas negativas previstas (PN1–PN6, sección 6.2) son suficientes. **No marcar el PR como listo, no fusionarlo, y no iniciar** diseño físico, selección de stack ni implementación hasta esa revisión.
@@ -71,7 +78,7 @@ Revisión del Product Owner sobre el PR #4 (`docs/architecture/LOGICAL_ARCHITECT
 - No mezclar `sase-light` con SASE Zero.
 - No usar datos reales de alumnos.
 - No inventar requisitos legales o normativos (ninguno fue introducido en este documento).
-- No eliminar ni mover el directorio `SASE-ZERO/` con comandos manuales; si en el futuro deja de necesitarse, retirarlo con `git worktree remove` desde la raíz del repositorio, nunca con borrado manual.
+- El directorio `SASE-ZERO/` (worktree `close-pr-technical-architecture-49bea3`) fue retirado el 2026-07-29 con `git worktree remove` desde la raíz, previa verificación de que el worktree estaba limpio (sin cambios sin commitear ni stash) y de que su HEAD `1ca377a` estaba respaldado en `origin`. Ya no existe; ignorar las referencias al worktree en la sección 2 (estado de sesión anterior). La sección 6.2 sí está vigente.
 - Las pruebas negativas PN1–PN6 (sección 6.2 del nuevo documento) son un requisito de diseño técnico pendiente, no una garantía ya validada; no asumir que el aislamiento multitenant está probado solo porque el documento las enumera.
 
 ## 9. Referencias
