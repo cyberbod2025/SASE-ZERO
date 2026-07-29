@@ -16,7 +16,7 @@ La mayor parte de este documento es 🔵/🟡: traduce a diseño lógico decisio
 
 ## 1. Propósito y límites
 
-Esta misión aplica el contrato técnico §9 y produce, como máximo:
+Esta misión aplica el contrato técnico §9 y §10 y produce, como máximo:
 
 - límites de módulos (arquitectura interna del monolito modular);
 - modelo conceptual de datos;
@@ -60,11 +60,11 @@ Aplica la alternativa elegida en la comparación §4.A: monolito modular con lí
 | Límite interno | Dominios | Regla de dependencia |
 |---|---|---|
 | **Plataforma (núcleo transversal)** | D1 Identidad/Acceso, D2 Auditoría, D3 Configuración Institucional | No dependen de ningún dominio operativo. Todo módulo de producto los consulta; ninguno es prerrequisito de otro dominio de plataforma. |
-| **Núcleo de producto** | D4 Alumnado/Expediente, D5 Casos/Seguimiento, D6 Documentos/Evidencia | Dependen solo de plataforma. Son prerrequisito de los demás dominios operativos. |
+| **Núcleo de producto** | D4 Alumnado/Expediente, D5 Casos/Seguimiento, D6 Documentos/Evidencia | Dependen solo de plataforma. D4 es prerrequisito de D7. |
 | **Operativo extendido** | D7 Seguimiento Académico y Convivencia | Depende de plataforma y de D4; puede originar casos en D5 (relación declarada, no acceso directo a datos internos de D5). |
-| **Dominios sensibles con protección especial** | D8 Salud, D9 Trabajo Social, D10 Orientación/Apoyos | Dependen de plataforma y de D4; se relacionan con D5 solo a través de canalización (D5/M7); nunca se leen entre sí de forma directa. |
+| **Dominios sensibles con protección especial** | D8 Salud, D9 Trabajo Social, D10 Orientación/Apoyos | Dependen de plataforma; se relacionan con D5 solo a través de canalización (D5/M7); nunca se leen entre sí de forma directa. |
 | **Transversal de solo lectura** | D11 Inteligencia y Alertas | Lee D5–D10; no escribe en ningún otro dominio; no tiene autoridad de decisión (§14 fundación). |
-| **Preparación estructural** | D12 Administración Multiescuela | No implementado en esta fase; D1 y D3 deben modelar la institución como entidad de primer nivel para no requerir rediseño al activarlo. |
+| **Preparación estructural** | D12 Administración Multiescuela | No implementado en esta fase; D1/D3/D4 deben modelar la institución como entidad de primer nivel para no requerir rediseño al activarlo. |
 
 ### 3.2 Reglas de límite obligatorias (🟡 propuesta de diseño lógico)
 
@@ -125,6 +125,7 @@ graph TD
     PLATAFORMA -. consultado por todos .-> D11
     D1 -. se prepara para .-> D12
     D3 -. se prepara para .-> D12
+    D4 -. se prepara para .-> D12
 ```
 
 ## 4. Modelo conceptual de datos
@@ -215,7 +216,7 @@ D11 no posee datos propios más allá de la alerta misma: toda evidencia se refe
 
 **Trazabilidad:** 🟢 D12 (`DOMAIN_MAP.md`), M18 (`MODULE_CATALOG.md`), fundación §5/§19 (preparación estructural multiescuela); 🟡 entidad conceptual (Relación institución-red) como propuesta de organización lógica que requiere validación del Product Owner cuando se active esta etapa.
 
-- **Relación institución-red** — vínculo entre una institución y una administración multiescuela, para cuando esta etapa se active. No se modela en detalle en esta misión; solo se deja constancia de que D1 (rol multiescuela) y D3 (institución como entidad de primer nivel) no requieren rediseño para admitirlo.
+- **Relación institución-red** — vínculo entre una institución y una administración multiescuela, para cuando esta etapa se active. No se modela en detalle en esta misión; solo se deja constancia de que D1 (rol multiescuela), D3 (institución como entidad de primer nivel) y D4 no requieren rediseño para admitirlo.
 
 ## 5. Flujo de identidad y autorización
 
@@ -353,6 +354,10 @@ Quedan explícitamente diferidas a fases posteriores (no decididas aquí, no blo
 - el mecanismo técnico concreto de inmutabilidad de auditoría (sección 8.3);
 - la política de conservación y eliminación de datos (sección 9.2), reservada al Product Owner;
 - cualquier proveedor o stack concreto (fuera de alcance permanente de esta misión).
+
+### 11.1 Decisiones de revisión
+
+Revisión 2026-07-29: las dependencias D5/D6 → dominios operativos y D4 → D8/D9/D10 se retiraron de §3.1 por no estar sostenidas en el diagrama §3.3 ni justificadas en DOMAIN_MAP.md. Se reincorporarán si el diseño físico las requiere, con justificación explícita.
 
 ## 12. Cierre de esta misión y siguiente microtarea
 
