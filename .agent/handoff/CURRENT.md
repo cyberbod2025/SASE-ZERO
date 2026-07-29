@@ -1,8 +1,8 @@
 # CURRENT HANDOFF — SASE Zero
 
-**Fecha:** 2026-07-28
-**Fase:** Diseño de arquitectura lógica — redactado, PR abierto en borrador, pendiente de revisión del Product Owner
-**Estado:** `docs/architecture/LOGICAL_ARCHITECTURE.md` en la rama `docs/logical-architecture`, subida a `origin`. PR #4 abierto en borrador hacia `main` (https://github.com/cyberbod2025/SASE-ZERO/pull/4). No marcado como listo, no fusionado, no aprobado por el Product Owner.
+**Fecha:** 2026-07-29
+**Fase:** Diseño de arquitectura lógica — cerrado y fusionado en `main`. Revisión de fondo del contenido (secciones 3–9 del documento) sigue pendiente del Product Owner.
+**Estado:** `docs/architecture/LOGICAL_ARCHITECTURE.md` fusionado en `main` por squash (commit `db2f5ee`, 2026-07-29), tras corregir 4 contradicciones de trazabilidad detectadas por el subagente `revisor-docs` (ver sección 6.3). PR #4 marcado como listo y fusionado por decisión explícita del Product Owner; rama `docs/logical-architecture` borrada en remoto tras la fusión. La fusión resuelve el cierre del PR, no sustituye una revisión de fondo del contenido técnico.
 **Arquitectura funcional:** Cerrada
 **Implementación de producto:** No iniciada
 **Stack técnico:** Ninguno aprobado
@@ -54,11 +54,19 @@ Ningún otro archivo fue modificado. Ningún documento funcional o técnico prev
 - Se confirmó, con `gh pr view 4 --json ...`, que el PR #4 quedó abierto (`state: OPEN`) y en borrador (`isDraft: true`) hacia `main`, sin marcarlo como listo y sin fusionarlo.
 - Se registró un commit adicional (`docs: record logical architecture draft PR`) que actualiza únicamente `.agent/state.json` y este handoff con el número y URL reales del PR; el documento `LOGICAL_ARCHITECTURE.md` no fue tocado en ese commit.
 
-## 6.1 Estado de la rama y el PR (autorizado explícitamente en esta sesión)
+## 6.1 Estado de la rama y el PR (cerrado el 2026-07-29)
 
-- Rama `docs/logical-architecture` subida a `origin` (`git push -u origin docs/logical-architecture`).
-- PR #4 abierto en borrador hacia `main`: https://github.com/cyberbod2025/SASE-ZERO/pull/4 — título "docs: define SASE Zero logical architecture".
-- El PR no fue marcado como listo (`ready for review`) ni fusionado.
+- Rama `docs/logical-architecture` subida a `origin`, marcada como lista (`ready for review`) y fusionada en `main` por squash (commit `db2f5ee`) mediante `gh pr merge 4 --squash --delete-branch`, por decisión explícita del Product Owner.
+- PR #4: https://github.com/cyberbod2025/SASE-ZERO/pull/4 — título "docs: define SASE Zero logical architecture". Estado final: `MERGED`.
+- Rama `docs/logical-architecture` borrada en `origin` tras la fusión (`git fetch --prune` la retiró de las referencias locales).
+
+## 6.3 Revisión de trazabilidad por `revisor-docs` y correcciones aplicadas (2026-07-29)
+
+- Se ejecutó el subagente `revisor-docs` sobre `LOGICAL_ARCHITECTURE.md`, contrastado contra `TECHNICAL_ARCHITECTURE_CONTRACT.md`, `TECHNICAL_ALTERNATIVES_COMPARISON.md`, `DOMAIN_MAP.md`, `MODULE_CATALOG.md`, `ROLE_MATRIX.md`, `CORE_WORKFLOWS.md` y `ADR-0002`. Reportó 4 contradicciones, 0 afirmaciones sin respaldo, 3 sugerencias menores.
+- De las 4 contradicciones, 2 se verificaron de forma independiente contra la fuente citada antes de decidir sobre ellas (D12/D4 contra `DOMAIN_MAP.md` línea 251; cita §9 vs. §10 contra `TECHNICAL_ARCHITECTURE_CONTRACT.md`).
+- El Product Owner decidió, tras revisar las cuatro: corregir la cita "D1 y D3" → "D1/D3/D4" (§3.1, §3.3, §4.10); corregir §1 "aplica el contrato técnico §9" → "§9 y §10" (encabezado se dejó intacto por ser ya correcto); y, para las dos contradicciones restantes (tabla §3.1 vs. diagrama §3.3 sobre dependencias D5/D6→operativos y D4→sensibles), eligió la Opción B: acotar la tabla al diagrama en vez de ampliar el diagrama.
+- Cambios aplicados en un solo commit (`7898cb4`, "docs: corregir trazabilidad D12/D4, cita §9-§10 y dependencias no sostenidas en §3.1"), incluido en el squash de la fusión. Se dejó registrada en el propio documento (§11.1, "Decisiones de revisión") la nota de que las dependencias retiradas podrán reincorporarse con justificación explícita si el diseño físico las requiere.
+- Las 2 contradicciones sobre el diagrama Mermaid (arcos D5→D7, D6→D7, D4→D8/D9/D10 ausentes) quedaron resueltas por la Opción B; no requieren acción adicional salvo que el diseño físico futuro reintroduzca esas dependencias.
 
 ## 6.2 Ramas — historial de residuales por squash merge (resuelto el 2026-07-29)
 
@@ -69,11 +77,11 @@ Ningún otro archivo fue modificado. Ningún documento funcional o técnico prev
 
 ## 7. Siguiente microtarea segura
 
-Revisión del Product Owner sobre el PR #4 (`docs/architecture/LOGICAL_ARCHITECTURE.md`, rama `docs/logical-architecture`), en particular sobre las reglas de límite de módulos (sección 3.2), el modelo conceptual de datos, la estrategia de autorización, el aislamiento multitenant y si las seis pruebas negativas previstas (PN1–PN6, sección 6.2) son suficientes. **No marcar el PR como listo, no fusionarlo, y no iniciar** diseño físico, selección de stack ni implementación hasta esa revisión.
+El PR #4 ya está fusionado en `main`, pero esa fusión cerró el ciclo de publicación, no una revisión de fondo del contenido técnico. Sigue pendiente: revisión del Product Owner sobre el contenido ya fusionado de `docs/architecture/LOGICAL_ARCHITECTURE.md` — en particular las reglas de límite de módulos (sección 3.2), el modelo conceptual de datos, la estrategia de autorización, el aislamiento multitenant y si las seis pruebas negativas previstas (PN1–PN6, sección 6.2) son suficientes. **No iniciar** diseño físico, selección de stack ni implementación hasta esa revisión de fondo.
 
 ## 8. Riesgos y advertencias
 
-- No marcar el PR #4 como listo (`ready for review`) ni fusionarlo a `main` sin revisión y aprobación explícita del Product Owner.
+- El PR #4 fue marcado como listo y fusionado a `main` por decisión explícita del Product Owner (2026-07-29); no reabrir esa decisión de proceso. Sí sigue pendiente la revisión de fondo del contenido técnico (sección 7).
 - No convertir ningún patrón descrito (monolito modular, filas compartidas con identificador institucional, modelo híbrido de identidad, etc.) en selección de stack o proveedor sin decisión registrada del Product Owner.
 - No mezclar `sase-light` con SASE Zero.
 - No usar datos reales de alumnos.
@@ -83,7 +91,7 @@ Revisión del Product Owner sobre el PR #4 (`docs/architecture/LOGICAL_ARCHITECT
 
 ## 9. Referencias
 
-- Nuevo documento: `docs/architecture/LOGICAL_ARCHITECTURE.md` (rama `docs/logical-architecture`, PR #4 en borrador: https://github.com/cyberbod2025/SASE-ZERO/pull/4).
+- Nuevo documento: `docs/architecture/LOGICAL_ARCHITECTURE.md`, fusionado en `main` (PR #4, MERGED: https://github.com/cyberbod2025/SASE-ZERO/pull/4).
 - Contrato técnico aprobado y fusionado: `docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md` (PR #2).
 - Comparación de alternativas aprobada y fusionada: `docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md` (PR #3).
 
