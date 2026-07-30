@@ -31,6 +31,72 @@ create table alumnos (
   nombre_completo text not null
 );
 
+-- Privilegio base de tabla: sin esto, RLS no llega a evaluarse (Postgres corta el acceso antes)
+grant select on public.instituciones to authenticated;
+grant select on public.grupos to authenticated;
+grant select on public.docentes to authenticated;
+grant select on public.docente_grupos to authenticated;
+grant select on public.alumnos to authenticated;
+
+-- RLS: instituciones
+alter table instituciones enable row level security;
+
+create policy docente_lee_su_institucion
+on instituciones
+for select
+to authenticated
+using (
+  exists (
+    select 1 from docentes d
+    where d.institucion_id = instituciones.id
+      and d.user_id = auth.uid()
+  )
+);
+
+-- RLS: grupos
+alter table grupos enable row level security;
+
+create policy docente_lee_sus_grupos
+on grupos
+for select
+to authenticated
+using (
+  exists (
+    select 1
+    from docente_grupos dg
+    join docentes d on d.id = dg.docente_id
+    where dg.grupo_id = grupos.id
+      and d.user_id = auth.uid()
+  )
+);
+
+-- RLS: docentes
+alter table docentes enable row level security;
+
+create policy docente_lee_su_propio_registro
+on docentes
+for select
+to authenticated
+using (
+  user_id = auth.uid()
+);
+
+-- RLS: docente_grupos
+alter table docente_grupos enable row level security;
+
+create policy docente_lee_sus_propias_asignaciones
+on docente_grupos
+for select
+to authenticated
+using (
+  exists (
+    select 1 from docentes d
+    where d.id = docente_grupos.docente_id
+      and d.user_id = auth.uid()
+  )
+);
+
+-- RLS: alumnos
 alter table alumnos enable row level security;
 
 create policy docente_lee_alumnos_de_sus_grupos
