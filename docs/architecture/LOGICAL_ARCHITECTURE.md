@@ -184,7 +184,7 @@ Entidades conceptuales por dominio. No son tablas ni definen tipos físicos: des
 
 **Trazabilidad:** 🟢 D6 (`DOMAIN_MAP.md`), M9/M10 (`MODULE_CATALOG.md`), F4 (`CORE_WORKFLOWS.md`); 🔵 entidades conceptuales (Documento institucional, Evidencia adjunta, Reporte exportable) inferidas al traducir D6 a modelo de datos.
 
-- **Documento institucional** — folio, fecha, responsables, versión, vínculo obligatorio a su registro de origen (caso, expediente o movimiento).
+- **Documento institucional** — folio, fecha, responsables, firmas, versión, vínculo obligatorio a su registro de origen (caso, expediente o movimiento) (`DOMAIN_MAP.md` D6: "folio, fecha, responsables, firmas, versión"; `CORE_WORKFLOWS.md` F4: "folio, fecha, responsables y firmas").
 - **Evidencia adjunta** — referencia a contenido almacenado (sección 9) más metadatos de acceso propios de la aplicación.
 - **Reporte exportable** — proyección de datos institucionales para exportación (sección 9), nunca una copia paralela no auditada.
 
