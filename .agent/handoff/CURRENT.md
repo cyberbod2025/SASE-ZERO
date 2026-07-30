@@ -67,6 +67,15 @@ Ningún otro archivo fue modificado. Ningún documento funcional o técnico prev
 - El Product Owner decidió, tras revisar las cuatro: corregir la cita "D1 y D3" → "D1/D3/D4" (§3.1, §3.3, §4.10); corregir §1 "aplica el contrato técnico §9" → "§9 y §10" (encabezado se dejó intacto por ser ya correcto); y, para las dos contradicciones restantes (tabla §3.1 vs. diagrama §3.3 sobre dependencias D5/D6→operativos y D4→sensibles), eligió la Opción B: acotar la tabla al diagrama en vez de ampliar el diagrama.
 - Cambios aplicados en un solo commit (`7898cb4`, "docs: corregir trazabilidad D12/D4, cita §9-§10 y dependencias no sostenidas en §3.1"), incluido en el squash de la fusión. Se dejó registrada en el propio documento (§11.1, "Decisiones de revisión") la nota de que las dependencias retiradas podrán reincorporarse con justificación explícita si el diseño físico las requiere.
 - Las 2 contradicciones sobre el diagrama Mermaid (arcos D5→D7, D6→D7, D4→D8/D9/D10 ausentes) quedaron resueltas por la Opción B; no requieren acción adicional salvo que el diseño físico futuro reintroduzca esas dependencias.
+- **Corrección posterior (PR #6, 2026-07-30):** la Opción B descrita arriba resultó ser un error — la matriz de dependencias de `DOMAIN_MAP.md` (líneas 266-268) sí sostiene explícitamente D4 → D8/D9/D10 y D4 → D5/D6. Se revirtió (ver sección 6.4); la nota §11.1 del documento fue reescrita para reflejar la corrección real, no la asunción original de esta sección.
+
+## 6.4 Corrección de dependencias D4 (PR #6, segunda pasada — 2026-07-30)
+
+- Al revisar de fondo `LOGICAL_ARCHITECTURE.md` contra las seis fuentes funcionales completas (`DOMAIN_MAP.md`, `MODULE_CATALOG.md`, `ROLE_MATRIX.md`, `CORE_WORKFLOWS.md`, `TECHNICAL_ALTERNATIVES_COMPARISON.md`, ambos ADR), se detectó que la Opción B aplicada en la sección 6.3 había recortado de §3.1 dependencias (D4 → D8/D9/D10) que sí estaban explícitamente sostenidas por la matriz de dependencias de `DOMAIN_MAP.md` (líneas 266-268) — la nota §11.1 original afirmaba lo contrario, de forma factualmente incorrecta.
+- El Product Owner revirtió su decisión anterior y estableció una regla de precedencia explícita para futuras revisiones: `DOMAIN_MAP.md` > tabla §3.1 > diagrama §3.3 (el diagrama es una vista; se completa si omite un arco que la matriz afirma, nunca se inventan arcos que la matriz no sostenga).
+- Cambios aplicados en `LOGICAL_ARCHITECTURE.md`: se restauró la dependencia de D4 en las filas "Núcleo de producto" y "Dominios sensibles" de §3.1; se añadieron los arcos `D4 --> D8`, `D4 --> D9`, `D4 --> D10` al diagrama §3.3; se reescribió por completo la nota §11.1 para reflejar la corrección real.
+- Cambios en un solo commit (`61db437`, "docs: restaurar dependencias D4 segun DOMAIN_MAP y corregir nota de revision"). PR #6: https://github.com/cyberbod2025/SASE-ZERO/pull/6 — fusionado por squash (commit `1d2bace`, 2026-07-30T00:16:14Z). Rama `docs/fix-d4-dependencies` borrada en `origin` tras la fusión.
+- `DOMAIN_MAP.md` no fue tocado (documento cerrado y aprobado). Se identificó, pero no se corrigió, una inconsistencia interna propia de ese documento sobre D12: su campo "Estado" cita D1/D3/D4, pero su campo "Dependencias" y su matriz-resumen citan solo D1/D3. Queda como nota abierta para el Product Owner, no resuelta en este ciclo.
 
 ## 6.2 Ramas — historial de residuales por squash merge (resuelto el 2026-07-29)
 
@@ -91,9 +100,9 @@ El PR #4 ya está fusionado en `main`, pero esa fusión cerró el ciclo de publi
 
 ## 9. Referencias
 
-- Nuevo documento: `docs/architecture/LOGICAL_ARCHITECTURE.md`, fusionado en `main` (PR #4, MERGED: https://github.com/cyberbod2025/SASE-ZERO/pull/4).
+- Nuevo documento: `docs/architecture/LOGICAL_ARCHITECTURE.md`, fusionado en `main` (PR #4, MERGED: https://github.com/cyberbod2025/SASE-ZERO/pull/4; corrección de dependencias D4, PR #6, MERGED: https://github.com/cyberbod2025/SASE-ZERO/pull/6).
 - Contrato técnico aprobado y fusionado: `docs/architecture/TECHNICAL_ARCHITECTURE_CONTRACT.md` (PR #2).
 - Comparación de alternativas aprobada y fusionada: `docs/architecture/TECHNICAL_ALTERNATIVES_COMPARISON.md` (PR #3).
-- `.gitattributes` (normalización de fin de línea): rama `chore/eol-normalization`, PR #5 en borrador: https://github.com/cyberbod2025/SASE-ZERO/pull/5.
+- `.gitattributes` (normalización de fin de línea): fusionado en `main` (PR #5, MERGED: https://github.com/cyberbod2025/SASE-ZERO/pull/5).
 
 > Un agente informa; el siguiente verifica.
