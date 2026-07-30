@@ -112,3 +112,11 @@ using (
       and d.user_id = auth.uid()
   )
 );
+
+-- Cierre explícito: anon no debe tener ningún privilegio de tabla,
+-- sin depender de que ninguna política futura lo deje descubierto.
+revoke all on public.instituciones from anon;
+revoke all on public.grupos from anon;
+revoke all on public.docentes from anon;
+revoke all on public.docente_grupos from anon;
+revoke all on public.alumnos from anon;
