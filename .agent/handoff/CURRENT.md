@@ -98,6 +98,15 @@ El PR #4 ya está fusionado en `main`, pero esa fusión cerró el ciclo de publi
 - El directorio `SASE-ZERO/` (worktree `close-pr-technical-architecture-49bea3`) fue retirado el 2026-07-29 con `git worktree remove` desde la raíz, previa verificación de que el worktree estaba limpio (sin cambios sin commitear ni stash) y de que su HEAD `1ca377a` estaba respaldado en `origin`. Ya no existe; ignorar las referencias al worktree como si siguiera presente en la **sección 2** ("no fue tocado, movido ni eliminado") y en la **sección 6, primer punto** ("no fue movido ni alterado") — ambas describen el estado de una sesión anterior al retiro y ya no son ciertas. La sección 6.2 sí está vigente.
 - Las pruebas negativas PN1–PN6 (sección 6.2 del nuevo documento) son un requisito de diseño técnico pendiente, no una garantía ya validada; no asumir que el aislamiento multitenant está probado solo porque el documento las enumera.
 
+## 8.1 Pendientes de diseño (no bloqueantes, no resueltos aquí)
+
+1. D7 sin entidad para retardos ni intervenciones de tutoría (`DOMAIN_MAP.md` D7). Resolver al implementar M12.
+2. Falta sección explícita de recomendación técnica razonada (contrato §9/§10). Hoy aplicada de forma implícita en `LOGICAL_ARCHITECTURE.md`.
+3. PN7 pendiente: canalización de alcance amplio DENTRO de la misma institución. PN1–PN6 (sección 6.2 del documento) solo cubren fuga entre instituciones.
+4. Ambigüedad en `DOMAIN_MAP.md` sobre D12: línea 251 dice D1/D3/D4, líneas 249 y 270 dicen D1/D3. Lectura adoptada: "depender de" y "estar preparado para" son afirmaciones distintas. No se modificó `DOMAIN_MAP.md`.
+
+Revisión documental de `LOGICAL_ARCHITECTURE.md` cerrada el 2026-07-29 tras tres pasadas. Los pendientes anteriores se resuelven en el diseño físico o al implementar el dominio correspondiente, no en nuevas iteraciones documentales.
+
 ## 9. Referencias
 
 - Nuevo documento: `docs/architecture/LOGICAL_ARCHITECTURE.md`, fusionado en `main` (PR #4, MERGED: https://github.com/cyberbod2025/SASE-ZERO/pull/4; corrección de dependencias D4, PR #6, MERGED: https://github.com/cyberbod2025/SASE-ZERO/pull/6).
