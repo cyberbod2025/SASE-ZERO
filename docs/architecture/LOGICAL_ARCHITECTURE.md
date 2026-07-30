@@ -60,9 +60,9 @@ Aplica la alternativa elegida en la comparación §4.A: monolito modular con lí
 | Límite interno | Dominios | Regla de dependencia |
 |---|---|---|
 | **Plataforma (núcleo transversal)** | D1 Identidad/Acceso, D2 Auditoría, D3 Configuración Institucional | No dependen de ningún dominio operativo. Todo módulo de producto los consulta; ninguno es prerrequisito de otro dominio de plataforma. |
-| **Núcleo de producto** | D4 Alumnado/Expediente, D5 Casos/Seguimiento, D6 Documentos/Evidencia | Dependen solo de plataforma. D4 es prerrequisito de D7. |
+| **Núcleo de producto** | D4 Alumnado/Expediente, D5 Casos/Seguimiento, D6 Documentos/Evidencia | D4 depende solo de plataforma. D5 y D6 dependen de plataforma y de D4 (`DOMAIN_MAP.md`, matriz de dependencias). D4 es también prerrequisito de D7. |
 | **Operativo extendido** | D7 Seguimiento Académico y Convivencia | Depende de plataforma y de D4; puede originar casos en D5 (relación declarada, no acceso directo a datos internos de D5). |
-| **Dominios sensibles con protección especial** | D8 Salud, D9 Trabajo Social, D10 Orientación/Apoyos | Dependen de plataforma; se relacionan con D5 solo a través de canalización (D5/M7); nunca se leen entre sí de forma directa. |
+| **Dominios sensibles con protección especial** | D8 Salud, D9 Trabajo Social, D10 Orientación/Apoyos | Dependen de D1, D3 y D4 (`DOMAIN_MAP.md`, matriz de dependencias, líneas 266-268); se relacionan con D5 solo a través de canalización (D5/M7) y con D11 (que las lee); nunca se leen entre sí de forma directa. |
 | **Transversal de solo lectura** | D11 Inteligencia y Alertas | Lee D5–D10; no escribe en ningún otro dominio; no tiene autoridad de decisión (§14 fundación). |
 | **Preparación estructural** | D12 Administración Multiescuela | No implementado en esta fase; D1/D3/D4 deben modelar la institución como entidad de primer nivel para no requerir rediseño al activarlo. |
 
@@ -105,6 +105,9 @@ graph TD
     D4 --> D5
     D4 --> D6
     D4 --> D7
+    D4 --> D8
+    D4 --> D9
+    D4 --> D10
     D5 --> D6
     D7 --> D5
 
@@ -357,7 +360,7 @@ Quedan explícitamente diferidas a fases posteriores (no decididas aquí, no blo
 
 ### 11.1 Decisiones de revisión
 
-Revisión 2026-07-29: las dependencias D5/D6 → dominios operativos y D4 → D8/D9/D10 se retiraron de §3.1 por no estar sostenidas en el diagrama §3.3 ni justificadas en DOMAIN_MAP.md. Se reincorporarán si el diseño físico las requiere, con justificación explícita.
+Revisión 2026-07-29 (segunda pasada): una primera corrección recortó de §3.1 las dependencias D4 → D8/D9/D10 asumiendo que no estaban justificadas. Era incorrecto: la matriz de dependencias de DOMAIN_MAP.md (líneas 266-268) las lista explícitamente. Se restauraron y se completó el diagrama §3.3. Regla de precedencia establecida: DOMAIN_MAP.md > tabla §3.1 > diagrama §3.3.
 
 ## 12. Cierre de esta misión y siguiente microtarea
 
