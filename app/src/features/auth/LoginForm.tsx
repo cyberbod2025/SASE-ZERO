@@ -10,15 +10,18 @@ export type LoginFormValues = z.infer<typeof loginSchema>
 
 interface LoginFormProps {
   onSubmit: (values: LoginFormValues) => void
+  submitting?: boolean
+  submitError?: string | null
 }
 
-export function LoginForm({ onSubmit }: LoginFormProps) {
+export function LoginForm({ onSubmit, submitting = false, submitError = null }: LoginFormProps) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    if (submitting) return
     const result = loginSchema.safeParse({ email, password })
     if (!result.success) {
       setError(result.error.issues[0]?.message ?? 'Datos inválidos')
@@ -27,6 +30,8 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
     setError(null)
     onSubmit(result.data)
   }
+
+  const mensajeError = error ?? submitError
 
   return (
     <form onSubmit={handleSubmit} noValidate className="flex w-full max-w-sm flex-col gap-4">
@@ -58,16 +63,17 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
           className="rounded border border-gray-300 px-3 py-2 text-sm focus:border-gray-500 focus:outline-none"
         />
       </div>
-      {error && (
+      {mensajeError && (
         <p role="alert" className="text-sm text-red-600">
-          {error}
+          {mensajeError}
         </p>
       )}
       <button
         type="submit"
-        className="rounded bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-700"
+        disabled={submitting}
+        className="rounded bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-700 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        Iniciar sesión
+        {submitting ? 'Iniciando sesión…' : 'Iniciar sesión'}
       </button>
     </form>
   )

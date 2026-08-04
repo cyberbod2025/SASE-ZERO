@@ -95,5 +95,18 @@
   },
   "product_owner": "Hugo Sánchez Reséndiz",
   "foundation_commit": "b7252a07bfa639d17886339bebd523854e2fcb56",
-  "updated_at": "2026-07-29"
+  "updated_at": "2026-08-04",
+  "vertical_slice_attendance": {
+    "phase": "vertical_slice_attendance_built_pr_open",
+    "branch": "feat/attendance-class-slice",
+    "base_branch": "feat/vertical-slice",
+    "base_commit": "a60c003",
+    "worktree": "SASE-ZERO-attendance-slice (exclusivo, fuera del arbol compartido)",
+    "summary": "Primer vertical slice funcional de SASE Zero: asistencia por clase y grupo, con Supabase Auth real, RLS server-side verificada con dos identidades (positiva/negativa), UI mobile-first, y dos rondas de revisión (SECURITY-RLS + PRODUCT-QA) con hallazgos P1 corregidos antes de abrir el PR.",
+    "new_tables": ["sesiones_clase", "asistencias"],
+    "migration": "app/supabase/migrations/0003_attendance_class_slice.sql",
+    "seed": "app/supabase/seed.sql (2 docentes demo, 2 grupos, 4 alumnos ficticios)",
+    "definition_of_done": "Ver app/docs/DEFINITION_OF_DONE_attendance_class_slice.md dentro de este mismo repo (no en Command Center).",
+    "next_safe_microtask": "Hugo revisa el PR de feat/attendance-class-slice y decide si mergea. No iniciar el siguiente módulo (asistencia de jornada, M11 completo) hasta esa decisión."
+  }
 }
