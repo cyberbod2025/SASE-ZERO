@@ -106,7 +106,14 @@
     "new_tables": ["sesiones_clase", "asistencias"],
     "migration": "app/supabase/migrations/0003_attendance_class_slice.sql",
     "seed": "app/supabase/seed.sql (2 docentes demo, 2 grupos, 4 alumnos ficticios)",
-    "definition_of_done": "Ver app/docs/DEFINITION_OF_DONE_attendance_class_slice.md dentro de este mismo repo (no en Command Center).",
-    "next_safe_microtask": "Hugo revisa el PR de feat/attendance-class-slice y decide si mergea. No iniciar el siguiente módulo (asistencia de jornada, M11 completo) hasta esa decisión."
+    "definition_of_done": "docs/DEFINITION_OF_DONE_attendance_class_slice.md dentro de este mismo repo (no en Command Center).",
+    "pull_request": {
+      "number": 8,
+      "base": "feat/vertical-slice",
+      "head": "feat/attendance-class-slice",
+      "state": "open",
+      "url": "https://github.com/cyberbod2025/SASE-ZERO/pull/8"
+    },
+    "next_safe_microtask": "Hugo revisa el PR #8 (feat/attendance-class-slice -> feat/vertical-slice) y decide si mergea. No iniciar el siguiente módulo (asistencia de jornada, M11 completo) hasta esa decisión."
   }
 }
