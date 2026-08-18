@@ -1,10 +1,23 @@
 # CURRENT HANDOFF — SASE Zero
 
+## Actualización 2026-08-04 — Vertical slice: asistencia por clase y grupo (PR abierto, no fusionado)
+
+**Rama:** `feat/attendance-class-slice`, base `feat/vertical-slice` (`a60c003`), worktree exclusivo `SASE-ZERO-attendance-slice`.
+**Fase:** Implementación de producto — **iniciada** (primer vertical slice funcional). Sustituye la nota "Implementación de producto: No iniciada" de abajo, que describe el estado previo a esta sesión.
+**Qué se construyó:** flujo completo docente-autenticado → rol activo → grupos asignados → grupo → clase del día → asistencia (todos presentes por defecto, marcar excepciones) → guardar en una operación → recargar/recuperar → modificar sin duplicar → logout/login y recuperar lo mismo. Migración `app/supabase/migrations/0003_attendance_class_slice.sql` (tablas `sesiones_clase`, `asistencias`, RLS, grants con `revoke all` explícito), seed demo (`app/supabase/seed.sql`), UI mobile-first (`app/src/features/attendance/`), pruebas de componente e integración SQL RLS positiva/negativa.
+**Verificación ejecutada:** tsc, oxlint, vitest (12/12), build, `supabase db reset`, dos archivos de prueba SQL RLS (positiva+negativa+TRUNCATE bloqueado), E2E vía PostgREST con dos identidades reales, y recorrido completo en Chrome real (viewport móvil 390×844). Detalle completo en `docs/DEFINITION_OF_DONE_attendance_class_slice.md` (documento canónico de esta iteración, vive en este mismo repo).
+**Revisión paralela:** dos subagentes (SECURITY-RLS, PRODUCT-QA) encontraron un P1 cada uno — falta de `revoke all` que dejaba `TRUNCATE` sin bloquear para `authenticated`, y guardado que no persistía un día "todos presentes" sin excepciones — ambos corregidos y reverificados antes de abrir el PR.
+**Estado del PR:** PR #8 abierto hacia `feat/vertical-slice` (https://github.com/cyberbod2025/SASE-ZERO/pull/8), no fusionado. `feat/vertical-slice` también se subió a `origin` en esta sesión (no tenía PR propio; sigue sin uno, es la base). El merge de ambos lo decide Hugo. Repo sin workflow de revisión de Codex configurado (`.github/` no existe); no se solicitó por no aplicar.
+**Siguiente acción concreta:** Hugo revisa y decide si fusiona `feat/attendance-class-slice`. No iniciar el siguiente módulo (asistencia de jornada institucional, resto de M11) hasta esa decisión.
+**No tocado:** Teacher OS, Nuevo Horizonte, Command Center, ni el directorio de trabajo compartido del portafolio.
+
+---
+
 **Fecha:** 2026-07-29
 **Fase:** Diseño de arquitectura lógica — cerrado y fusionado en `main`. Revisión de fondo del contenido (secciones 3–9 del documento) sigue pendiente del Product Owner.
 **Estado:** `docs/architecture/LOGICAL_ARCHITECTURE.md` fusionado en `main` por squash (commit `db2f5ee`, 2026-07-29), tras corregir 4 contradicciones de trazabilidad detectadas por el subagente `revisor-docs` (ver sección 6.3). PR #4 marcado como listo y fusionado por decisión explícita del Product Owner; rama `docs/logical-architecture` borrada en remoto tras la fusión. La fusión resuelve el cierre del PR, no sustituye una revisión de fondo del contenido técnico.
 **Arquitectura funcional:** Cerrada
-**Implementación de producto:** No iniciada
+**Implementación de producto:** Iniciada (ver actualización 2026-08-04 arriba) — esta línea describía el estado previo a esa sesión.
 **Stack técnico:** Ninguno aprobado
 
 ## 1. Objetivo de esta sesión
